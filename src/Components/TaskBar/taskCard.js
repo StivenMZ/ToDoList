@@ -3,22 +3,20 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const ArticleCard = styled.article`
-margin-left: 30rem;
-margin-top: 10rem;
 border: 1px solid black;
-height: 31%;
-padding: 1.3rem;
+padding: 0.7rem;
 display: flex;
 flex-direction: column;
-gap: 1rem;
+gap: 0.5rem;
 position: relative;
 border-radius: 0.2rem;
+width: 55%;
 `;
 
 const DivPrimary = styled.div`
 display: flex;
 flex-direction: column;
-gap: 1rem;
+gap: 0.3rem;
 margin-top: 1rem;
 `;
 
@@ -46,12 +44,12 @@ border-radius: 0.4rem;
 
 
 const TitleCard = styled.h2`
-font-size: 1.4rem;
+font-size: 1.2rem;
 font-weight: bold;
 `;
 
 const DescCard = styled.p`
-font-size: 1.2rem;
+font-size: 1.1rem;
 
 `;
 
@@ -62,14 +60,17 @@ font-size: 0.9rem;
 const CategoryDiv = styled.div`
 display: flex;
 gap: 0.6rem;
+width: 40%;
 `;
 
 const ButtonCard = styled.button`
 color: white;
 border: none;
-background-color: blueviolet;
-padding: 0.3rem;
+background-color: lightseagreen;
+padding: 0.5rem;
 cursor: pointer;
+font-size: 0.8rem;
+
 `;
 
 

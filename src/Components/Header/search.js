@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const SectionSearch = styled.header`
 background-color: ${({ theme }) => theme.background};;
-height: 10vh;
+height: 6vh;
 width: 100%;
 display: flex;
 align-items: center;
@@ -55,7 +55,7 @@ border-color: ${({ theme }) => theme.buttonBorder};
 const DivChangeTheme = styled.div`
 align-self: flex-end;
 position: absolute;
-    top: 6%;
+    top: 3%;
     right: 4%;
 
 `
