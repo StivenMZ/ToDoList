@@ -37,15 +37,16 @@ padding: 0.5rem;
 
 
 
-const CreateTask = () => {
+const CreateTask = ({recibirTarea, newId}) => {
     
     const [title, setTitle] = useState('');
     const [descripcion, setDescription] = useState('');
-    const [prioridad, setPrioridad] = useState('');
+    const [prioridad, setPrioridad] = useState('Baja');
     const [date, setDate] = useState('');
 
     const [task, setTask] = useState(undefined);
 
+    const [ide, setIde] = useState(0)
 
 
 
@@ -55,6 +56,7 @@ const CreateTask = () => {
         console.log(data)
     }
 
+
     const sendForm =  () =>{
         const fecha = new Date();
         let time = '';
@@ -62,13 +64,23 @@ const CreateTask = () => {
         time += fecha.getUTCMonth() + '/';
         time += fecha.getFullYear();
         setDate(time);
-        setTask({titutlo: title, descripcion : descripcion, creacion: date, prioridad: prioridad})
+
+        const newTarea = {
+            titutlo: title,
+            descripcion: descripcion,
+            prioridad: prioridad,
+            fechaIn: date,
+            id: newId, 
+          };
+
+        recibirTarea(newTarea)
 
     }
     
     useEffect(() => {
         console.log('Nuevo valor de task:', task);
       }, [task]);
+   
 
     return (
         <>
@@ -95,6 +107,7 @@ const CreateTask = () => {
                         <ButtonForm
                             onClick={(e) => {
                                 e.preventDefault();
+                                setIde(newId);
                                 sendForm();
                             }}
                         >Guardar</ButtonForm>
@@ -102,12 +115,13 @@ const CreateTask = () => {
                             onClick={(e) => {
                                 e.preventDefault();
                             }}
+
                         >Cancelar</ButtonForm>
                     </DivButtons>
                 </Form>
             </SectionCreateTask>
         </>
     )
-}
+                        }
 
 export default CreateTask;

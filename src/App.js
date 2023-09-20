@@ -4,7 +4,7 @@ import Search from './Components/Header/search';
 import Global from './Global';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import Main from './Components/Main/main';
 import TaskList from './Components/TaskBar/taskBar';
 import CreateTask from './Components/CreateTask/creaeteTask';
@@ -19,6 +19,26 @@ function App() {
     setEsTemaOscuro(!esTemaOscuro);
   }
 
+  const [tareaPend, setTareaPend] = useState({})
+
+  const recibirTarea = (obj) =>{
+    setTareaPend(obj)
+
+    setNewId(newId +1)
+  }
+
+  const [newId, setNewId] = useState(2);
+
+  useEffect(()=>{
+    console.log(newId)
+
+  },[newId])
+
+
+
+
+
+
   return (
 <>
     <ThemeProvider theme={esTemaOscuro ? darkTheme : lightTheme}>
@@ -27,8 +47,8 @@ function App() {
     <Search onChangeTheme={changeTheme}>
     </Search>
     <Main>
-    <TaskList></TaskList>
-    <CreateTask></CreateTask>
+    <TaskList newTarea={tareaPend}></TaskList>
+    <CreateTask recibirTarea={recibirTarea} newId={newId}></CreateTask>
     <AditionalFunctions></AditionalFunctions>
     </Main>
 

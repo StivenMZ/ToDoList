@@ -77,17 +77,16 @@ font-size: 0.8rem;
 
 
 
-
-const TaskCard = () => {
+const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, deleteTask}) => {
     return (
         <>
-            <ArticleCard>
+            <ArticleCard key={id}>
                 <StatusCard>Pendiente</StatusCard>
-                <ProirityCard>Alta prioridad</ProirityCard>
+                <ProirityCard>Prioridad {prioridad}</ProirityCard>
                 <DivPrimary>
-                    <TitleCard>Gimnasio</TitleCard>
-                    <DescCard>Ir al gimnasio</DescCard>
-                    <FechaCard>Fecha de inicio: 20/09/2023</FechaCard>
+                    <TitleCard>{titulo}</TitleCard>
+                    <DescCard>{descripcion}</DescCard>
+                    <FechaCard>Fecha de inicio: {fechaIn}</FechaCard>
                     <FechaCard>Fecha fin: 20/09/2023</FechaCard>
                 </DivPrimary>
 
@@ -95,7 +94,12 @@ const TaskCard = () => {
                     <ButtonCard>
                         Completar
                     </ButtonCard>
-                    <ButtonCard>
+                    <ButtonCard
+                    onClick={()=>{
+                        deleteTask(id)
+
+                    }}
+                    >
                         Eliminar
                     </ButtonCard>
                     <ButtonCard>
