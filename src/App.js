@@ -4,11 +4,13 @@ import Search from './Components/Header/search';
 import Global from './Global';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
-import { useState , useEffect} from 'react';
+import React, { useState , useEffect, createContext, useContext} from 'react';
 import Main from './Components/Main/main';
 import TaskList from './Components/TaskBar/taskBar';
 import CreateTask from './Components/CreateTask/creaeteTask';
 import AditionalFunctions from './Components/AditionalFunctions/aditionalFunctions';
+
+const TareasGlobal = createContext();
 
 
 function App() {
@@ -19,42 +21,27 @@ function App() {
     setEsTemaOscuro(!esTemaOscuro);
   }
 
-  const [tareaPend, setTareaPend] = useState({})
-
-  const recibirTarea = (obj) =>{
-    setTareaPend(obj)
-
-    setNewId(newId +1)
-  }
-
-  const [newId, setNewId] = useState(2);
-
-  useEffect(()=>{
-    console.log(newId)
-
-  },[newId])
-
-
-
-
-
-
-  return (
+  const [tareas, setTareas] = useState([{titulo: 'Gimnasio', descripcion: 'Ir al gimnasio', prioridad: 'Alta', fechaIn: '27/08/2023', id: 1, completada : false},{titulo: 'Restaurante', descripcion: 'Ir al restaurante', prioridad: 'Media', fechaIn: '27/08/2023', id: 2, completada : false}]);
+  
+return (
 <>
     <ThemeProvider theme={esTemaOscuro ? darkTheme : lightTheme}>
+    <TareasGlobal.Provider value={{tareas, setTareas}}>
     <ResetStyles />
     <Global />
-    <Search onChangeTheme={changeTheme}>
+    <Search onChangeTheme={changeTheme} >
     </Search>
     <Main>
-    <TaskList newTarea={tareaPend}></TaskList>
-    <CreateTask recibirTarea={recibirTarea} newId={newId}></CreateTask>
+    <TaskList></TaskList>
+    <CreateTask></CreateTask>
     <AditionalFunctions></AditionalFunctions>
     </Main>
 
+    </TareasGlobal.Provider>
     </ThemeProvider>
 </>
   );
 }
 
+export {TareasGlobal};
 export default App;

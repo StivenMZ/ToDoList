@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-
 import TaskCard from "./taskCard";
 import FilterTask from "./filter";
+import {TareasGlobal} from '../../App'
+
 
 const TaskLista = styled.aside`
 height: 100%;
@@ -13,7 +14,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 flex-wrap: wrap;
-gap: 0.3rem;
+gap: 0.1rem;
 border: 0.1rem solid;
 `
 const Title = styled.h1`
@@ -23,11 +24,6 @@ font-size: 1.3rem;
 flex-basis: 6%;
 `
 
-const FiltrarOpt = styled.div`
-background-color: ${({ theme }) => theme.text};
-flex-basis: 6%;
-`;
-
 const ListaTreas = styled.section`
 flex-basis: 80%;
 background-color: white;
@@ -35,42 +31,50 @@ width: 95%;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-evenly;
+justify-content: flex-start;
 border: 0.1rem solid;
-
+overflow: scroll;
+overflow-x: hidden;
+gap: 1rem;
 
 
  `
 
-const TaskList = ({newTarea}) =>{
+const TaskList = () =>{
+  
+  const {tareas, setTareas} = useContext(TareasGlobal);
+  const [taskView, setTaskView] = useState(tareas);
+  const [hayTareas, setHayTareas] = useState(false);
+  
 
-  const deleteTask = (id) => {
-    const newArray = tasks.filter((task) => task.id !== id);
-    setTasks(newArray);
+  
+  const validarSiHayTareas = () => {
+    setTaskView(tareas);
+  
+    if (tareas.length > 0) {
+      setHayTareas(true);
+      console.log('tamaño después:', tareas.length);
+      console.log('hayTareas:', true);
+    } else {
+      setHayTareas(false);
+      console.log('tamaño después:', tareas.length);
+      console.log('hayTareas:', false);
+    }
   }
-
   
-  const [tasks, setTasks] = useState([{titulo: 'Gimnasio', descripcion: 'Ir al gimnasio', prioridad: 'Alta', fechaIn: '27/08/2023', id: 1}]);
-  
-  
-    useEffect(() => {
-        if (newTarea && Object.keys(newTarea).length > 0) {
-          console.log(newTarea);
-          setTasks((prevTasks) => [...prevTasks, newTarea]);
-        }
-      }, [newTarea]);
 
-      const [taskView, setTaskView] = useState(tasks);
-
+  useEffect(() => {
+    validarSiHayTareas();
+  }, [tareas]);
 
       const filterFunct = (prioridad) =>{
 
         let newArray = [];
 
         if(prioridad === 'no'){
-          newArray = [...tasks];
+          newArray = [...tareas];
         }else{
-           newArray = tasks.filter((task)=> task.prioridad === prioridad);
+           newArray = tareas.filter((task)=> task.prioridad === prioridad);
 
         }
         setTaskView(newArray)
@@ -80,16 +84,26 @@ const TaskList = ({newTarea}) =>{
 
     return(
         <>
+        
         <TaskLista>
         <Title>Tus tareas</Title>
         <FilterTask filterFunct={filterFunct}></FilterTask>
         <ListaTreas>
-        {taskView.map((tarea)=>{
-           return <TaskCard key={`${tarea.titulo}${tarea.id}`} titulo={tarea.titulo} descripcion={tarea.descripcion} prioridad={tarea.prioridad} fechaIn={tarea.fechaIn} id={tarea.id} deleteTask={deleteTask}></TaskCard>
+        {
+        
+        hayTareas && taskView.length > 0 ?
+          taskView.map((tarea)=>{
+          console.log('tarea',tarea );
+           return <TaskCard key={`${tarea.titulo}${tarea.id}`} titulo={tarea.titulo} descripcion={tarea.descripcion} prioridad={tarea.prioridad} fechaIn={tarea.fechaIn} id={tarea.id} completada={tarea.completada}></TaskCard>
 
-        })}
+        }) : 
+        <>
+        <h1>No hay tareas</h1>
+        </>
+
+        }
         </ListaTreas>
-        </TaskLista>
+        </TaskLista>  
         </>
     )
 }

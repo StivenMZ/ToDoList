@@ -1,7 +1,8 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import FieldForm from './FieldForm';
 import PriorityBar from './priorityBar';
+import {TareasGlobal} from '../../App'
 
 const SectionCreateTask = styled.section`
 width: 35%;
@@ -44,14 +45,13 @@ const CreateTask = ({recibirTarea, newId}) => {
     const [prioridad, setPrioridad] = useState('Baja');
     const [date, setDate] = useState('');
 
-    const [task, setTask] = useState(undefined);
+    const {tareas, setTareas} = useContext(TareasGlobal);
 
-    const [ide, setIde] = useState(0)
+
 
 
 
     const onChangeInput = (set,data) =>{
-
         set(data)
         console.log(data)
     }
@@ -66,22 +66,20 @@ const CreateTask = ({recibirTarea, newId}) => {
         setDate(time);
 
         const newTarea = {
-            titutlo: title,
+            titulo: title,
             descripcion: descripcion,
             prioridad: prioridad,
             fechaIn: date,
-            id: newId, 
+            id: tareas.length, 
+            completada: false
           };
 
-        recibirTarea(newTarea)
+
+          setTareas([...tareas, newTarea])
+       
 
     }
-    
-    useEffect(() => {
-        console.log('Nuevo valor de task:', task);
-      }, [task]);
-   
-
+     
     return (
         <>
             <SectionCreateTask>
@@ -107,7 +105,6 @@ const CreateTask = ({recibirTarea, newId}) => {
                         <ButtonForm
                             onClick={(e) => {
                                 e.preventDefault();
-                                setIde(newId);
                                 sendForm();
                             }}
                         >Guardar</ButtonForm>

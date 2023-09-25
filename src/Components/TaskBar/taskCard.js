@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState , useContext} from "react";
+import {TareasGlobal} from '../../App'
+
+
 
 const ArticleCard = styled.article`
 border: 1px solid black;
@@ -11,6 +14,7 @@ gap: 0.5rem;
 position: relative;
 border-radius: 0.2rem;
 width: 55%;
+margin-top: 0.3rem;
 `;
 
 const DivPrimary = styled.div`
@@ -77,11 +81,36 @@ font-size: 0.8rem;
 
 
 
-const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, deleteTask}) => {
+const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, completada}) => {
+
+
+    const {tareas, setTareas} = useContext(TareasGlobal);
+
+    const finishTask = (id) =>{
+        
+        const tareasActual = [...tareas];
+
+        const tareaActualizar = tareasActual.find((task) => task.id === id);
+
+        if(tareaActualizar){
+            tareaActualizar.completada = true;
+        }
+
+        setTareas(tareasActual)
+
+
+    }
+
+    const deleteTask = (id) => {
+        const newArray = tareas.filter((task) => task.id !== id);
+        setTareas(newArray);
+      }
+
+
     return (
         <>
             <ArticleCard key={id}>
-                <StatusCard>Pendiente</StatusCard>
+                <StatusCard>{completada ? 'Completada' : 'Pendiente'}</StatusCard>
                 <ProirityCard>Prioridad {prioridad}</ProirityCard>
                 <DivPrimary>
                     <TitleCard>{titulo}</TitleCard>
@@ -91,7 +120,10 @@ const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, deleteTask}) => 
                 </DivPrimary>
 
                 <CategoryDiv>
-                    <ButtonCard>
+                    <ButtonCard
+                    onClick={()=>{
+                        finishTask(id)}}
+                    >
                         Completar
                     </ButtonCard>
                     <ButtonCard

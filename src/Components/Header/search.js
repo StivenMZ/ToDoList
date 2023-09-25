@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import InputBusqueda from "./inputSearch";
+import {TareasGlobal} from '../../App'
+
 
 const SectionSearch = styled.header`
 background-color: ${({ theme }) => theme.background};;
@@ -20,12 +23,6 @@ display: flex;
 gap: 0.2rem;
 `
 
-const InputBusqueda = styled.input`
-width: 70%;
-padding: 0.23rem;
-
-
-`
 
 
 const ButtonBusqueda = styled.button`
@@ -75,20 +72,13 @@ const Search = ({onChangeTheme}) =>{
         console.log(search)
     }
 
+
     return(
         <>
         <SectionSearch>
             <DivBusqueda>
-            <InputBusqueda 
-            type="text"
-            placeholder="Buscar tarea"
-            value = {search}
-            onChange={(e)=>{
-                setSearch(e.target.value)
-               
-            }}
+            <InputBusqueda></InputBusqueda>
 
-            />
             <ButtonBusqueda
             onClick={()=>{
                 handleSearch();
