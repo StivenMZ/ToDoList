@@ -7,16 +7,30 @@ import {TareasGlobal} from '../../App'
 const SectionCreateTask = styled.section`
 width: 35%;
 padding: 1rem;
+display: flex;
+justify-content: center;
 `;
 
 const TitleCreate = styled.h2`
-
+font-size: 1.4rem;
+color: ${({ theme }) => theme.textOB};
+align-self: center;
+margin-top: 3%;
+font-weight: bold;
+;
 `;
 
 const Form = styled.form`
 margin-top: 4%;
-margin-left: 7%;
 width: 70%;
+border: 0.2rem solid;
+border-color: ${({ theme }) => theme.secondary};
+display: flex;
+flex-direction: column;
+background-color: ${({ theme }) => theme.background};
+padding: 0 4%;
+border-radius: 4%;
+
 `;
 
 const DivFields = styled.div`
@@ -32,7 +46,21 @@ justify-content: space-around;
 `;
 
 const ButtonForm = styled.button`
+color: purple;
+border: none;
+background-color:  ${({ theme }) => theme.button}; ;
 padding: 0.5rem;
+cursor: pointer;
+font-size: 1.1rem;
+border: 0.15rem solid transparent;
+
+&:hover{
+    opacity: 0.82;
+}
+
+&:active{
+    border: 0.15rem solid lightpink;
+}
 
 `;
 
@@ -41,9 +69,42 @@ padding: 0.5rem;
 const CreateTask = ({recibirTarea, newId}) => {
     
     const [title, setTitle] = useState('');
+   
+    const errorTitle = (title) =>{
+        let error = {isError: false, message:''};
+        if(title.length > 45){
+            error.isError = true;
+            error.message = 'Título inválido, el máximo permitido es de 45 carácteres';
+        } 
+        if(title.length < 1){
+            error.isError = false;
+            error.message = ''
+        } 
+
+        return error;
+
+    }
+
+
     const [descripcion, setDescription] = useState('');
+
+    const errorDescripcion = (descripcion) =>{
+        let error = {isError: false, message:''};
+        if(descripcion.length > 85){
+            error.isError = true;
+            error.message = 'Descripción inválida, el máximo permitido es de 85 carácteres';
+        } 
+        if(descripcion.length < 1){
+            error.isError = false;
+            error.message = ''
+        } 
+
+        return error;
+
+    }
+
     const [prioridad, setPrioridad] = useState('Baja');
-    const [date, setDate] = useState('');
+
 
     const {tareas, setTareas} = useContext(TareasGlobal);
 
@@ -63,18 +124,18 @@ const CreateTask = ({recibirTarea, newId}) => {
         time += fecha.getDate() + '/';
         time += fecha.getUTCMonth() + '/';
         time += fecha.getFullYear();
-        setDate(time);
+      
 
         const newTarea = {
             titulo: title,
             descripcion: descripcion,
             prioridad: prioridad,
-            fechaIn: date,
+            fechaIn: time,
             id: tareas.length, 
             completada: false
           };
 
-
+          console.log(newTarea);
           setTareas([...tareas, newTarea])
        
 
@@ -91,14 +152,18 @@ const CreateTask = ({recibirTarea, newId}) => {
                         value={title} 
                         onChangeInput={onChangeInput}
                         set = {setTitle}
+                        error={errorTitle}
                         />
                         <FieldForm text={'Descripción'} 
                         textlower={'descripcion'} 
                         values={descripcion} 
                         onChangeInput={onChangeInput}
                         set = {setDescription}
+                        error= {errorDescripcion}
                         />
-                        <PriorityBar set={setPrioridad} onChangeInput={onChangeInput}></PriorityBar>
+                        <PriorityBar set={setPrioridad} onChangeInput={onChangeInput}
+
+                        ></PriorityBar>
                     </DivFields>
 
                     <DivButtons>

@@ -15,6 +15,7 @@ position: relative;
 border-radius: 0.2rem;
 width: 55%;
 margin-top: 0.3rem;
+background-color: ${({ theme }) => theme.secondary};;
 `;
 
 const DivPrimary = styled.div`
@@ -39,26 +40,31 @@ const ProirityCard = styled.p`
 position: absolute;
 top: 1%;
 right: 1.5%;
-background-color: red;
+background-color: ${({ theme }) => theme.backgroundPriority};
 padding: 0.2rem;
-color: white;
+color: ${({ theme }) => theme.priorityText};
 border-radius: 0.4rem;
 `;
 
 
 
 const TitleCard = styled.h2`
-font-size: 1.2rem;
+font-size: 1.4rem;
 font-weight: bold;
+color: white;
+overflow-wrap: break-word;
 `;
 
 const DescCard = styled.p`
-font-size: 1.1rem;
-
+font-size: 1.2rem;
+font-style: italic;
+color: white;
+overflow-wrap: break-word;
 `;
 
 const FechaCard = styled.p`
-font-size: 0.9rem;
+font-size: 1rem;
+font-style: italic;
 `;
 
 const CategoryDiv = styled.div`
@@ -68,12 +74,21 @@ width: 40%;
 `;
 
 const ButtonCard = styled.button`
-color: white;
+color: purple;
 border: none;
-background-color: lightseagreen;
+background-color:  ${({ theme }) => theme.button}; ;
 padding: 0.5rem;
 cursor: pointer;
 font-size: 0.8rem;
+border: 0.15rem solid transparent;
+
+&:hover{
+    opacity: 0.82;
+}
+
+&:active{
+    border: 0.15rem solid lightpink;
+}
 
 `;
 

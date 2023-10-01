@@ -9,9 +9,29 @@ const Global = createGlobalStyle`
  body{
     max-width: 100%;
     width: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: ${({ theme }) => theme.backgroundBody};
     
  }
+::-webkit-scrollbar {
+  background-color: #f9e9ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+::-webkit-scrollbar {
+  border: 1px solid #888;
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
  
  @media screen and (max-width: 4001px) {
   html{

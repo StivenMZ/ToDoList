@@ -21,7 +21,7 @@ function App() {
     setEsTemaOscuro(!esTemaOscuro);
   }
 
-  const [tareas, setTareas] = useState([{titulo: 'Gimnasio', descripcion: 'Ir al gimnasio', prioridad: 'Alta', fechaIn: '27/08/2023', id: 1, completada : false},{titulo: 'Restaurante', descripcion: 'Ir al restaurante', prioridad: 'Media', fechaIn: '27/08/2023', id: 2, completada : false}]);
+  const [tareas, setTareas] = useState([/* {titulo: 'Gimnasio', descripcion: 'Ir al gimnasio', prioridad: 'Alta', fechaIn: '27/08/2023', id: 1, completada : false},{titulo: 'Restaurante', descripcion: 'Ir al restaurante', prioridad: 'Media', fechaIn: '27/08/2023', id: 2, completada : false}, {titulo: 'Gimnasio', descripcion: 'Ir al gimnasio', prioridad: 'Alta', fechaIn: '27/08/2023', id: 3, completada : false},{titulo: 'Restaurante', descripcion: 'Ir al restaurante', prioridad: 'Media', fechaIn: '27/08/2023', id: 4, completada : false} */]);
   
 return (
 <>

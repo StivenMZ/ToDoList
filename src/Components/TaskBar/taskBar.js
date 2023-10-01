@@ -6,27 +6,28 @@ import {TareasGlobal} from '../../App'
 
 
 const TaskLista = styled.aside`
-height: 100%;
-width: 35%;
-padding: 1rem;
-background-color: #9bc5e7;
-display: flex;
-flex-direction: column;
-align-items: center;
-flex-wrap: wrap;
-gap: 0.1rem;
-border: 0.1rem solid;
+    height: 100%;
+    width: 34%;
+    padding: 1rem 0;
+    background-color:  ${({ theme }) => theme.primary}; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    border: 0.1rem solid;
+    margin-left: 1%;
 `
 const Title = styled.h1`
-color: black;
-font-weight: bold;
-font-size: 1.3rem;
+color: ${({ theme }) => theme.textOB};
+
+font-size: 1.6rem;
 flex-basis: 6%;
 `
 
 const ListaTreas = styled.section`
-flex-basis: 80%;
-background-color: white;
+flex-basis: 81%;
+background-color: ${({ theme }) => theme.background};
 width: 95%;
 display: flex;
 flex-direction: column;
@@ -40,11 +41,18 @@ gap: 1rem;
 
  `
 
+ const NoTasks = styled.h4`
+ margin: auto;
+ font-size: 1.2rem;
+ `;
+
 const TaskList = () =>{
   
   const {tareas, setTareas} = useContext(TareasGlobal);
   const [taskView, setTaskView] = useState(tareas);
   const [hayTareas, setHayTareas] = useState(false);
+
+  const [prioridad, setPrioridad] = useState('no')
   
 
   
@@ -67,27 +75,13 @@ const TaskList = () =>{
     validarSiHayTareas();
   }, [tareas]);
 
-      const filterFunct = (prioridad) =>{
-
-        let newArray = [];
-
-        if(prioridad === 'no'){
-          newArray = [...tareas];
-        }else{
-           newArray = tareas.filter((task)=> task.prioridad === prioridad);
-
-        }
-        setTaskView(newArray)
-
-      }
-    
 
     return(
         <>
         
         <TaskLista>
-        <Title>Tus tareas</Title>
-        <FilterTask filterFunct={filterFunct}></FilterTask>
+        <Title>{`Tus tareas (${tareas.length})`}</Title>
+        <FilterTask setTaskView={setTaskView} setPrioridad={setPrioridad}></FilterTask>
         <ListaTreas>
         {
         
@@ -98,7 +92,7 @@ const TaskList = () =>{
 
         }) : 
         <>
-        <h1>No hay tareas</h1>
+        <NoTasks>{hayTareas  ? `No hay tareas con prioridad ${prioridad}` : 'No hay tareas, crea alguna'}</NoTasks>
         </>
 
         }
