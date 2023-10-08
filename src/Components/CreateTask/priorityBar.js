@@ -15,13 +15,16 @@ const Option = styled.option`
 
 `
 const LabelSelect = styled.label`
-
+color: white;
 `
+const SpanError = styled.span`
+color: red;
+`;
 
-
-const PriorityBar = ({set, onChangeInput}) =>{
+const PriorityBar = ({set, onChangeInput, error}) =>{
     
 
+    const [priority, setPriority] = useState('')
 
     return(
         <>
@@ -29,14 +32,17 @@ const PriorityBar = ({set, onChangeInput}) =>{
             <LabelSelect htmlFor='prioridad'>Prioridad:</LabelSelect>
             <Selection id='prioridad' name='prioridad'
             onChange={(e)=>{
+                setPriority(e.target.value)
                 onChangeInput(set, e.target.value)
             }}
-            defaultValue={'Baja'}
-            >
+            value={priority}
+            >   
+                <Option disabled hidden value=''>Seleccione una prioridad</Option>
                 <Option value={'Alta'}>Alta</Option>
                 <Option value={'Media'}>Media</Option>
                 <Option value={'Baja'}>Baja</Option>
             </Selection>
+            <SpanError>{error}</SpanError>
         </DivBar>
         </>
     )

@@ -30,7 +30,7 @@ background-color: ${({ theme }) => theme.backgroundBody };  ;
 
 `;
 
-const FieldForm = ({text, textlower, values, onChangeInput, set, error}) =>{
+const FieldForm = ({text, textlower, value, onChangeInput, set, error, validom, placeholder}) =>{
 
     const [errorm, setErrorm] = useState({isError: false, message: ''})
     const [valido, setValido] = useState('')
@@ -41,7 +41,7 @@ const FieldForm = ({text, textlower, values, onChangeInput, set, error}) =>{
 
 
         if(errorm.isError === false && forValid.length > 0){
-            setValido('Campo válido')
+            setValido(validom)
         }else{
            setValido('') 
         }
@@ -55,21 +55,25 @@ const FieldForm = ({text, textlower, values, onChangeInput, set, error}) =>{
         <DivField>
             <LabelField htmlFor={textlower}>{text}:</LabelField>
             <InputField name={textlower} 
-            value={values}
-            onChange ={(e)=>{
-                const value = e.target.value;
-                onChangeInput(set, value)
-                
-                console.log(value.length)
+            value={value}
+
+            onChange={(e)=>{
+                value = e.target.value;
+                let verify = error(e.target.value);
+                onChangeInput(set, {invalido: verify.isError, valor: value})
+
             }}
 
+
             onBlur={(e)=>{
+                const value = e.target.value;
                 let verify = error(e.target.value);
                 console.log(verify)
                 setForValid(e.target.value);
                 setErrorm(verify)
+                onChangeInput(set, {invalido: verify.isError, valor: value})
             }}
-
+            placeholder={placeholder}
             ></InputField>
             {errorm.isError && errorm.message.length > 0 ? 
             (<SpanError>{errorm.message}</SpanError>) 

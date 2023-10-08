@@ -1,15 +1,15 @@
 
 
 const lightTheme = { 
-    primary: '#b25fee', // Color principal
-    secondary: '#9B59B6', // Color principal
-    background: '#C39BD3', // Color de fondo  
+    primary: '#6900B0', // Color principal
+    secondary: '#AA2BFF', // Color principal
+    background: '#BE5EFF', // Color de fondo  
     textOB: '#ffffff', // Color de texto principal
     textOW: 'black',
     button: '#efecec',  // Color de fondo de botón
     buttonText: '#000000',  // Color de texto de botón
     // ...otros colores para el modo claro
-    backgroundBody:  "#f9e9ff",
+    backgroundBody:  "#EFDFFF",
 
     priorityText: "#800080",
     backgroundPriority:"#d3d3d3",

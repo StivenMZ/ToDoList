@@ -12,7 +12,7 @@ justify-content: center;
 `;
 
 const TitleCreate = styled.h2`
-font-size: 1.4rem;
+font-size: 1.8rem;
 color: ${({ theme }) => theme.textOB};
 align-self: center;
 margin-top: 3%;
@@ -68,7 +68,7 @@ border: 0.15rem solid transparent;
 
 const CreateTask = ({recibirTarea, newId}) => {
     
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState({invalido: false, valor: ''});
    
     const errorTitle = (title) =>{
         let error = {isError: false, message:''};
@@ -86,7 +86,7 @@ const CreateTask = ({recibirTarea, newId}) => {
     }
 
 
-    const [descripcion, setDescription] = useState('');
+    const [descripcion, setDescription] = useState({invalido: false, valor: ''});
 
     const errorDescripcion = (descripcion) =>{
         let error = {isError: false, message:''};
@@ -103,8 +103,8 @@ const CreateTask = ({recibirTarea, newId}) => {
 
     }
 
-    const [prioridad, setPrioridad] = useState('Baja');
-
+    const [prioridad, setPrioridad] = useState('');
+    const [errorPrioridad, setErrorPrioridad] = useState('')
 
     const {tareas, setTareas} = useContext(TareasGlobal);
 
@@ -118,7 +118,24 @@ const CreateTask = ({recibirTarea, newId}) => {
     }
 
 
+
+
     const sendForm =  () =>{
+        if(title.length === 0){
+            
+        }
+        if(descripcion.length === 0){
+
+        }
+        if(prioridad.length === 0){
+            setErrorPrioridad('Debes seleccionar alguna prioridad')
+        }else{
+            setErrorPrioridad('')
+        }
+
+        if(title.invalido === true || descripcion.invalido === true || title.valor.length === 0 || descripcion.valor.length === 0){
+            console.log('datos inválidos')
+        } else{
         const fecha = new Date();
         let time = '';
         time += fecha.getDate() + '/';
@@ -127,8 +144,8 @@ const CreateTask = ({recibirTarea, newId}) => {
       
 
         const newTarea = {
-            titulo: title,
-            descripcion: descripcion,
+            titulo: title.valor,
+            descripcion: descripcion.valor,
             prioridad: prioridad,
             fechaIn: time,
             id: tareas.length, 
@@ -137,49 +154,76 @@ const CreateTask = ({recibirTarea, newId}) => {
 
           console.log(newTarea);
           setTareas([...tareas, newTarea])
-       
+        }
 
     }
      
+    const [renderizar, setRenderizar] = useState(true);
+    const cancelarFunct = () =>{
+        
+        if(title.valor.length > 0 || descripcion.valor.length > 0 || prioridad.length > 0){
+            setRenderizar(false);
+            setTitle({invalido: false, valor: ''});
+            setDescription({invalido: false, valor: ''});
+            setPrioridad('')
+        }else{
+            return;
+        }
+        
+    }
+
+    useEffect(()=>{
+        setRenderizar(true);
+    }, [renderizar])
+
     return (
         <>
             <SectionCreateTask>
                 <Form>
                     <TitleCreate>Crea una nueva tarea</TitleCreate>
+                        {renderizar ? (<>
                     <DivFields>
                         <FieldForm text={'Título'} 
                         textlower={'titulo'} 
-                        value={title} 
+                        value={title.valor} 
                         onChangeInput={onChangeInput}
                         set = {setTitle}
                         error={errorTitle}
+                        validom={'Título válido'}
+                        placeholder={'Título de la tarea...'}
                         />
                         <FieldForm text={'Descripción'} 
                         textlower={'descripcion'} 
-                        values={descripcion} 
+                        value={descripcion.valor} 
                         onChangeInput={onChangeInput}
                         set = {setDescription}
                         error= {errorDescripcion}
+                        validom={'Descripción válida'}
+                        placeholder={'Descripción de la tarea...'}
                         />
                         <PriorityBar set={setPrioridad} onChangeInput={onChangeInput}
-
+                        error={errorPrioridad}
                         ></PriorityBar>
                     </DivFields>
-
                     <DivButtons>
                         <ButtonForm
                             onClick={(e) => {
                                 e.preventDefault();
                                 sendForm();
+                                cancelarFunct();
                             }}
-                        >Guardar</ButtonForm>
+                        >Crear tarea</ButtonForm>
                         <ButtonForm
                             onClick={(e) => {
                                 e.preventDefault();
+                                cancelarFunct();
                             }}
 
-                        >Cancelar</ButtonForm>
+                        >Borrar datos</ButtonForm>
                     </DivButtons>
+                        </>) : <></>}
+
+                    
                 </Form>
             </SectionCreateTask>
         </>

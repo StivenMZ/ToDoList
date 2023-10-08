@@ -19,7 +19,7 @@ margin-bottom: 1%;
 const ButtonFilter = styled.button`
 font-style: italic;
 cursor: pointer;
-background-color: ${(props) => (props.activate ? 'orange' : 'white')};
+background-color: ${(props) => (props.activate ? '#D699FF' : 'white')};
 border: none;
 
 `;
