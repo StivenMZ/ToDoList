@@ -1,11 +1,11 @@
-import React, { useState , useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import styled from 'styled-components';
 import FieldForm from './FieldForm';
 import PriorityBar from './priorityBar';
-import {TareasGlobal} from '../../App'
+import { TareasGlobal } from '../../App'
 
 const SectionCreateTask = styled.section`
-width: 35%;
+width: 100%;
 padding: 1rem;
 display: flex;
 justify-content: center;
@@ -13,7 +13,7 @@ justify-content: center;
 
 const TitleCreate = styled.h2`
 font-size: 1.8rem;
-color: ${({ theme }) => theme.textOB};
+color: black;
 align-self: center;
 margin-top: 3%;
 font-weight: bold;
@@ -23,11 +23,8 @@ font-weight: bold;
 const Form = styled.form`
 margin-top: 4%;
 width: 70%;
-border: 0.2rem solid;
-border-color: ${({ theme }) => theme.secondary};
 display: flex;
 flex-direction: column;
-background-color: ${({ theme }) => theme.background};
 padding: 0 4%;
 border-radius: 4%;
 
@@ -64,170 +61,224 @@ border: 0.15rem solid transparent;
 
 `;
 
+const SpanError = styled.span`
+  color: ${({ invalid }) => (invalid ? 'red' : '#01ff01')};
+`;
 
 
-const CreateTask = ({recibirTarea, newId}) => {
-    
-    const [title, setTitle] = useState({invalido: false, valor: ''});
-   
-    const errorTitle = (title) =>{
-        let error = {isError: false, message:''};
-        if(title.length > 45){
+
+const TaskFormContext = createContext();
+
+const CreateTask = () => {
+    const { tareas, setTareas } = useContext(TareasGlobal);
+
+    const [title, setTitle] = useState({ invalido: false, valor: '', error: '', valid: '' });
+    const [descripcion, setDescription] = useState({ invalido: false, valor: '', error: '', valid: '' });
+    const [prioridad, setPrioridad] = useState({ invalido: true, valor: '', error: '', });
+
+
+    useEffect(() => {
+        console.log(title.invalido + ' ' + title.valor + ' ' + title.error + ' ' + title.valid + '<=Titulo')
+    }, [title])
+    //title, setTitle, descripcion, setDescripcion, prioridad, setPrioridad,
+
+    const [renderizar, setRenderizar] = useState(true);
+
+
+    const errorTitle = (title) => {
+        let error = { isError: false, message: '', valid: '' };
+        if (title.length > 45) {
             error.isError = true;
             error.message = 'Título inválido, el máximo permitido es de 45 carácteres';
-        } 
-        if(title.length < 1){
+        }
+        if (title.length <= 45) {
             error.isError = false;
             error.message = ''
-        } 
+            error.valid = 'Título válido'
+        }
+
+        if (title.length < 1) {
+            error.isError = false;
+            error.message = ''
+            error.valid = ''
+        }
+
 
         return error;
 
     }
 
 
-    const [descripcion, setDescription] = useState({invalido: false, valor: ''});
-
-    const errorDescripcion = (descripcion) =>{
-        let error = {isError: false, message:''};
-        if(descripcion.length > 85){
+    const errorDescripcion = (descripcion) => {
+        let error = { isError: false, message: '', valid: '' };
+        if (descripcion.length > 80) {
             error.isError = true;
-            error.message = 'Descripción inválida, el máximo permitido es de 85 carácteres';
-        } 
-        if(descripcion.length < 1){
+            error.message = 'Descripción inválida, el máximo permitido es de 80 carácteres';
+        }
+        if (descripcion.length <= 80) {
             error.isError = false;
             error.message = ''
-        } 
+            error.valid = 'Descripción válida'
+        }
+
+        if (descripcion.length < 1) {
+            error.isError = false;
+            error.message = ''
+            error.valid = ''
+        }
+
 
         return error;
-
-    }
-
-    const [prioridad, setPrioridad] = useState('');
-    const [errorPrioridad, setErrorPrioridad] = useState('')
-
-    const {tareas, setTareas} = useContext(TareasGlobal);
-
-
-
-
-
-    const onChangeInput = (set,data) =>{
-        set(data)
-        console.log(data)
     }
 
 
 
 
-    const sendForm =  () =>{
-        if(title.length === 0){
-            
-        }
-        if(descripcion.length === 0){
+    ////CREACIÓN DE TAREA
+    const sendForm = () => {
+
+        let validations = { titleValid: false, descripcionValid: false, prioridadValid: false }
+
+
+        if (title.valor.length === 0) {
+            setTitle({ invalido: true, valor: title.valor, error: 'El campo título no puede estar vacío', valid: '' })
+            validations.titleValid = false;
+        } else {
+            validations.titleValid = true;
 
         }
-        if(prioridad.length === 0){
-            setErrorPrioridad('Debes seleccionar alguna prioridad')
-        }else{
-            setErrorPrioridad('')
+
+        if (descripcion.valor.length === 0) {
+            setDescription({ invalido: true, valor: descripcion.valor, error: 'El descripción  no puede estar vacío', valid: '' })
+            validations.descripcionValid = false;
+
+        } else {
+            validations.descripcionValid = true;
+
         }
 
-        if(title.invalido === true || descripcion.invalido === true || title.valor.length === 0 || descripcion.valor.length === 0){
-            console.log('datos inválidos')
-        } else{
-        const fecha = new Date();
-        let time = '';
-        time += fecha.getDate() + '/';
-        time += fecha.getUTCMonth() + '/';
-        time += fecha.getFullYear();
-      
+        if (prioridad.valor.length === 0) {
+            setPrioridad({ invalido: true, valor: prioridad.valor, error: 'Debes seleccionar alguna prioridad', valid: '' })
+            validations.prioridadValid = false;
 
-        const newTarea = {
-            titulo: title.valor,
-            descripcion: descripcion.valor,
-            prioridad: prioridad,
-            fechaIn: time,
-            id: tareas.length, 
-            completada: false
-          };
+        } else {
+            validations.prioridadValid = true;
 
-          console.log(newTarea);
-          setTareas([...tareas, newTarea])
+        }
+
+        if ((validations.titleValid === true && title.invalido === false) && (validations.descripcionValid === true && descripcion.invalido === false) && (validations.prioridadValid === true && prioridad.invalido === false)) {
+            try {
+                const fecha = new Date();
+                let time = '';
+                time += fecha.getDate() + '/';
+                time += fecha.getUTCMonth() + '/';
+                time += fecha.getFullYear();
+
+
+                const newTarea = {
+                    titulo: title.valor,
+                    descripcion: descripcion.valor,
+                    prioridad: prioridad.valor,
+                    fechaIn: time,
+                    id: tareas.length,
+                    completada: false
+                };
+
+                console.log(newTarea);
+                setTareas([...tareas, newTarea])
+                cancelarFunct();
+
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            console.log('Error al crear tarea')
         }
 
     }
-     
-    const [renderizar, setRenderizar] = useState(true);
-    const cancelarFunct = () =>{
-        
-        if(title.valor.length > 0 || descripcion.valor.length > 0 || prioridad.length > 0){
-            setRenderizar(false);
-            setTitle({invalido: false, valor: ''});
-            setDescription({invalido: false, valor: ''});
-            setPrioridad('')
-        }else{
-            return;
+
+    const cancelarFunct = () => {
+        if (title.valor.length > 0 || descripcion.valor.length > 0 || prioridad.valor.length > 0) {
+            setTitle({ invalido: false, valor: '', error: '', valid: '' });
+            setPrioridad({ invalido: true, valor: '', error: '', valid: '' });
+            setDescription({ invalido: false, valor: '', error: '', valid: '' });
         }
-        
+
+
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setRenderizar(true);
     }, [renderizar])
 
     return (
         <>
-            <SectionCreateTask>
-                <Form>
-                    <TitleCreate>Crea una nueva tarea</TitleCreate>
+            <TaskFormContext.Provider value={{ title, setTitle, descripcion, setDescription, prioridad, setPrioridad }}>
+                <SectionCreateTask>
+                    <Form>
+                        <TitleCreate>Crea una nueva tarea</TitleCreate>
                         {renderizar ? (<>
-                    <DivFields>
-                        <FieldForm text={'Título'} 
-                        textlower={'titulo'} 
-                        value={title.valor} 
-                        onChangeInput={onChangeInput}
-                        set = {setTitle}
-                        error={errorTitle}
-                        validom={'Título válido'}
-                        placeholder={'Título de la tarea...'}
-                        />
-                        <FieldForm text={'Descripción'} 
-                        textlower={'descripcion'} 
-                        value={descripcion.valor} 
-                        onChangeInput={onChangeInput}
-                        set = {setDescription}
-                        error= {errorDescripcion}
-                        validom={'Descripción válida'}
-                        placeholder={'Descripción de la tarea...'}
-                        />
-                        <PriorityBar set={setPrioridad} onChangeInput={onChangeInput}
-                        error={errorPrioridad}
-                        ></PriorityBar>
-                    </DivFields>
-                    <DivButtons>
-                        <ButtonForm
-                            onClick={(e) => {
-                                e.preventDefault();
-                                sendForm();
-                                cancelarFunct();
-                            }}
-                        >Crear tarea</ButtonForm>
-                        <ButtonForm
-                            onClick={(e) => {
-                                e.preventDefault();
-                                cancelarFunct();
-                            }}
+                            <DivFields>
+                                <FieldForm text={'Crea un título para tu tarea'}
+                                    textlower={'titulo'}
+                                    value={title.valor}
+                                    error={errorTitle}
+                                    placeholder={'Título de la tarea...'}
+                                />
+                                <SpanError
+                                    invalid={title.invalido}
+                                >
+                                    {title.invalido && title.error.length > 0 && title.error}
+                                    {!title.invalido && title.valid.length > 0 && title.valid}
 
-                        >Borrar datos</ButtonForm>
-                    </DivButtons>
+                                </SpanError>
+
+
+                                <FieldForm text={'Crea una descripción para tu tarea'}
+                                    textlower={'descripcion'}
+                                    value={descripcion.valor}
+                                    error={errorDescripcion}
+                                    placeholder={'Descripción de la tarea...'}
+                                />
+                                <SpanError
+                                    invalid={descripcion.invalido}
+                                >
+                                    {descripcion.invalido && descripcion.error.length > 0 && descripcion.error}
+                                    {!descripcion.invalido && descripcion.valid.length > 0 && descripcion.valid}
+                                </SpanError>
+
+                                <PriorityBar set={setPrioridad}
+                                ></PriorityBar>
+                                <SpanError
+                                    invalid={prioridad.invalido}
+                                >{prioridad.error}
+                                </SpanError>
+
+                            </DivFields>
+                            <DivButtons>
+                                <ButtonForm
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        sendForm();
+
+                                    }}
+                                >Crear tarea</ButtonForm>
+                                <ButtonForm
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        cancelarFunct();
+                                    }}
+
+                                >Borrar datos</ButtonForm>
+                            </DivButtons>
                         </>) : <></>}
 
-                    
-                </Form>
-            </SectionCreateTask>
+
+                    </Form>
+                </SectionCreateTask>
+            </TaskFormContext.Provider>
         </>
     )
-                        }
-
+}
+export { TaskFormContext };
 export default CreateTask;

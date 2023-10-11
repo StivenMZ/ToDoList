@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { TaskFormContext } from './creaeteTask';
+
 
 const  DivField = styled.div`
 display: flex;
@@ -10,16 +12,8 @@ width: 100%;
 
 const LabelField = styled.label`
 margin-top: 3%;
-color: ${({ theme }) => theme.textOB};  
+color: black; 
 
-`;
-
-const SpanError = styled.span`
-color: red;
-`;
-
-const SpanValid = styled.span`
-color: #05ff05;
 `;
 
 const InputField = styled.input`
@@ -30,24 +24,31 @@ background-color: ${({ theme }) => theme.backgroundBody };  ;
 
 `;
 
-const FieldForm = ({text, textlower, value, onChangeInput, set, error, validom, placeholder}) =>{
+const FieldForm = ({text, textlower, value, error, placeholder}) =>{
 
     const [errorm, setErrorm] = useState({isError: false, message: ''})
-    const [valido, setValido] = useState('')
-    const [forValid, setForValid] = useState('');
-   
 
-    useEffect(()=>{
+    const {title, setTitle, descripcion, setDescription} = useContext(TaskFormContext)
 
 
-        if(errorm.isError === false && forValid.length > 0){
-            setValido(validom)
-        }else{
-           setValido('') 
+    const ActualizarCampo = (valor, validation ) =>{
+        console.log('Test de validation', validation)
+        if(textlower === 'titulo'){
+            if(validation.message.length < 1 && validation.valid.length > 0){
+                setTitle({invalido: validation.isError, valor: valor, error: '', valid: validation.valid})
+            }else{
+                setTitle({invalido: validation.isError, valor: valor, error: validation.message, valid : ''})
+            }
         }
+        if(textlower === 'descripcion'){
+            if(validation.message.length < 1 && validation.valid.length > 0){
+                setDescription({invalido: validation.isError, valor: valor, error: '', valid: validation.valid})
+            }else{
+                setDescription({invalido: validation.isError, valor: valor, error: validation.message, valid : ''})
+            }
+        }
+    }
 
-
-    }, [errorm])
 
 
     return(
@@ -57,28 +58,15 @@ const FieldForm = ({text, textlower, value, onChangeInput, set, error, validom, 
             <InputField name={textlower} 
             value={value}
 
-            onChange={(e)=>{
-                value = e.target.value;
+            onInput={(e)=>{
+                let value = e.target.value;
                 let verify = error(e.target.value);
-                onChangeInput(set, {invalido: verify.isError, valor: value})
+                ActualizarCampo(value, verify);
 
             }}
 
-
-            onBlur={(e)=>{
-                const value = e.target.value;
-                let verify = error(e.target.value);
-                console.log(verify)
-                setForValid(e.target.value);
-                setErrorm(verify)
-                onChangeInput(set, {invalido: verify.isError, valor: value})
-            }}
             placeholder={placeholder}
             ></InputField>
-            {errorm.isError && errorm.message.length > 0 ? 
-            (<SpanError>{errorm.message}</SpanError>) 
-            : (<SpanValid>{valido}</SpanValid>) 
-            }
         </DivField>
         </>
     )

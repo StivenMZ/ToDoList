@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { TaskFormContext } from './creaeteTask';
+
 
 const DivBar = styled.div`
 display: flex;
@@ -15,34 +17,37 @@ const Option = styled.option`
 
 `
 const LabelSelect = styled.label`
-color: white;
+color: black;
 `
 const SpanError = styled.span`
 color: red;
 `;
 
-const PriorityBar = ({set, onChangeInput, error}) =>{
-    
+const PriorityBar = () =>{
 
-    const [priority, setPriority] = useState('')
+    const {prioridad, setPrioridad} = useContext(TaskFormContext)
+    const [viewPrioridad, setViewPrioridad] = useState('')
+
+    useEffect(()=>{
+        setViewPrioridad(prioridad.valor)
+    } ,[prioridad])
 
     return(
         <>
         <DivBar>
-            <LabelSelect htmlFor='prioridad'>Prioridad:</LabelSelect>
+            <LabelSelect htmlFor='prioridad'>¿Cual es la prioridad de tu tarea?:</LabelSelect>
             <Selection id='prioridad' name='prioridad'
             onChange={(e)=>{
-                setPriority(e.target.value)
-                onChangeInput(set, e.target.value)
+                setPrioridad({invalido: false , valor: e.target.value, error: ''})
+                
             }}
-            value={priority}
+            value={viewPrioridad}
             >   
                 <Option disabled hidden value=''>Seleccione una prioridad</Option>
                 <Option value={'Alta'}>Alta</Option>
                 <Option value={'Media'}>Media</Option>
                 <Option value={'Baja'}>Baja</Option>
             </Selection>
-            <SpanError>{error}</SpanError>
         </DivBar>
         </>
     )

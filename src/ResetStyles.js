@@ -89,6 +89,11 @@ const ResetStyles = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
+
+  a{
+    text-decoration: none;
+  }
+
 `;
 
 export default ResetStyles;
