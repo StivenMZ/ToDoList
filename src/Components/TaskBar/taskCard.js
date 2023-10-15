@@ -7,12 +7,12 @@ import {TareasGlobal} from '../../App'
 
 const ArticleCard = styled.article`
 border: 1px solid black;
-padding: 0.7rem;
+padding: 1rem;
 display: flex;
 flex-direction: column;
 gap: 0.5rem;
 position: relative;
-border-radius: 0.2rem;
+border-radius: 1rem;
 width: 55%;
 margin-top: 0.3rem;
 background-color: ${({ theme }) => theme.secondary};;
@@ -22,12 +22,12 @@ const DivPrimary = styled.div`
 display: flex;
 flex-direction: column;
 gap: 0.3rem;
-margin-top: 1rem;
+margin-top: 4%;
 `;
 
 const StatusCard = styled.strong`
 position: absolute;
-top: 1%;
+top: 3%;
 left: 1.5%;
 background-color: gray;
 padding: 0.2rem;
@@ -38,7 +38,7 @@ border-radius: 0.4rem;
 
 const ProirityCard = styled.p`
 position: absolute;
-top: 1%;
+top: 3%;
 right: 1.5%;
 background-color: ${({ theme }) => theme.backgroundPriority};
 padding: 0.2rem;
@@ -96,12 +96,18 @@ border: 0.15rem solid transparent;
 
 
 
-const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, completada}) => {
+const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, completada, fechaFin}) => {
 
 
     const {tareas, setTareas} = useContext(TareasGlobal);
 
     const finishTask = (id) =>{
+
+        const fecha = new Date();
+                let time = '';
+                time += fecha.getDate() + '/';
+                time += fecha.getUTCMonth() + '/';
+                time += fecha.getFullYear();
         
         const tareasActual = [...tareas];
 
@@ -109,6 +115,8 @@ const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, completada}) => 
 
         if(tareaActualizar){
             tareaActualizar.completada = true;
+            tareaActualizar.fechaFin = time;
+
         }
 
         setTareas(tareasActual)
@@ -121,6 +129,8 @@ const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, completada}) => 
         setTareas(newArray);
       }
 
+      
+
 
     return (
         <>
@@ -131,7 +141,7 @@ const TaskCard = ({titulo, descripcion, prioridad, fechaIn, id, completada}) => 
                     <TitleCard>{titulo}</TitleCard>
                     <DescCard>{descripcion}</DescCard>
                     <FechaCard>Fecha de inicio: {fechaIn}</FechaCard>
-                    <FechaCard>Fecha fin: 20/09/2023</FechaCard>
+                    <FechaCard>{fechaFin.length > 0 ? (`Fecha fin: ${fechaFin}`) : ' '}</FechaCard>
                 </DivPrimary>
 
                 <CategoryDiv>

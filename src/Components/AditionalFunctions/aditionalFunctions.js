@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const AsideFunctions = styled.aside`
-    width: 29%;
+const AsideFunctions = styled.section`
+    width: 96%;
+    height: 88vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -11,13 +12,12 @@ const AsideFunctions = styled.aside`
     flex-wrap: wrap;
     gap: 1rem;
     margin-right: 1%;
-    background-color:  ${({ theme }) => theme.primary}; 
-    height: auto;
+    
 `;
 
 const FunctionsTitle = styled.h2`
 flex-basis: 7%;
-color: ${({ theme }) => theme.textOB};;
+color: black;
 
 font-size: 1.6rem;
 `;
@@ -25,16 +25,17 @@ font-size: 1.6rem;
 const SectionFunctions = styled.section`
 display: flex;
 flex-direction: column;
-flex-basis: 70%;
+flex-basis: 87%;
 justify-content: space-between;
 width: 96%;
+background-color: lightgreen;
 
 `;
 
 const ButtonFunction = styled.button`
 color: purple;
 border: none;
-background-color:  ${({ theme }) => theme.button}; ;
+background-color:  violet;
 padding: 0.5rem;
 cursor: pointer;
 font-size: 1.1rem;

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext, createContext } from 'react';
 import styled from 'styled-components';
 import FieldForm from './FieldForm';
 import PriorityBar from './priorityBar';
-import { TareasGlobal } from '../../App'
+import { TareasGlobal } from '../../App';
+import Notification from '../Notification';
 
 const SectionCreateTask = styled.section`
 width: 100%;
@@ -70,7 +71,7 @@ const SpanError = styled.span`
 const TaskFormContext = createContext();
 
 const CreateTask = () => {
-    const { tareas, setTareas } = useContext(TareasGlobal);
+    const { tareas, setTareas, notificaciones, setNotificaciones } = useContext(TareasGlobal);
 
     const [title, setTitle] = useState({ invalido: false, valor: '', error: '', valid: '' });
     const [descripcion, setDescription] = useState({ invalido: false, valor: '', error: '', valid: '' });
@@ -181,18 +182,23 @@ const CreateTask = () => {
                     prioridad: prioridad.valor,
                     fechaIn: time,
                     id: tareas.length,
-                    completada: false
+                    completada: false,
+                    fechaFin: ''
                 };
 
                 console.log(newTarea);
                 setTareas([...tareas, newTarea])
                 cancelarFunct();
+                setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`}])
 
             } catch (error) {
                 console.log(error)
+                
             }
         } else {
             console.log('Error al crear tarea')
+            setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`}])
+
         }
 
     }

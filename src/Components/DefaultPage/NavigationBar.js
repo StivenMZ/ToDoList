@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import styled from "styled-components";
-import { useState } from "react";
 import { TareasGlobal } from '../../App';
 import { Link } from 'react-router-dom';
+import Search from "../Search/Search";
 
 
 const NavigationBarAside = styled.aside`
@@ -11,7 +11,7 @@ border: 1px solid black;
 width: 17%;
 position: absolute;
 left: 0;
-height: 99.7vh;
+height: 97.3vh;
 top: 0;
 border-radius: 0 1rem 1rem 0;
 display: flex;
@@ -28,11 +28,9 @@ justify-content: space-between;
 align-items: center;
 `;
 
-const ButtonSearch = styled.button``;
+
 
 //Divs para secciones de la barra de navegación
-const DivBuscar = styled.div``;
-
 const DivOpciones = styled.div`
 width: 100%;
 `;
@@ -81,11 +79,7 @@ const NavigationBar = () => {
         <>
             <NavigationBarAside>
                 <OptionsSection>
-                    <DivBuscar>
-                        <ButtonSearch>
-                            buscar
-                        </ButtonSearch>
-                    </DivBuscar>
+                       <Search />
                     <DivOpciones>
                         <NavList>
                             <Link to='/lista-de-tareas'>
