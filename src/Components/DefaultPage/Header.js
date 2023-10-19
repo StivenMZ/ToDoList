@@ -9,24 +9,26 @@ import logo from "../../img/logo.jpg"
 const Head = styled.header`
 margin-top: 1.3%;
 display: flex;
-justify-content: space-around;
+justify-content: center;
 width: 100%;
 align-items: center;
-
+gap: 2%;
 `;
 
 const DivIcon = styled.div`
 display: flex;
 width: 10%;
 justify-content: center;
+align-items: center;
+position: relative;
 `;
 
 
 const Icon = styled.div`
 background-color: black;
 width: 30%;
-align-items: center;
 max-height: 10vh;
+
 `;
 
 
@@ -40,6 +42,11 @@ width: 50%;
 const InputSearch = styled.input`
 z-index: 100;
 width: 60%;
+margin-left: 17%;
+`;
+
+const IconLink = styled(Link)`
+display: flex;
 `;
 
 const Header = () => {
@@ -48,18 +55,18 @@ const Header = () => {
 
     return (<>
         <Head>
-            <DivIcon>
-                <Icon>
-                    <img src={Orn} width={'30px'} height={'30px'}></img>
-                </Icon>
-                <TitleH2>Task Manager</TitleH2>
-            </DivIcon>
             <InputSearch
-            placeholder="Buscar tarea.."
+                placeholder="Buscar tarea.."
             ></InputSearch>
-            {/* <Link to={'/'}>
-                <button>volver</button>
-            </Link> */}
+            <DivIcon>
+                <IconLink to={'/'} draggable='false'>
+                    <Icon>
+                        <img src={Orn} width={'30px'} height={'30px'} alt="icon"></img>
+                    </Icon>
+                    <TitleH2>Task Manager</TitleH2>
+                </IconLink>
+            </DivIcon>
+         
         </Head>
     </>)
 }

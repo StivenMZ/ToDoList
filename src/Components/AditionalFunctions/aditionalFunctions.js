@@ -1,5 +1,21 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useContext, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { NavigationBarGlobal } from '../DefaultPage/NavigationBar';
+import { TareasGlobal } from '../../App';
+import NavigationBar from '../DefaultPage/NavigationBar';
+
+const AnimationWake = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+
+`;
+
+
 
 const AsideFunctions = styled.section`
     width: 96%;
@@ -8,11 +24,11 @@ const AsideFunctions = styled.section`
     align-items: center;
     flex-direction: column;
     padding: 1rem;
-    border: 1px solid;
     flex-wrap: wrap;
     gap: 1rem;
     margin-right: 1%;
-    
+    flex-basis: 70%;
+    animation: ${AnimationWake} 0.3s ease-in-out;
 `;
 
 const FunctionsTitle = styled.h2`
@@ -62,8 +78,13 @@ width: 100%;
 
 const AditionalFunctions = () => {
 
+    const {showNavigationBar} = useContext(TareasGlobal)
+
     const [view, setView] = useState(false);
     const [contentView, setContentView] = useState({button: '', content: ''});
+
+
+
 
 /*
 howto = Como usar este sitio web
@@ -90,7 +111,7 @@ privacity = Políticas de privacidad y términos de uso
 
     return (
         <>
-            <AsideFunctions>
+          <AsideFunctions>
                 <FunctionsTitle>Funciones adicionales</FunctionsTitle>
                 <SectionFunctions>
                     {view ? (

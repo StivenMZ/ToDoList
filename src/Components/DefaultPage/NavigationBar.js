@@ -1,22 +1,51 @@
-import React, { useContext, useEffect, useState} from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import { TareasGlobal } from '../../App';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Search from "../Search/Search";
+
+
+const NavigationAnimationIn = keyframes`
+0%{
+    left: -23%;
+}
+
+100%{
+    left: 0%;
+
+}
+
+`
+
+const NavigationAnimationOut = keyframes`
+0%{
+    left: 0%;
+}
+
+100%{
+    left: -26%;
+
+}
+
+`
+
 
 
 const NavigationBarAside = styled.aside`
 background-color: lightgray;
 border: 1px solid black;
-width: 17%;
-position: absolute;
-left: 0;
+flex-basis: 20%;
 height: 97.3vh;
-top: 0;
 border-radius: 0 1rem 1rem 0;
 display: flex;
 justify-content: center;
+position: relative;
+bottom: 11%;
+animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.3s linear 1;
 `;
+
+// NavigationAnimationOut  NavigationAnimationIn
+
 
 const OptionsSection = styled.section`
 width: 93%;
@@ -69,61 +98,88 @@ align-items: center;
 const SpanElementoIcono = styled.span``;
 
 
-//Botón para cambiar colores de la página
 
 const ButtonChangeColor = styled.button``;
 
-
 const NavigationBar = () => {
+    const Url = useLocation();
+
+    const rutas = ['/crear-tarea','/lista-de-tareas','/funciones-adicionales']
+
+    const [render, setRender] = useState(false);
+
+    const [direction, setDirection] = useState(false);
+
+
+    useEffect(()=>{
+        if(rutas.includes(Url.pathname)){
+            setRender(true)
+            setDirection(true);
+        }else{
+            setDirection(false);
+            setTimeout(() => {
+                setRender(false);      
+            }, 300);
+        }
+
+    },[Url.pathname])
+
     return (
         <>
-            <NavigationBarAside>
-                <OptionsSection>
-                       <Search />
-                    <DivOpciones>
-                        <NavList>
-                            <Link to='/lista-de-tareas'>
-                                <NavLi>
-                                    <DivElementoTexto>
-                                        Lista de tareas
-                                    </DivElementoTexto>
-                                    <SpanElementoIcono>
-                                        😊
-                                    </SpanElementoIcono>
-                                </NavLi>
-                            </Link>
-                            <Link to='/crear-tarea'>
-                                <NavLi>
-                                    <DivElementoTexto>
-                                        Crear tarea
-                                    </DivElementoTexto>
-                                    <SpanElementoIcono>
-                                        😊
-                                    </SpanElementoIcono>
-                                </NavLi>
-                            </Link>
-                            <Link to='/funciones-adicionales'>
-                                <NavLi>
-                                    <DivElementoTexto>
-                                        Funciones Adicionales
-                                    </DivElementoTexto>
-                                    <SpanElementoIcono>
-                                        😊
-                                    </SpanElementoIcono>
-                                </NavLi>
-                            </Link>
-                        </NavList>
-                    </DivOpciones>
-                    <DivColor>
-                    <ButtonChangeColor>
-                        Cambiar color
-                    </ButtonChangeColor>
-                    </DivColor>
+        {render && 
+           <NavigationBarAside direction={direction}>
+                    <OptionsSection>
+                        <Search></Search>
+                        <DivOpciones>
+                            <NavList>
+                                <Link to='/lista-de-tareas'>
+                                    <NavLi>
+                                        <DivElementoTexto>
+                                            Lista de tareas
+                                        </DivElementoTexto>
+                                        <SpanElementoIcono>
+                                            😊
+                                        </SpanElementoIcono>
+                                    </NavLi>
+                                </Link>
+                                <Link to='/crear-tarea'>
+                                    <NavLi>
+                                        <DivElementoTexto>
+                                            Crear tarea
+                                        </DivElementoTexto>
+                                        <SpanElementoIcono>
+                                            😊
+                                        </SpanElementoIcono>
+                                    </NavLi>
+                                </Link>
+                                <Link to='/funciones-adicionales'>
+                                    <NavLi>
+                                        <DivElementoTexto>
+                                            Funciones Adicionales
+                                        </DivElementoTexto>
+                                        <SpanElementoIcono>
+                                            😊
+                                        </SpanElementoIcono>
+                                    </NavLi>
+                                </Link>
+                            </NavList>
+                        </DivOpciones>
+                        <DivColor>
+                            <ButtonChangeColor>
+                                Cambiar color
+                            </ButtonChangeColor>
+                        </DivColor>
 
-                </OptionsSection>
-            </NavigationBarAside>
+                    </OptionsSection>
+                </NavigationBarAside>
+}
         </>
+    
     )
 }
 
+
+
 export default NavigationBar
+
+

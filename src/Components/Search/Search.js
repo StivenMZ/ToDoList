@@ -65,67 +65,67 @@ const SpanX = styled.span`
 
 const Search = () => {
 
-  const {busqueda, setBusqueda} = useContext(TareasGlobal);
+  const { busqueda, setBusqueda } = useContext(TareasGlobal);
 
 
-    const [seeInput, setSeeInput] = useState(false);
+  const [seeInput, setSeeInput] = useState(false);
 
-    const [direction, setDirection] = useState(false);
+  const [direction, setDirection] = useState(false);
 
-    const functionAnim = () =>{
-        if((!seeInput) && (!direction)){
-            setSeeInput(true);
-            setDirection(true);
-        }else{
-            setDirection(false);
-            setTimeout(() => {
-                setSeeInput(false)
-            }, 300);
-        }
-
+  const functionAnim = () => {
+    if ((!seeInput) && (!direction)) {
+      setSeeInput(true);
+      setDirection(true);
+    } else {
+      setDirection(false);
+      setTimeout(() => {
+        setSeeInput(false)
+      }, 300);
     }
 
-    const UpdateSearch = (valor) =>{
-      setBusqueda(valor);
-    }
-    
-    const navigate = useNavigate();
+  }
 
-    
-  useEffect(()=>{
-    if(busqueda.length === 0){
-      navigate('/')
-    }else{
+  const UpdateSearch = (valor) => {
+    setBusqueda(valor);
+  }
+
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if (busqueda.length === 0) {
+      console.log('test')
+    } else {
       navigate('/resultado-de-busqueda')
     }
-    
 
-    
+
+
 
   }, [busqueda])
 
 
-    return (<>
+  return (<>
 
-        <DivBuscar>
+    <DivBuscar>
 
-            <ButtonSearch
-            onClick={()=>{functionAnim()}}
-            >
-                {seeInput ? (<SpanX>X</SpanX>) : (<LupaIcon src={lupa} alt="icono búsqueda"></LupaIcon>)}
-                
-                
-            </ButtonSearch>
-            {seeInput &&  <InputSearch
-            onInput={(e)=>{
-              UpdateSearch(e.target.value);
-            }}
-            value={busqueda}
-            direction={direction}
-            placeholder="Buscar tarea..."
-            ></InputSearch>}   
-        </DivBuscar>
-    </>)
+      <ButtonSearch
+        onClick={() => { functionAnim() }}
+      >
+        {seeInput ? (<SpanX>X</SpanX>) : (<LupaIcon src={lupa} alt="icono búsqueda"></LupaIcon>)}
+
+
+      </ButtonSearch>
+      {seeInput && <InputSearch
+        onInput={(e) => {
+          UpdateSearch(e.target.value);
+        }}
+        value={busqueda}
+        direction={direction}
+        placeholder="Buscar tarea..."
+      ></InputSearch>}
+    </DivBuscar>
+  </>)
 
 }
 

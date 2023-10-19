@@ -1,48 +1,14 @@
-import React, { useContext, useEffect } from "react";
-import styled from "styled-components";
-import { useState } from "react";
-import {TareasGlobal} from '../../App';
-import NavigationBar from "./NavigationBar";
+import React from "react";
 import Header from "./Header";
-import { useLocation } from "react-router-dom";
+const DefaultPage = ({ children }) => {
 
-//83%
+    console.log('default page renderizado')
 
-const Main = styled.main`
-width:   ${({ widthIn }) => (widthIn ? '100%' : '83%')};
-position: absolute;
-right: 0;
-height: 90vh;
-`;
-
-
-
-
-const DefaultPage = ({children}) =>{
-
-    const ruta = useLocation();
-    
-    
-    const [widthIn, setWidthIn] = useState('');
-
-    const [url, setUrl] = useState(ruta.pathname);
-    
-    useEffect(()=>{
-        setWidthIn(url === '/')
-    },[url])
-
-return(
-    <>
-    <Header></Header>
-    {url !== '/' ?  <NavigationBar /> : <></>}
-    {/* <NavigationBar>
-    </NavigationBar> */}
-    <Main
-    widthIn={widthIn}
-    >
-        {children}
-    </Main>
-    </>
+    return (
+        <>
+            <Header />
+            {children}
+        </>
     )
 }
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import NavigationCard from "./NavigationCard";
+import { TareasGlobal } from "../../App";
+import { NavigationBarGlobal } from "../Main/main";
 
 const SectionHome = styled.section`
 width: 100%;
@@ -36,6 +38,11 @@ margin-bottom: 2%;
 `;
 
 const Home = () => {
+    
+/*      const {setShowNavigationBar} = useContext(TareasGlobal);
+    setShowNavigationBar(false);  */
+
+
     return (<>
         <SectionHome>
             <Pmain>
@@ -45,11 +52,10 @@ const Home = () => {
             </Pmain>
             <CardsSection>
                 <DivCards>
-                    <NavigationCard title={'Crear tarea'} ruta={''}></NavigationCard>
+                    <NavigationCard title={'Crear tarea'} ruta={'/crear-tarea'}></NavigationCard>
                     <NavigationCard title={'Lista de tareas'} ruta={'/lista-de-tareas'}></NavigationCard>
-                    <NavigationCard title={'Funciones adicionales'}></NavigationCard>
-                    <NavigationCard title={'Historial'}></NavigationCard>
-                    
+                    <NavigationCard title={'Funciones adicionales'} ruta={'/funciones-adicionales'}></NavigationCard>
+                    <NavigationCard title={'Historial'}></NavigationCard>      
                 </DivCards>
             </CardsSection>
         </SectionHome>

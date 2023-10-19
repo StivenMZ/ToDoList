@@ -39,7 +39,7 @@ const NavigationCard = ({ title, ruta }) => {
     return (
         <>
             <DivCard>
-                <Links to={ruta}>
+                <Links to={ruta} draggable='false'>
                     <TitleP>
                         {title}
                     </TitleP>

@@ -1,15 +1,29 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import FieldForm from './FieldForm';
 import PriorityBar from './priorityBar';
 import { TareasGlobal } from '../../App';
-import Notification from '../Notification';
+import { NavigationBarGlobal } from '../Main/main'
+
+const AnimationWake = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+
+`;
+ 
 
 const SectionCreateTask = styled.section`
 width: 100%;
 padding: 1rem;
 display: flex;
 justify-content: center;
+flex-basis: 70%;
+animation: ${AnimationWake} 0.3s ease-in-out;
 `;
 
 const TitleCreate = styled.h2`
@@ -71,16 +85,18 @@ const SpanError = styled.span`
 const TaskFormContext = createContext();
 
 const CreateTask = () => {
-    const { tareas, setTareas, notificaciones, setNotificaciones } = useContext(TareasGlobal);
+    const { tareas, setTareas, notificaciones, setNotificaciones} = useContext(TareasGlobal);
+    
+ 
 
     const [title, setTitle] = useState({ invalido: false, valor: '', error: '', valid: '' });
     const [descripcion, setDescription] = useState({ invalido: false, valor: '', error: '', valid: '' });
     const [prioridad, setPrioridad] = useState({ invalido: true, valor: '', error: '', });
 
 
-    useEffect(() => {
+  /*   useEffect(() => {
         console.log(title.invalido + ' ' + title.valor + ' ' + title.error + ' ' + title.valid + '<=Titulo')
-    }, [title])
+    }, [title]) */
     //title, setTitle, descripcion, setDescripcion, prioridad, setPrioridad,
 
     const [renderizar, setRenderizar] = useState(true);
@@ -216,6 +232,8 @@ const CreateTask = () => {
     useEffect(() => {
         setRenderizar(true);
     }, [renderizar])
+
+
 
     return (
         <>

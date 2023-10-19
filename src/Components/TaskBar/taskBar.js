@@ -1,9 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import TaskCard from "./taskCard";
 import FilterTask from "./filter";
 import { TareasGlobal } from '../../App'
 
+
+const AnimationWake = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+
+`;
 
 const TaskLista = styled.section`
     margin-top: 2%;
@@ -15,8 +26,10 @@ const TaskLista = styled.section`
     align-items: center;
     flex-wrap: wrap;
     gap: 0.1rem;
-    border: 0.1rem solid;
     justify-content: center;
+    flex-basis: 70%;
+    animation: ${AnimationWake} 0.3s ease-in-out;
+
   
 `
 const Title = styled.h1`
@@ -49,12 +62,12 @@ const NoTasks = styled.h4`
 
 const TaskList = () => {
 
-  const { tareas, setTareas } = useContext(TareasGlobal);
+  const { tareas, setTareas} = useContext(TareasGlobal);
   const [taskView, setTaskView] = useState(tareas);
   const [hayTareas, setHayTareas] = useState(false);
-
-  const [prioridad, setPrioridad] = useState('no')
-
+  const [prioridad, setPrioridad] = useState('no');
+  
+  
 
 
   const validarSiHayTareas = () => {

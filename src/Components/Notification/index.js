@@ -34,7 +34,7 @@ const AnimationNotiOut = keyframes`
 
 const DivNotificacion = styled.div`
 position: relative;
-z-index: 9;
+z-index: 10;
 width: 100%;
 max-height: 14vh;
 border: 1px solid;
@@ -50,12 +50,13 @@ animation: ${({ direction }) => (direction ? AnimationNotiIn : AnimationNotiOut)
 
 `;
 
+
 const Phora = styled.p`
 `;
 
 const PMessage = styled.p`
     line-break: anywhere;
-    width: 93%;
+    width: 90%;
 
 `;
 
