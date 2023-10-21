@@ -7,7 +7,7 @@ import { NavigationBarGlobal } from '../Main/main'
 
 const AnimationWake = keyframes`
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -23,7 +23,7 @@ padding: 1rem;
 display: flex;
 justify-content: center;
 flex-basis: 70%;
-animation: ${AnimationWake} 0.3s ease-in-out;
+animation: ${AnimationWake} 0.2s ease-in-out;
 `;
 
 const TitleCreate = styled.h2`
@@ -166,7 +166,7 @@ const CreateTask = () => {
         }
 
         if (descripcion.valor.length === 0) {
-            setDescription({ invalido: true, valor: descripcion.valor, error: 'El descripción  no puede estar vacío', valid: '' })
+            setDescription({ invalido: true, valor: descripcion.valor, error: 'El campo descripción no puede estar vacío', valid: '' })
             validations.descripcionValid = false;
 
         } else {
@@ -183,7 +183,7 @@ const CreateTask = () => {
 
         }
 
-        if ((validations.titleValid === true && title.invalido === false) && (validations.descripcionValid === true && descripcion.invalido === false) && (validations.prioridadValid === true && prioridad.invalido === false)) {
+        if ((validations.titleValid  && !title.invalido ) && (validations.descripcionValid  && !descripcion.invalido ) && (validations.prioridadValid && !prioridad.invalido)) {
             try {
                 const fecha = new Date();
                 let time = '';
@@ -209,18 +209,18 @@ const CreateTask = () => {
 
             } catch (error) {
                 console.log(error)
+                setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`}])
                 
             }
         } else {
-            console.log('Error al crear tarea')
-            setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`}])
+            return
 
         }
 
     }
 
     const cancelarFunct = () => {
-        if (title.valor.length > 0 || descripcion.valor.length > 0 || prioridad.valor.length > 0) {
+        if (title.valor.length > 0 || descripcion.valor.length > 0 || prioridad.valor.length > 0 || title.invalido || prioridad.invalido || descripcion.invalido ) {
             setTitle({ invalido: false, valor: '', error: '', valid: '' });
             setPrioridad({ invalido: true, valor: '', error: '', valid: '' });
             setDescription({ invalido: false, valor: '', error: '', valid: '' });

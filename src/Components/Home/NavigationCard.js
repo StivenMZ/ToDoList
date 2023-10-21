@@ -12,6 +12,7 @@ display: flex;
 align-items: center;
 flex-direction: column;
 cursor: pointer;
+box-sizing: border-box;
 
 &:hover{
     background-color: rgba(0,6,1, 0.3);

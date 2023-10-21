@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import TaskCard from "../TaskBar/taskCard";
 import { TareasGlobal } from '../../App';
-
+import {useNavigate} from "react-router-dom";
 
 const SearchResult = styled.section`
 margin-top: 3%;
 border: 1px solid;
-height: 87vh;
-width: 90%;
+height: 80vh;
+width: 70%;
 display: flex;
 justify-content: flex-start;
 flex-direction: column;
@@ -27,11 +27,28 @@ color: black;
 font-size: 1.3rem;
 `;
 
+
+
+const BackToBackButton = styled.button`
+border: 1px solid;
+display: flex;
+justify-content: center;
+text-align: center;
+padding: 0.5rem 1rem;
+align-self: end;
+cursor: pointer;
+
+`;
+
+
 const SearchResults = () => {
 
-    const { tareas, busqueda, resultadoBusqueda, setResultadoBusqueda } = useContext(TareasGlobal);
+    const  navigate = useNavigate();
 
-    console.log(resultadoBusqueda , 'test resultado busqueda')
+
+    const { tareas, busqueda, resultadoBusqueda, setResultadoBusqueda, setBusqueda } = useContext(TareasGlobal);
+
+    console.log(resultadoBusqueda, 'test resultado busqueda')
 
 
     const onSearch = (busqueda) => {
@@ -59,6 +76,9 @@ const SearchResults = () => {
         }
     }
 
+
+
+
     useEffect(() => {
         onSearch(busqueda);
     }, [busqueda])
@@ -68,10 +88,19 @@ const SearchResults = () => {
     return (
         <>
             <SearchResult>
+                <BackToBackButton
+                onClick={()=> {
+                    console.log(`$desde resultados de búsuqeda`)
+                    setBusqueda('')
+                    navigate(-1)
+                }
+            }
+                >Volver atrás 
+                </BackToBackButton>
                 <DivTitle>
                     <PhTitle>Resultados de búsqueda para {busqueda}</PhTitle>
                 </DivTitle>
-                {resultadoBusqueda ? (  resultadoBusqueda.length > 0 ? (
+                {resultadoBusqueda ? (resultadoBusqueda.length > 0 ? (
                     resultadoBusqueda.map((tarea) => (
                         <TaskCard
                             key={`${tarea.titulo}${tarea.id}`}

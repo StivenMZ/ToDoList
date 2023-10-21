@@ -4,12 +4,13 @@ import { useState } from "react";
 import { TareasGlobal } from '../../App';
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.jpg"
+import Search from "../SearchResults/SearchInput";
 
 
 const Head = styled.header`
 margin-top: 1.3%;
 display: flex;
-justify-content: center;
+justify-content: flex-end;
 width: 100%;
 align-items: center;
 gap: 2%;
@@ -38,13 +39,6 @@ width: 50%;
 
 
 
-
-const InputSearch = styled.input`
-z-index: 100;
-width: 60%;
-margin-left: 17%;
-`;
-
 const IconLink = styled(Link)`
 display: flex;
 `;
@@ -55,9 +49,7 @@ const Header = () => {
 
     return (<>
         <Head>
-            <InputSearch
-                placeholder="Buscar tarea.."
-            ></InputSearch>
+           <Search />
             <DivIcon>
                 <IconLink to={'/'} draggable='false'>
                     <Icon>

@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import lupa from '../../img/lupa.svg'
 import { TareasGlobal } from '../../App';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const DivBuscar = styled.div`
-width: 100%;
+flex-basis: 65%;
 display: flex;
 justify-content: center;
 position: relative;
-flex-basis: 7%;
 `;
 
 const ButtonSearch = styled.button`
@@ -24,7 +23,7 @@ cursor: pointer;
 max-height: 100%;
 `;
 
-const AnimationInputOut = keyframes`
+/* const AnimationInputOut = keyframes`
   0% {
     width: 1%;
   }
@@ -43,13 +42,9 @@ const AnimationInputIn = keyframes`
     width: 1%;
   }
 `
-
+ */
 const InputSearch = styled.input`
-position: absolute;
-left: 62%;
-top: 14%;
-width: ${({ direction }) => (direction ? '500%' : '1%')};
-animation: ${({ direction }) => (direction ? AnimationInputOut : AnimationInputIn)} 0.2s linear 1;
+width: 100%;
 z-index: 100;
 `;
 
@@ -63,7 +58,9 @@ const SpanX = styled.span`
 `;
 
 
-const Search = () => {
+const SearchInput = () => {
+
+  const ruta = useLocation();
 
   const { busqueda, setBusqueda } = useContext(TareasGlobal);
 
@@ -93,40 +90,29 @@ const Search = () => {
 
 
   useEffect(() => {
-    if (busqueda.length === 0) {
-      console.log('test')
-    } else {
+
+    if(ruta.pathname !== '/resultado-de-busqueda' && busqueda.length > 0){
       navigate('/resultado-de-busqueda')
     }
-
-
-
-
   }, [busqueda])
 
 
   return (<>
 
     <DivBuscar>
+      
+    <InputSearch
+    value={busqueda}
+    direction={direction}
+    placeholder="Buscar tarea..."
+    onInput={(e) => {
+      UpdateSearch(e.target.value);
+    }}
+    />
 
-      <ButtonSearch
-        onClick={() => { functionAnim() }}
-      >
-        {seeInput ? (<SpanX>X</SpanX>) : (<LupaIcon src={lupa} alt="icono búsqueda"></LupaIcon>)}
-
-
-      </ButtonSearch>
-      {seeInput && <InputSearch
-        onInput={(e) => {
-          UpdateSearch(e.target.value);
-        }}
-        value={busqueda}
-        direction={direction}
-        placeholder="Buscar tarea..."
-      ></InputSearch>}
     </DivBuscar>
   </>)
 
 }
 
-export default Search;
+export default SearchInput;

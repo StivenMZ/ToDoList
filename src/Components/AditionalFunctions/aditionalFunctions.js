@@ -6,7 +6,7 @@ import NavigationBar from '../DefaultPage/NavigationBar';
 
 const AnimationWake = keyframes`
   0% {
-    opacity: 0;
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -28,7 +28,7 @@ const AsideFunctions = styled.section`
     gap: 1rem;
     margin-right: 1%;
     flex-basis: 70%;
-    animation: ${AnimationWake} 0.3s ease-in-out;
+    animation: ${AnimationWake} 0.2s ease-in-out;
 `;
 
 const FunctionsTitle = styled.h2`

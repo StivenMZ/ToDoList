@@ -5,6 +5,7 @@ import { TareasGlobal } from '../../App'
 
 const TitleFilter = styled.h3`
 color: ${({ theme }) => theme.background};
+margin-bottom: 0.1%;
 `;
 
 const SectionButtons = styled.section`
@@ -25,49 +26,56 @@ border: none;
 `;
 
 
+const DivSeeComplete = styled.div`
+display: flex;
+align-items: center;
+`;
 
+const SpanSeeComplete = styled.span`
 
+`;
 
-const FilterTask = ({ setTaskView, setPrioridad }) => {
+const InputSeeComplete = styled.input`
+`;
+
+const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priority, setPriority,activeFilter }) => {
 
   const { tareas, setTareas } = useContext(TareasGlobal);
-  const [activeFilter, setActiveFilter] = useState("no");
+
+
+
 
   useEffect(() => {
-    setActiveFilter('no')
+    filterFunct(priority)
+    console.log(priority, ' Prioridad desde useEffect para ver activacion de filter funct')
   }, [tareas])
 
 
-  const filterFunct = (prioridad) => {
-    setActiveFilter(prioridad);
 
-    let newArray = [];
-
-    if (prioridad === 'no') {
-      newArray = [...tareas];
-    } else {
-      newArray = tareas.filter((task) => task.prioridad === prioridad);
-
-    }
-    setPrioridad(prioridad)
-    setTaskView(newArray)
-
-
-    console.log("activeFilter:", activeFilter);
-
-
-
-  }
-
+  useEffect(()=>{
+    setShowCompleted(checked)
+    filterFunct(priority);
+    console.log('Cheked desde useEffect' ,checked)
+  }, [checked])
 
 
   return (<>
-   
+    <DivSeeComplete>
+      <SpanSeeComplete>Ver tareas completadas</SpanSeeComplete>
+      <InputSeeComplete type="checkbox"
+        checked={checked}
+        onClick={() => {
+          setCheked(!checked)
+        }}
+      ></InputSeeComplete>
+    </DivSeeComplete>
     <TitleFilter>Filtrar por prioridad</TitleFilter>
     <SectionButtons>
       <ButtonFilter
         onClick={() => {
-          filterFunct("Alta")
+          const value = "Alta";
+          setPriority(value)
+          filterFunct(value)
 
 
         }}
@@ -75,19 +83,25 @@ const FilterTask = ({ setTaskView, setPrioridad }) => {
       >Alta</ButtonFilter>
       <ButtonFilter
         onClick={() => {
-          filterFunct("Media")
+          const value = "Media";
+          setPriority(value)
+          filterFunct(value)
         }}
         activate={activeFilter === "Media"}
       >Media</ButtonFilter>
       <ButtonFilter
         onClick={() => {
-          filterFunct("Baja")
+          const value = "Baja";
+          setPriority(value)
+          filterFunct(value)
         }}
         activate={activeFilter === "Baja"}
       >Baja</ButtonFilter>
       <ButtonFilter
         onClick={() => {
-          filterFunct("no")
+          const value = "no";
+          setPriority(value)
+          filterFunct(value)
         }}
         activate={activeFilter === "no"}
       >No filtrar</ButtonFilter>

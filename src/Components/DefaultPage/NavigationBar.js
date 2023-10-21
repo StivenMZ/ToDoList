@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { TareasGlobal } from '../../App';
 import { Link, useLocation } from 'react-router-dom';
-import Search from "../Search/Search";
+import Search from "../SearchResults/SearchInput";
 
 
 const NavigationAnimationIn = keyframes`
@@ -41,7 +41,8 @@ display: flex;
 justify-content: center;
 position: relative;
 bottom: 11%;
-animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.3s linear 1;
+animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.27s ease-out 1;
+z-index: 7;
 `;
 
 // NavigationAnimationOut  NavigationAnimationIn
@@ -95,6 +96,12 @@ align-items: center;
 
 `;
 
+const DivProfile = styled.div`
+width: 30%;
+background-color: goldenrod;
+`;
+
+
 const SpanElementoIcono = styled.span``;
 
 
@@ -104,7 +111,7 @@ const ButtonChangeColor = styled.button``;
 const NavigationBar = () => {
     const Url = useLocation();
 
-    const rutas = ['/crear-tarea','/lista-de-tareas','/funciones-adicionales']
+    const rutas = ['/crear-tarea','/lista-de-tareas','/funciones-adicionales', '/resultado-de-busqueda']
 
     const [render, setRender] = useState(false);
 
@@ -119,7 +126,7 @@ const NavigationBar = () => {
             setDirection(false);
             setTimeout(() => {
                 setRender(false);      
-            }, 300);
+            }, 150);
         }
 
     },[Url.pathname])
@@ -129,7 +136,7 @@ const NavigationBar = () => {
         {render && 
            <NavigationBarAside direction={direction}>
                     <OptionsSection>
-                        <Search></Search>
+                        <DivProfile />
                         <DivOpciones>
                             <NavList>
                                 <Link to='/lista-de-tareas'>

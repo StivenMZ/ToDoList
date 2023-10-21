@@ -1,8 +1,20 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import NavigationCard from "./NavigationCard";
 import { TareasGlobal } from "../../App";
 import { NavigationBarGlobal } from "../Main/main";
+
+const AnimationHome = keyframes`
+
+0%{
+    display: none;
+}
+
+100%{
+    display: flex;
+}
+
+`;
 
 const SectionHome = styled.section`
 width: 100%;
@@ -11,6 +23,8 @@ display: flex;
 justify-content: flex-start;
 align-items: center;
 flex-direction: column;
+position: absolute;
+
 `;
 
 
