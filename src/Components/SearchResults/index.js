@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import TaskCard from "../TaskBar/taskCard";
 import { TareasGlobal } from '../../App';
@@ -53,6 +53,8 @@ const SearchResults = () => {
 
     const onSearch = (busqueda) => {
         if (busqueda.length > 0) {
+
+
             let orderRes = [];
 
             try {
@@ -65,9 +67,16 @@ const SearchResults = () => {
                         orderRes.push(task);
                     }
 
+                  
+
                 })
                 console.log(orderRes);
-                setResultadoBusqueda(orderRes)
+
+                let arraynoreplic = new Set(orderRes);
+
+                let result = [...arraynoreplic]
+
+                setResultadoBusqueda(result)
 
             } catch (error) {
                 console.log(error);
@@ -81,9 +90,11 @@ const SearchResults = () => {
 
     useEffect(() => {
         onSearch(busqueda);
-    }, [busqueda])
+    }, [busqueda, tareas])
 
 
+    
+ 
 
     return (
         <>
@@ -99,8 +110,9 @@ const SearchResults = () => {
                 </BackToBackButton>
                 <DivTitle>
                     <PhTitle>Resultados de búsqueda para {busqueda}</PhTitle>
+             
                 </DivTitle>
-                {resultadoBusqueda ? (resultadoBusqueda.length > 0 ? (
+                {(resultadoBusqueda) ? (resultadoBusqueda.length > 0 ? (
                     resultadoBusqueda.map((tarea) => (
                         <TaskCard
                             key={`${tarea.titulo}${tarea.id}`}
@@ -117,7 +129,6 @@ const SearchResults = () => {
                     <p>No se encontraron resultados</p>
                 )) : <p>Sintax</p>}
             </SearchResult>
-
         </>
     )
 

@@ -60,16 +60,15 @@ const Home = () => {
     return (<>
         <SectionHome>
             <Pmain>
-                Bienvenido a Task-manager, una herramienta para que
-                lleves un control de tus tareas, a tu izquierda está
-                el menú de navegación, échale un vistazo!
+                ¡Bienvenido a Task-manager, una herramienta para que
+                lleves un control de tus tareas!
             </Pmain>
             <CardsSection>
                 <DivCards>
                     <NavigationCard title={'Crear tarea'} ruta={'/crear-tarea'}></NavigationCard>
                     <NavigationCard title={'Lista de tareas'} ruta={'/lista-de-tareas'}></NavigationCard>
+                    <NavigationCard title={'Historial'} ruta={'/historial'}></NavigationCard>      
                     <NavigationCard title={'Funciones adicionales'} ruta={'/funciones-adicionales'}></NavigationCard>
-                    <NavigationCard title={'Historial'}></NavigationCard>      
                 </DivCards>
             </CardsSection>
         </SectionHome>

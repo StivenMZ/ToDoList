@@ -1,8 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { NavigationBarGlobal } from '../DefaultPage/NavigationBar';
 import { TareasGlobal } from '../../App';
-import NavigationBar from '../DefaultPage/NavigationBar';
+
+import Sugerencias from './sections/Sugerencias';
+import Recursos from './sections/Recursos';
+import Noticias from './sections/Noticias';
+import Ayuda from './sections/Ayuda';
+import Politicas from './sections/Politicas';
+import Sobre from './sections/Sobre';
+import Como from './sections/ComoUsar';
 
 const AnimationWake = keyframes`
   0% {
@@ -17,9 +23,9 @@ const AnimationWake = keyframes`
 
 
 
-const AsideFunctions = styled.section`
+const SectionFunctionsMain = styled.section`
     width: 96%;
-    height: 88vh;
+    height: 85vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -67,109 +73,97 @@ border: 0.15rem solid transparent;
 
 `;
 
-const SectionContent  = styled.section`
+const SectionContent = styled.section`
 width: 100%;
     align-self: center;
     background-color: white;
     flex-basis: 83%;
+    border: 1px solid;
    
 `;
 
 
 const AditionalFunctions = () => {
 
-    const {showNavigationBar} = useContext(TareasGlobal)
 
     const [view, setView] = useState(false);
-    const [contentView, setContentView] = useState({button: '', content: ''});
+    const [contentView, setContentView] = useState({ button: '', content: '' });
 
+    const options = {
+        comoUsar: {
+            texto: 'Como usar este sitio web',
+            contenido: <Como></Como>
+        },
+        sugerencias: {
+            texto: '¿Tienes sugerencias?',
+            contenido: <Sugerencias></Sugerencias>
+        },
+        recursos: {
+            texto: 'Recursos útiles',
+            contenido: <Recursos></Recursos>
+        },
+        noticias: {
+            texto: 'Noticias o actualizaciones',
+            contenido: <Noticias></Noticias>
+        },
+        ayuda: {
+            texto: 'Centro de ayuda',
+            contenido: <Ayuda></Ayuda>
+        },
+        politicas: {
+            texto: 'Políticas de privacidad y términos de uso',
+            contenido: <Politicas></Politicas>
+        },
+        sobre: {
+            texto: 'Sobre este sitio web',
+            contenido: <Sobre></Sobre>
+        }
+    }
 
-
-
-/*
-howto = Como usar este sitio web
-suggest = ¿Tienes sugerencias? 
-resources =  Recursos útiles
-news= Noticias o actualizaciones
-social = Redes sociales
-helper = Centro de ayuda
-privacity = Políticas de privacidad y términos de uso
-*/
-
-    const vistaAd = (button, content) =>{
-        if(view === false){
-            
+    const vistaAd = (button, content) => {
+        if (!view) {
             setView(true);
             console.log('a true')
-            setContentView({button :button, content: content})
-        } else{
-            setView(false)
-            console.log('a false')
+            setContentView({ button: button, content: content })
         }
-
     }
 
     return (
         <>
-          <AsideFunctions>
+            <SectionFunctionsMain>
                 <FunctionsTitle>Funciones adicionales</FunctionsTitle>
                 <SectionFunctions>
                     {view ? (
                         <>
-                        <ButtonFunction
-                         onClick={()=>{
-                            console.log('hpta')
-                            setView(false)
-                        }}
-                        >{contentView.button}</ButtonFunction>
-                        <SectionContent>{contentView.content}</SectionContent>
+                            <ButtonFunction
+                                onClick={() => {
+                                    setView(false)
+                                }}
+                            >{contentView.button} -</ButtonFunction>
+                            <SectionContent>
+                                {contentView.content}
+                            </SectionContent>
                         </>
-                    ):
-                    (
-                        <>
-                        <ButtonFunction
-                    onClick={()=>{
-                        vistaAd('howto', 'test')
-                    }}
-                   >Como usar este sitio web</ButtonFunction>
+                    ) :
+                        (
+                            <>
+                                {Object.keys(options).map((opt) => {
+                                    return (
+                                        <ButtonFunction
+                                            onClick={() => {
+                                                vistaAd(options[opt].texto, options[opt].contenido)
+                                            }}
+                                        >{options[opt].texto} +</ButtonFunction>
+                                    )
+                                })}
+                            </>
 
-                       <ButtonFunction
-                    onClick={()=>{
-                        vistaAd('suggest', 'test')
-                    }}
-                   >¿Tienes sugerencias?</ButtonFunction>
-                    <ButtonFunction
-                    onClick={()=>{
-                        vistaAd('resources', 'test')
-                    }}
-                    >Recursos útiles</ButtonFunction>
-                    <ButtonFunction
-                     onClick={()=>{
-                        vistaAd('news', 'test')
-                    }}
-                    >Noticias o actualizaciones</ButtonFunction>
-                    <ButtonFunction
-                     onClick={()=>{
-                        vistaAd('social', 'test')
-                    }}
-                    >Redes sociales</ButtonFunction>
-                    <ButtonFunction
-                     onClick={()=>{
-                        vistaAd('helper', 'test')
-                    }}
-                    >Centro de ayuda</ButtonFunction>
-                    <ButtonFunction
-                     onClick={()=>{
-                        vistaAd('privacity', 'test')
-                    }}
-                    >Políticas de privacidad y términos de uso</ButtonFunction>   
-                    </>
-                    )}
+                        )}
                 </SectionFunctions>
-            </AsideFunctions>
+            </SectionFunctionsMain>
         </>
     )
-    
+
 }
 
 export default AditionalFunctions;

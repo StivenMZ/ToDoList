@@ -74,49 +74,51 @@ cursor: pointer;
 
 const Notification = ({ mensaje }) => {
 
-    const [mostrarNotificacion, setMostrarNotificacion] = useState(true);
+  const [mostrarNotificacion, setMostrarNotificacion] = useState(true);
 
-    const [direction, setDirection] = useState(true);
+  const [direction, setDirection] = useState(true);
 
 
-  if(mostrarNotificacion){
+  if (mostrarNotificacion) {
     setTimeout(() => {
       functionAnim();
-    }, 1000*6.7);
+    }, 1000 * 6.7);
   }
 
-    const functionAnim = () =>{
-        if((!mostrarNotificacion) && (!direction)){
-            setMostrarNotificacion(true);
-            setDirection(true);
-        }else{
-            setDirection(false);
-            setTimeout(() => {
-                setMostrarNotificacion(false)
-            }, 300);          
-        }
-
+  const functionAnim = () => {
+    if ((!mostrarNotificacion) && (!direction)) {
+      setMostrarNotificacion(true);
+      setDirection(true);
+    } else {
+      setDirection(false);
+      setTimeout(() => {
+        setMostrarNotificacion(false)
+      }, 300);
     }
 
+  }
 
 
 
+  const fecha = new Date();
 
+  let time  = `${fecha.getDate()}/${fecha.getUTCMonth()+1}/${fecha.getFullYear()}       ${fecha.getHours()}:${fecha.getMinutes()}`;
 
+  const [date, setDate] = useState(time);
 
-    return (<>
-        {mostrarNotificacion && (
-            <DivNotificacion direction={direction}>
-                <Phora>14/10/2023 19:20</Phora>
-                <PMessage>{mensaje}</PMessage>
-                <SpanClose
-                    onClick={() => {
-                        functionAnim();
-                    }}
-                >X</SpanClose>
-            </DivNotificacion>
-        )}
-    </>)
+  return (<>
+    {mostrarNotificacion && (
+      <DivNotificacion direction={direction}>
+        <Phora>{date}</Phora>
+        <PMessage>{mensaje}</PMessage>
+        <SpanClose
+          onClick={() => {
+            functionAnim();
+          }}
+        >X</SpanClose>
+      </DivNotificacion>
+    )}
+  </>)
 }
 
 export default Notification;

@@ -85,7 +85,7 @@ const SpanError = styled.span`
 const TaskFormContext = createContext();
 
 const CreateTask = () => {
-    const { tareas, setTareas, notificaciones, setNotificaciones} = useContext(TareasGlobal);
+    const { tareas, setTareas, notificaciones, setNotificaciones, history, setHistory} = useContext(TareasGlobal);
     
  
 
@@ -188,7 +188,7 @@ const CreateTask = () => {
                 const fecha = new Date();
                 let time = '';
                 time += fecha.getDate() + '/';
-                time += fecha.getUTCMonth() + '/';
+                time += fecha.getUTCMonth()+1 + '/';
                 time += fecha.getFullYear();
 
 
@@ -206,6 +206,7 @@ const CreateTask = () => {
                 setTareas([...tareas, newTarea])
                 cancelarFunct();
                 setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`}])
+                setHistory([{date: `${time}    ${fecha.getHours()}:${fecha.getMinutes().length === 1 ? (`0+1`) : (fecha.getMinutes())}` , title: title.valor , type:'create'},...history])
 
             } catch (error) {
                 console.log(error)

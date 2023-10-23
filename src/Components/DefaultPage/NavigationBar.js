@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { TareasGlobal } from '../../App';
 import { Link, useLocation } from 'react-router-dom';
-import Search from "../SearchResults/SearchInput";
+
 
 
 const NavigationAnimationIn = keyframes`
@@ -111,7 +111,9 @@ const ButtonChangeColor = styled.button``;
 const NavigationBar = () => {
     const Url = useLocation();
 
-    const rutas = ['/crear-tarea','/lista-de-tareas','/funciones-adicionales', '/resultado-de-busqueda']
+    const {busqueda, setBusqueda} = useContext(TareasGlobal);
+
+    const rutas = ['/crear-tarea','/lista-de-tareas','/funciones-adicionales', '/resultado-de-busqueda', '/historial']
 
     const [render, setRender] = useState(false);
 
@@ -129,6 +131,10 @@ const NavigationBar = () => {
             }, 150);
         }
 
+        if(Url.pathname !== '/resultado-de-busqueda') {
+            setBusqueda('')
+        }
+
     },[Url.pathname])
 
     return (
@@ -139,6 +145,16 @@ const NavigationBar = () => {
                         <DivProfile />
                         <DivOpciones>
                             <NavList>
+                            <Link to='/'>
+                                    <NavLi>
+                                        <DivElementoTexto>
+                                            Inicio
+                                        </DivElementoTexto>
+                                        <SpanElementoIcono>
+                                            😊
+                                        </SpanElementoIcono>
+                                    </NavLi>
+                                </Link>
                                 <Link to='/lista-de-tareas'>
                                     <NavLi>
                                         <DivElementoTexto>
@@ -159,6 +175,17 @@ const NavigationBar = () => {
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
+                                <Link to='/historial'>
+                                    <NavLi>
+                                        <DivElementoTexto>
+                                            Historial
+                                        </DivElementoTexto>
+                                        <SpanElementoIcono>
+                                            😊
+                                        </SpanElementoIcono>
+                                    </NavLi>
+                                </Link>
+
                                 <Link to='/funciones-adicionales'>
                                     <NavLi>
                                         <DivElementoTexto>
@@ -169,6 +196,7 @@ const NavigationBar = () => {
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
+                                
                             </NavList>
                         </DivOpciones>
                         <DivColor>
@@ -176,7 +204,6 @@ const NavigationBar = () => {
                                 Cambiar color
                             </ButtonChangeColor>
                         </DivColor>
-
                     </OptionsSection>
                 </NavigationBarAside>
 }
