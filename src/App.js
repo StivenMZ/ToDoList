@@ -38,15 +38,15 @@ function App() {
   const [busqueda, setBusqueda] = useState('');
   const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
   const [notificaciones, setNotificaciones] = useState([]);
-  const [tareas, setTareas] = useState([/* 
-    { titulo: 'Gimnasio', descripcion: 'Ir al gimnasio', prioridad: 'Alta', fechaIn: '27/08/2023', id: 0, completada: false, fechaFin: '' },
+  const [tareas, setTareas] = useState([
+    { titulo: 'Gimnasio', descripcion: '12345678901234567890123456789012345678901234567890123456789012345678901234567890', prioridad: 'Alta', fechaIn: '27/08/2023', id: 0, completada: false, fechaFin: '' },
     { titulo: 'Dieta', descripcion: 'Hacer dieta', prioridad: 'Media', fechaIn: '27/08/2023', id: 1, completada: true, fechaFin: '19/10/2023' },
     { titulo: 'Dulce', descripcion: 'Comer dulce', prioridad: 'Baja', fechaIn: '27/08/2023', id: 2, completada: true, fechaFin: '19/10/2023' },
     { titulo: 'Correr', descripcion: 'Ir a correr', prioridad: 'Alta', fechaIn: '27/08/2023', id: 3, completada: false, fechaFin: '' },
     { titulo: 'Leer', descripcion: 'Leer un libro', prioridad: 'Media', fechaIn: '27/08/2023', id: 4, completada: true, fechaFin: '19/10/2023' },
     { titulo: 'Estudiar', descripcion: 'Estudio para el examen', prioridad: 'Media', fechaIn: '27/08/2023', id: 5, completada: false, fechaFin: '' },
     { titulo: 'Cocinar', descripcion: 'Preparar la cena', prioridad: 'Baja', fechaIn: '27/08/2023', id: 6, completada: true, fechaFin: '19/10/2023' },
-    { titulo: 'Lavar', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' } */
+    { titulo: 'Lavar', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' }
   ]);
 
 
@@ -54,8 +54,13 @@ function App() {
 
   const [priority, setPriority] = useState('no');
 
-  const [history, setHistory] = useState([]);
-  
+  const [history, setHistory] = useState([{date: '2023-01-01 2:34', type: 'create', title :"ejemplo"},
+  {date: '2023-01-01 2:34', type: 'delete', title :"ejemplo"},
+  {date: '2023-01-01 2:34', type: 'completed', title :"ejemplo1"},
+  {date: '2023-01-01 2:34', type: 'completed', title :"ejemplo2"},
+  {date: '2023-01-01 2:34', type: 'create', title :"ejemplo"},
+  {date: '2023-01-01 2:34', type: 'delete', title :"ejemplo"}]);
+
 
 
   useEffect(() => {
@@ -72,7 +77,7 @@ function App() {
         <ThemeProvider theme={esTemaOscuro ? darkTheme : lightTheme}>
           <TareasGlobal.Provider value={{
             tareas, setTareas, busqueda, setBusqueda, resultadoBusqueda, setResultadoBusqueda, notificaciones, setNotificaciones, showCompleted, setShowCompleted, priority,
-            setPriority, history,  setHistory
+            setPriority, history, setHistory
           }}>
             <ResetStyles />
             <Global />

@@ -1,12 +1,23 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useState, useContext } from "react";
 import { TareasGlobal } from '../../App'
 
 
+const ShowTask = keyframes`
+
+0%{
+    opacity: 0.2;
+}
+
+100%{
+    opacity: 1;
+
+}
+
+`
 
 const ArticleCard = styled.article`
-border: 1px solid black;
 padding: 1rem;
 display: flex;
 flex-direction: column;
@@ -15,7 +26,8 @@ position: relative;
 border-radius: 1rem;
 width: 55%;
 margin-top: 0.3rem;
-background-color: ${({ theme }) => theme.secondary};;
+background-color: ${({ theme }) => theme.TaskCarddBackground};
+animation: ${ShowTask} 0.3s ease-in-out 1;
 `;
 
 const DivPrimary = styled.div`
@@ -29,61 +41,104 @@ const StatusCard = styled.strong`
 position: absolute;
 top: 3%;
 left: 1.5%;
-background-color: gray;
+background-color: ${({ completada, theme }) => (completada ? theme.TaskCardCompletada : theme.TaskCardPendiente)};
 padding: 0.2rem;
-color: white;
+color:  ${({ completada, theme }) => (completada ? theme.TaskCardCompletadaText : theme.TaskCardPendienteText)};
 border-radius: 0.4rem;
+font-size: 1.1rem;
 `;
+
+
+
+
 
 
 const ProirityCard = styled.p`
 position: absolute;
 top: 3%;
 right: 1.5%;
-background-color: ${({ theme }) => theme.backgroundPriority};
-padding: 0.2rem;
-color: ${({ theme }) => theme.priorityText};
+background-color: ${({ prioridad, theme }) => (prioridad === 'Alta'
+    ? theme.TaskCardPriotyBgHigh 
+    : prioridad === 'Media' 
+    ? theme.TaskCardPriotyBgMedium
+    : prioridad === 'Baja' 
+    ? theme.TaskCardPriotyBgLow : '' )};
+padding: 0.5rem;
+color:   ${({ prioridad, theme }) => (prioridad === 'Alta'
+    ? theme.TaskCardPriorityTextHigh 
+    : prioridad === 'Media' 
+    ? theme.TaskCardPriorityTextMedium
+    : prioridad === 'Baja' 
+    ? theme.TaskCardPriorityTextLow : '' )};
 border-radius: 0.4rem;
+font-size: 1.1rem;
+font-weight: bold;
 `;
 
 
 
 const TitleCard = styled.h2`
-font-size: 1.4rem;
+font-size: 1.43rem;
 font-weight: bold;
-color: white;
+color: ${({ theme }) => theme.TaskCardTitleCards};
 overflow-wrap: break-word;
 `;
 
 const DescCard = styled.p`
-font-size: 1.2rem;
-font-style: italic;
-color: white;
+font-size: 1.23rem;
+color: ${({ theme }) => theme.TaskCardDescriptionCards};
 overflow-wrap: break-word;
 `;
 
+
+
 const FechaCard = styled.p`
-font-size: 1rem;
-font-style: italic;
+font-size: 1.06rem;
+
 `;
 
-const CategoryDiv = styled.div`
+const ButtonsDiv = styled.div`
 display: flex;
 gap: 0.6rem;
-width: 40%;
+width: 100%;
+justify-content: space-around;
 `;
 
-const ButtonCard = styled.button`
-color: purple;
+
+
+const ButtonCardP = styled.button`
+color:  ${({ theme }) => theme.buttonPositiveText}; 
 border: none;
-background-color:  ${({ theme }) => theme.button}; ;
-padding: 0.5rem;
+background-color:  ${({ theme }) => theme.buttonPositiveBackground}; 
+padding: 0.7rem 1.5rem;
 cursor: pointer;
-font-size: 0.8rem;
+font-size: 1.03rem;
 border: 0.15rem solid transparent;
+box-sizing: border-box;
+border-radius: 0.4rem;
+&:hover{
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);
+}
+
+&:active{
+    border: 0.15rem solid lightpink;
+}
+
+`;
+
+const ButtonCardN = styled.button`
+color: ${({ theme }) => theme.buttonNegativeText}; 
+border: none;
+background-color:  ${({ theme }) => theme.buttonNegativeBackground}; 
+padding: 0.7rem 1.5rem;
+cursor: pointer;
+font-size: 1.03rem;
+box-sizing: border-box;
+border: 0.15rem solid transparent;
+border-radius: 0.4rem;
 
 &:hover{
-    opacity: 0.82;
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);;
 }
 
 &:active{
@@ -152,7 +207,7 @@ const TaskCard = ({ titulo, descripcion, prioridad, fechaIn, id, completada, fec
         time += fecha.getFullYear();
 
 
-        const newArray = tareas.filter((task) => task.id !== id);   
+        const newArray = tareas.filter((task) => task.id !== id);
 
         setTareas(newArray);
 
@@ -196,8 +251,12 @@ const TaskCard = ({ titulo, descripcion, prioridad, fechaIn, id, completada, fec
                         </DivContentPop>
                     </DivPop>
                 }
-                <StatusCard>{completada ? 'Completada' : 'Pendiente'}</StatusCard>
-                <ProirityCard>Prioridad {prioridad}</ProirityCard>
+                <StatusCard
+                    completada={completada}
+                >{completada ? 'Completada' : 'Pendiente'}</StatusCard>
+                <ProirityCard
+                    prioridad={prioridad}
+                >Prioridad {prioridad}</ProirityCard>
                 <DivPrimary>
                     <TitleCard>{titulo}</TitleCard>
                     <DescCard>{descripcion}</DescCard>
@@ -205,22 +264,22 @@ const TaskCard = ({ titulo, descripcion, prioridad, fechaIn, id, completada, fec
                     <FechaCard>{fechaFin.length > 0 ? (`Fecha fin: ${fechaFin}`) : ' '}</FechaCard>
                 </DivPrimary>
 
-                <CategoryDiv>
+                <ButtonsDiv>
 
                     {!completada &&
-                        <ButtonCard
+                        <ButtonCardP
                             onClick={() => {
                                 /* finishTask(id) */
                                 UpdatePop(`¿Deseas completar la tarea ${titulo}`, finishTask, `Completaste la tarea ${titulo}`);
                             }}
                         >
                             Completar
-                        </ButtonCard>
+                        </ButtonCardP>
 
 
                     }
 
-                    <ButtonCard
+                    <ButtonCardN
                         onClick={() => {
                             /* deleteTask(id) */
                             UpdatePop(`¿Deseas eliminar la tarea ${titulo}`, deleteTask, `La tarea ${titulo} ha sido eliminada`);
@@ -228,12 +287,12 @@ const TaskCard = ({ titulo, descripcion, prioridad, fechaIn, id, completada, fec
                         }}
                     >
                         Eliminar
-                    </ButtonCard>
+                    </ButtonCardN>
 
                     {/*  <ButtonCard>
                         Archivar
                     </ButtonCard> */}
-                </CategoryDiv>
+                </ButtonsDiv>
             </ArticleCard>
         </>
     )

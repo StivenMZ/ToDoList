@@ -12,16 +12,7 @@ justify-content: center;
 position: relative;
 `;
 
-const ButtonSearch = styled.button`
-background-color: tra;
-width: 30%;
-align-self: center;
-display: flex;
-justify-content: center;
-flex-basis: 22.4%;
-cursor: pointer;
-max-height: 100%;
-`;
+
 
 /* const AnimationInputOut = keyframes`
   0% {
@@ -43,19 +34,37 @@ const AnimationInputIn = keyframes`
   }
 `
  */
+
+
+
+
 const InputSearch = styled.input`
 width: 100%;
-z-index: 100;
+    outline: none;
+    z-index: 100;
+    height: 100%;
+    padding: 0.4rem;
+    box-sizing: border-box;
+    background-color: ${({ theme }) => theme.backGroundInput};;
+    font-size: 1.2rem;
+    color: black;
+    border-radius: 1rem;
+    border: 2px solid #1D63AA;
+
+    &:focus{
+      border: 2px solid #1D63AA;
+      box-shadow: 0 0 2px #007bff, 0 0 2.5px #007bff;
+
+    }
+    &::placeholder{
+    color: ${({ theme }) => theme.FormInputPlText};
+    opacity: 0.4;
+}
+
+
 `;
 
-const LupaIcon = styled.img`
-width: 100%;
-height: 98%;
-`;
 
-const SpanX = styled.span`
-
-`;
 
 
 const SearchInput = () => {
@@ -91,7 +100,7 @@ const SearchInput = () => {
 
   useEffect(() => {
 
-    if(ruta.pathname !== '/resultado-de-busqueda' && busqueda.length > 0){
+    if (ruta.pathname !== '/resultado-de-busqueda' && busqueda.length > 0) {
       navigate('/resultado-de-busqueda')
     }
   }, [busqueda])
@@ -100,15 +109,15 @@ const SearchInput = () => {
   return (<>
 
     <DivBuscar>
-      
-    <InputSearch
-    value={busqueda}
-    direction={direction}
-    placeholder="Buscar tarea..."
-    onInput={(e) => {
-      UpdateSearch(e.target.value);
-    }}
-    />
+
+      <InputSearch
+        value={busqueda}
+        direction={direction}
+        placeholder="Buscar tarea"
+        onInput={(e) => {
+          UpdateSearch(e.target.value);
+        }}
+      />
 
     </DivBuscar>
   </>)

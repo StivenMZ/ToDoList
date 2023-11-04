@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import InputBusqueda from "./inputSearch";
-import {TareasGlobal} from '../../App'
+import { TareasGlobal } from '../../App'
 
 
 const SectionSearch = styled.header`
@@ -64,34 +64,34 @@ const ButtonChangeTheme = styled.button`
 
 
 
-const Search = ({onChangeTheme}) =>{
+const Search = ({ onChangeTheme }) => {
 
     const [search, setSearch] = useState('');
 
-    const handleSearch = ()=>{
+    const handleSearch = () => {
         console.log(search)
     }
 
 
-    return(
+    return (
         <>
-        <SectionSearch>
-            <DivBusqueda>
-            <InputBusqueda></InputBusqueda>
+            <SectionSearch>
+                <DivBusqueda>
+                    <InputBusqueda></InputBusqueda>
 
-            <ButtonBusqueda
-            onClick={()=>{
-                handleSearch();
-            }}
-            >Buscar</ButtonBusqueda>
+                    <ButtonBusqueda
+                        onClick={() => {
+                            handleSearch();
+                        }}
+                    >Buscar</ButtonBusqueda>
 
-            </DivBusqueda>
-            <DivChangeTheme>
-                <ButtonChangeTheme
-                onClick={onChangeTheme}
-                >test</ButtonChangeTheme>
-            </DivChangeTheme>
-        </SectionSearch>
+                </DivBusqueda>
+                <DivChangeTheme>
+                    <ButtonChangeTheme
+                        onClick={onChangeTheme}
+                    >test</ButtonChangeTheme>
+                </DivChangeTheme>
+            </SectionSearch>
         </>
     )
 }

@@ -28,8 +28,10 @@ position: absolute;
 `;
 
 
-const Pmain = styled.p`
+const Pmain = styled.h1`
 margin-top: 10%;
+font-size: 2.2rem;
+color:  ${props => props.theme.titleMain};
 `;
 
 const CardsSection = styled.section`
@@ -60,15 +62,14 @@ const Home = () => {
     return (<>
         <SectionHome>
             <Pmain>
-                ¡Bienvenido a Task-manager, una herramienta para que
-                lleves un control de tus tareas!
+                Crea, gestiona, y lleva el control total de tus tareas
             </Pmain>
             <CardsSection>
                 <DivCards>
-                    <NavigationCard title={'Crear tarea'} ruta={'/crear-tarea'}></NavigationCard>
-                    <NavigationCard title={'Lista de tareas'} ruta={'/lista-de-tareas'}></NavigationCard>
-                    <NavigationCard title={'Historial'} ruta={'/historial'}></NavigationCard>      
-                    <NavigationCard title={'Funciones adicionales'} ruta={'/funciones-adicionales'}></NavigationCard>
+                    <NavigationCard title={'Crear tarea'} ruta={'/crear-tarea'} description={'Aquí puedes añadir una nueva tarea a tu lista de tareas'}></NavigationCard>
+                    <NavigationCard title={'Lista de tareas'} ruta={'/lista-de-tareas'} description={'Visualiza y gestiona todas tus tareas'}></NavigationCard>
+                    <NavigationCard title={'Historial'} ruta={'/historial'} description={'Échale un vistazo a todos lo que has hecho con tus tareas'}></NavigationCard>      
+                    <NavigationCard title={'Funciones adicionales'} ruta={'/funciones-adicionales'} description={'Como usar este sitio web, sugerencias, centro de ayuda y mas...'}></NavigationCard>
                 </DivCards>
             </CardsSection>
         </SectionHome>

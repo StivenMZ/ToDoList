@@ -28,7 +28,7 @@ animation: ${AnimationWake} 0.2s ease-in-out;
 
 const TitleCreate = styled.h2`
 font-size: 1.8rem;
-color: black;
+color: ${({ theme }) => theme.SectionTitle};;
 align-self: center;
 margin-top: 3%;
 font-weight: bold;
@@ -36,7 +36,6 @@ font-weight: bold;
 `;
 
 const Form = styled.form`
-margin-top: 4%;
 width: 70%;
 display: flex;
 flex-direction: column;
@@ -55,19 +54,23 @@ gap: 2%;
 const DivButtons = styled.div`
 display: flex;
 justify-content: space-around;
+margin-top: 2%;
 `;
 
-const ButtonForm = styled.button`
-color: purple;
-border: none;
-background-color:  ${({ theme }) => theme.button}; ;
-padding: 0.5rem;
-cursor: pointer;
-font-size: 1.1rem;
-border: 0.15rem solid transparent;
 
+
+const ButtonFormA = styled.button`
+color:  ${({ theme }) => theme.buttonPositiveText}; 
+border: none;
+background-color:  ${({ theme }) => theme.buttonPositiveBackground}; 
+padding: 0.7rem 1.5rem;
+cursor: pointer;
+font-size: 1.3rem;
+border: 0.15rem solid transparent;
+box-sizing: border-box;
+border-radius: 0.4rem;
 &:hover{
-    opacity: 0.82;
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);
 }
 
 &:active{
@@ -76,8 +79,37 @@ border: 0.15rem solid transparent;
 
 `;
 
+const ButtonFormC = styled.button`
+color: ${({ theme }) => theme.titleCards}; 
+border: none;
+background-color:  ${({ theme }) => theme.TaskCarddBackground}; 
+padding: 0.7rem 1.5rem;
+cursor: pointer;
+font-size: 1.03rem;
+box-sizing: border-box;
+border: 0.15rem solid transparent;
+border-radius: 0.4rem;
+
+&:hover{
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);;
+}
+
+&:active{
+    border: 0.15rem solid lightpink;
+}
+
+`;
+
+
+/* buttonPositiveBackground
+buttonPositiveText
+buttonNegativeBackground
+buttonNegativeText */
+
 const SpanError = styled.span`
-  color: ${({ invalid }) => (invalid ? 'red' : '#01ff01')};
+  margin-top: 1%;
+  color: ${({ invalid, theme }) => (invalid ? theme.FormInputError : theme.FormInputValid)};
+  font-size: 1.1rem;
 `;
 
 
@@ -248,7 +280,7 @@ const CreateTask = () => {
                                     textlower={'titulo'}
                                     value={title.valor}
                                     error={errorTitle}
-                                    placeholder={'Título de la tarea...'}
+                                    placeholder={'Título de la tarea'}
                                 />
                                 <SpanError
                                     invalid={title.invalido}
@@ -263,7 +295,7 @@ const CreateTask = () => {
                                     textlower={'descripcion'}
                                     value={descripcion.valor}
                                     error={errorDescripcion}
-                                    placeholder={'Descripción de la tarea...'}
+                                    placeholder={'Descripción de la tarea'}
                                 />
                                 <SpanError
                                     invalid={descripcion.invalido}
@@ -274,6 +306,7 @@ const CreateTask = () => {
 
                                 <PriorityBar set={setPrioridad}
                                 ></PriorityBar>
+
                                 <SpanError
                                     invalid={prioridad.invalido}
                                 >{prioridad.error}
@@ -281,20 +314,20 @@ const CreateTask = () => {
 
                             </DivFields>
                             <DivButtons>
-                                <ButtonForm
+                                <ButtonFormA
                                     onClick={(e) => {
                                         e.preventDefault();
                                         sendForm();
 
                                     }}
-                                >Crear tarea</ButtonForm>
-                                <ButtonForm
+                                >Crear tarea</ButtonFormA>
+                                <ButtonFormC
                                     onClick={(e) => {
                                         e.preventDefault();
                                         cancelarFunct();
                                     }}
 
-                                >Borrar datos</ButtonForm>
+                                >Borrar datos</ButtonFormC>
                             </DivButtons>
                         </>) : <></>}
 

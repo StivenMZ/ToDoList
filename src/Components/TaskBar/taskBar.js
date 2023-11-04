@@ -33,22 +33,23 @@ const TaskLista = styled.section`
   
 `
 const Title = styled.h1`
-color: black;
-
-font-size: 1.6rem;
+color: ${({ theme }) => theme.SectionTitle};
+font-weight: bolder;
+font-size: 1.8rem;
 flex-basis: 2%;
 `
 
+
+
 const ListaTreas = styled.section`
 flex-basis: 80%;
-background-color: ${({ theme }) => theme.background};
-width: 90%;
+/* background-color: ${({ theme }) => theme.background};
+ */width: 90%;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: flex-start;
-border: 0.1rem solid;
-overflow: scroll;
+overflow: auto;
 overflow-x: hidden;
 gap: 1rem;
 
@@ -106,14 +107,14 @@ const TaskList = () => {
 
   const validarSiHayTareas = () => {
 
-      if (tareas.length > 0) {
-        setHayTareas(true);
-        filterFunct(priority)
-      } else {
-        setHayTareas(false);
-      
-      }
-    
+    if (tareas.length > 0) {
+      setHayTareas(true);
+      filterFunct(priority)
+    } else {
+      setHayTareas(false);
+
+    }
+
   }
 
 
