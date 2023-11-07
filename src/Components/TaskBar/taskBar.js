@@ -43,8 +43,7 @@ flex-basis: 2%;
 
 const ListaTreas = styled.section`
 flex-basis: 80%;
-/* background-color: ${({ theme }) => theme.background};
- */width: 90%;
+width: 90%;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -56,9 +55,18 @@ gap: 1rem;
 
  `
 
+ const DivNoTask= styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+ `;
+
 const NoTasks = styled.h4`
  margin: auto;
- font-size: 1.2rem;
+ font-size: 1.4rem;
+ font-weight: bold;
+ color:  ${({ theme }) => theme.TaskCardTitleCards};
  `;
 
 const TaskList = () => {
@@ -75,9 +83,8 @@ const TaskList = () => {
 
     let newArray = [];
 
-    if (prioridad === 'no') {
+    if (prioridad === 'sin prioridad') {
       if (checked) {
-        console.log('test desde prioridad no, desde filterFunct Cheked true')
         newArray = [...tareas];
       } else {
         newArray = tareas.filter((task) => !(task.completada));
@@ -140,9 +147,11 @@ const TaskList = () => {
                 return <TaskCard key={`${tarea.titulo}${tarea.id}`} titulo={tarea.titulo} descripcion={tarea.descripcion} prioridad={tarea.prioridad} fechaIn={tarea.fechaIn} id={tarea.id} completada={tarea.completada} fechaFin={tarea.fechaFin}></TaskCard>
 
               }) :
-              <>
-                <NoTasks>{hayTareas ? `No hay tareas con prioridad ${priority}` : 'No hay tareas, crea alguna'}</NoTasks>
-              </>
+              
+              <DivNoTask>
+                <NoTasks>{hayTareas ? `No hay tareas con la prioridad seleccionada (${priority})` : 'No hay tareas, crea alguna'}</NoTasks>
+              </DivNoTask>
+              
 
           }
         </ListaTreas>

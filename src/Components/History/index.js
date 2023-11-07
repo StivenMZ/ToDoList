@@ -5,7 +5,7 @@ import ElementHistory from "./ElementHistory";
 
 const AnimationWake = keyframes`
   0% {
-    opacity: 0.2;
+    opacity: 0.1;
   }
   100% {
     opacity: 1;
@@ -15,8 +15,7 @@ const AnimationWake = keyframes`
 `;
 
 const HistorySection = styled.section`
-margin-top: 3%;
-border: 1px solid;
+margin-top: 1%;
 height: 80vh;
 width: 70%;
 display: flex;
@@ -27,15 +26,34 @@ animation: ${AnimationWake} 0.2s ease-in-out;
 
 `;
 
-const ArticleElement = styled.article`
-width: 100%;
-border: 1px solid;
+const ElementsHistorySection = styled.section`
 display: flex;
-gap: 2rem;
+flex-direction: column;
+width: 85%;
+gap: 0.4rem;
+overflow-y: auto;
+overflow-x: hidden;
 `;
 
 
 
+const H2Title = styled.h2`
+font-size: 1.8rem;
+    color: #103691;
+    align-self: center;
+    margin: 3% 0;
+    font-weight: bold;
+
+`;
+
+const H3NoHistory = styled.h3`
+font-size: 1.4rem;
+color: ${({ theme }) => theme.noHistoryText};
+ 
+
+`;
+
+/* ${({ theme }) => theme.TaskCarddBackground}; */
 
 const History = () => {
 
@@ -56,12 +74,14 @@ const History = () => {
     return (
         <>
             <HistorySection>
-                {hayHistorial ? history.map((registro) => {
+                <H2Title>Tu actividad</H2Title>
+                <ElementsHistorySection>
+                {hayHistorial ? history.map((registro, pos) => {
                     return (
-                       <ElementHistory date={registro.date} title={registro.title} type={registro.type}></ElementHistory>
+                       <ElementHistory key={pos} date={registro.date} title={registro.title} type={registro.type}></ElementHistory>
                     )
-                }) : <h1>No hay historial</h1>}
-
+                }) : <H3NoHistory>No hay historial para mostrar, crea, completa y/o elimina tareas para ver tu tus actividades</H3NoHistory>}
+                </ElementsHistorySection>
             </HistorySection>
         </>
     )

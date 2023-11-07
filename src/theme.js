@@ -57,6 +57,9 @@ const lightTheme = {
     buttonNegativeText: '#46B6FC',
 
 
+    TaskCardFechaText : "#0A6493",
+
+
     /*  */
 
 
@@ -109,6 +112,27 @@ const lightTheme = {
 
 
 
+    /* COMPLETE, INFO, DELETE */
+    infoColor: "#01ABD8",
+    successColor: "#A2DC4A",
+    errorColor: "#FF4B3A",
+
+
+    /* HISTORY */
+    articleTextCompleted: "#268713", 
+    articleTextDeleted: "#FEC0AF", 
+    articleTextInfo: "#b0e9f9", 
+    noHistoryText : "#338FD8",
+
+
+
+    /* ADITIONAL FUNCTIONS */
+    AditionalFuncText: '#103691', 
+    AditionalFuncBgBtn: "#79C9FE",
+    AditionalFunctBtnText : "#2568D7",
+
+    /* RESULTS OF SEARCH */
+    ResultsTextTitle: "#338FD8",
 
 
 

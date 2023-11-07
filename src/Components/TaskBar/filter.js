@@ -92,7 +92,6 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
 
   useEffect(() => {
     filterFunct(priority)
-    console.log(priority, ' Prioridad desde useEffect para ver activacion de filter funct')
   }, [tareas])
 
 
@@ -100,7 +99,6 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
   useEffect(()=>{
     setShowCompleted(checked)
     filterFunct(priority);
-    console.log('Cheked desde useEffect' ,checked)
   }, [checked])
 
 
@@ -144,11 +142,11 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
       >Baja</ButtonFilter>
       <ButtonFilter
         onClick={() => {
-          const value = "no";
+          const value = "sin prioridad";
           setPriority(value)
           filterFunct(value)
         }}
-        activate={activeFilter === "no"}
+        activate={activeFilter === "sin prioridad"}
       >No filtrar</ButtonFilter>
 
     </SectionButtons>

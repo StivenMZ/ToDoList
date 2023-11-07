@@ -151,11 +151,11 @@ const Sugerencias = () => {
 
                 console.log(newComment, 'newComment desde sugerencias');
                 cancelarFunct();
-                setNotificaciones([...notificaciones, {mensaje: `Hemos recibido tu sugerencia, ¡muchas gracias!`}])
+                setNotificaciones([...notificaciones, {mensaje: `Hemos recibido tu sugerencia, ¡muchas gracias!`, type: "info"}])
 
             } catch (error) {
                 console.log(error)
-                setNotificaciones([...notificaciones, {mensaje: `Lo sentimos, no pudimos recibir tu comentario, por favor intentálo de nuevo`}])
+                setNotificaciones([...notificaciones, {mensaje: `Lo sentimos, no pudimos recibir tu comentario, por favor intentálo de nuevo`, type: "error"}])
                 
             }
         } else {

@@ -146,7 +146,7 @@ const NavigationBar = () => {
 
     const { setBusqueda } = useContext(TareasGlobal);
 
-    const rutas = ['/crear-tarea', '/lista-de-tareas', '/funciones-adicionales', '/resultado-de-busqueda', '/historial']
+    const rutas = ['/']
 
     const [render, setRender] = useState(false);
 
@@ -154,7 +154,7 @@ const NavigationBar = () => {
 
 
     useEffect(() => {
-        if (rutas.includes(Url.pathname)) {
+        if (!(rutas.includes(Url.pathname))) {
             setRender(true)
             setDirection(true);
         } else {
@@ -191,20 +191,7 @@ const NavigationBar = () => {
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
-                                <Link to='/lista-de-tareas'>
-                                    <NavLi activate={Url.pathname === '/lista-de-tareas'}
-                                    >
-                                        <DivElementoTexto>
-                                            Lista de tareas
-                                        </DivElementoTexto>
-                                        <SpanElementoIcono>
-                                            <Imgicon
-                                                src={list}
-                                                alt="lista-icono"
-                                            />
-                                        </SpanElementoIcono>
-                                    </NavLi>
-                                </Link>
+                               
                                 <Link to='/crear-tarea'>
                                     <NavLi activate={Url.pathname === '/crear-tarea'}
                                     >
@@ -215,6 +202,20 @@ const NavigationBar = () => {
                                             <Imgicon
                                                 src={add}
                                                 alt="crear-icono"
+                                            />
+                                        </SpanElementoIcono>
+                                    </NavLi>
+                                </Link>
+                                <Link to='/lista-de-tareas'>
+                                    <NavLi activate={Url.pathname === '/lista-de-tareas'}
+                                    >
+                                        <DivElementoTexto>
+                                            Lista de tareas
+                                        </DivElementoTexto>
+                                        <SpanElementoIcono>
+                                            <Imgicon
+                                                src={list}
+                                                alt="lista-icono"
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>

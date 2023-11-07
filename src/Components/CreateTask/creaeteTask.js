@@ -24,11 +24,12 @@ display: flex;
 justify-content: center;
 flex-basis: 70%;
 animation: ${AnimationWake} 0.2s ease-in-out;
+max-height: 80vh;
 `;
 
 const TitleCreate = styled.h2`
 font-size: 1.8rem;
-color: ${({ theme }) => theme.SectionTitle};;
+color: ${({ theme }) => theme.SectionTitle};
 align-self: center;
 margin-top: 3%;
 font-weight: bold;
@@ -74,7 +75,7 @@ border-radius: 0.4rem;
 }
 
 &:active{
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid lightblue;
 }
 
 `;
@@ -87,7 +88,7 @@ padding: 0.7rem 1.5rem;
 cursor: pointer;
 font-size: 1.03rem;
 box-sizing: border-box;
-border: 0.15rem solid transparent;
+border: 0.1rem solid transparent;
 border-radius: 0.4rem;
 
 &:hover{
@@ -95,7 +96,7 @@ border-radius: 0.4rem;
 }
 
 &:active{
-    border: 0.15rem solid lightpink;
+    border: 0.1rem solid lightblue;
 }
 
 `;
@@ -221,7 +222,7 @@ const CreateTask = () => {
                 let time = '';
                 time += fecha.getDate() + '/';
                 time += fecha.getUTCMonth()+1 + '/';
-                time += fecha.getFullYear();
+                time += fecha.getFullYear();    
 
 
                 const newTarea = {
@@ -237,12 +238,12 @@ const CreateTask = () => {
                 console.log(newTarea);
                 setTareas([...tareas, newTarea])
                 cancelarFunct();
-                setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`}])
+                setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`, type: "info"}])
                 setHistory([{date: `${time}    ${fecha.getHours()}:${fecha.getMinutes().length === 1 ? (`0+1`) : (fecha.getMinutes())}` , title: title.valor , type:'create'},...history])
 
             } catch (error) {
                 console.log(error)
-                setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`}])
+                setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`, type: "error"}])
                 
             }
         } else {

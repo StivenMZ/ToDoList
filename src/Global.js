@@ -14,15 +14,18 @@ const Global = createGlobalStyle`
     
  }
 ::-webkit-scrollbar {
-  background-color: #f9e9ff;
+  background-color: #A5FEF2;
+  border-radius: 2rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background-color: #17B7DA;
+  border-radius: 2rem;
 }
 
 ::-webkit-scrollbar {
-  border: 1px solid #888;
+  border-top:3px solid #17B7DA;
+  border-bottom: 3px solid #17B7DA;
 }
 
 ::-webkit-scrollbar-thumb {

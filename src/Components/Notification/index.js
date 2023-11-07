@@ -1,124 +1,74 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import Swal from "sweetalert2";
 
 
-const AnimationNotiIn = keyframes`
-  0% {
-    opacity: 0.1;
+import "./icon.css"
+
+
+const Notification = ({ mensaje, type }) => {
+
+/* 
+error
+success
+info
+*/
+
+
+let realType = {type: type, color: ""}
+
+const colorFunct = () => {
+  if(type === "error"){
+    realType.color = "#FF4B3A"
   }
-
-  50% {
-    opacity: 0.3;
+  if(type ==="info"){
+    realType.type = "success"
+    realType.color ="#01ABD8"
   }
- 
-  90% {
-    opacity: 0.8;
+  if(type === "success"){
+    realType.color = "#A2DC4A"
   }
-
-  90% {
-    opacity: 1;
+  if(type === "success error"){
+    realType.type = "success"
+    realType.color = "#FF4B3A"
   }
-`
-
-const AnimationNotiOut = keyframes`
-  0% {
-    opacity: 1;
-  }
- 
-
-  100%{
-    opacity: 0;
-
-  }
-`
-
-const DivNotificacion = styled.div`
-position: relative;
-z-index: 10;
-width: 100%;
-max-height: 14vh;
-border: 1px solid;
-display: flex;
-align-items: center;
-flex-direction: column;
-gap: 0.3rem;
-padding: 1%;
-background-color: white;
-margin-bottom: 2%;
-margin-right: 1%;
-animation: ${({ direction }) => (direction ? AnimationNotiIn : AnimationNotiOut)} 0.4s linear 1;
-
-`;
-
-
-const Phora = styled.p`
-`;
-
-const PMessage = styled.p`
-    line-break: anywhere;
-    width: 90%;
-
-`;
-
-const SpanClose = styled.span`
-position: absolute;
-right: 2%;
-align-self: end;
-bottom: 33%;
-color: red;
-font-weight: bold;
-cursor: pointer;
-`;
-
-
-
-const Notification = ({ mensaje }) => {
-
-  const [mostrarNotificacion, setMostrarNotificacion] = useState(true);
-
-  const [direction, setDirection] = useState(true);
-
-
-  if (mostrarNotificacion) {
-    setTimeout(() => {
-      functionAnim();
-    }, 1000 * 6.7);
-  }
-
-  const functionAnim = () => {
-    if ((!mostrarNotificacion) && (!direction)) {
-      setMostrarNotificacion(true);
-      setDirection(true);
-    } else {
-      setDirection(false);
-      setTimeout(() => {
-        setMostrarNotificacion(false)
-      }, 300);
-    }
-
-  }
-
-
-
-  const fecha = new Date();
-
-  let time  = `${fecha.getDate()}/${fecha.getUTCMonth()+1}/${fecha.getFullYear()}       ${fecha.getHours()}:${fecha.getMinutes()}`;
-
-  const [date, setDate] = useState(time);
-
-  return (<>
-    {mostrarNotificacion && (
-      <DivNotificacion direction={direction}>
-        <Phora>{date}</Phora>
-        <PMessage>{mensaje}</PMessage>
-        <SpanClose
-          onClick={() => {
-            functionAnim();
-          }}
-        >X</SpanClose>
-      </DivNotificacion>
-    )}
-  </>)
 }
+
+colorFunct();
+
+
+  useEffect(() => {
+    showAlerta();
+  }, []);
+ 
+  const showAlerta = () => {
+
+    Swal.fire({
+      position: 'top-end',
+      icon: realType.type,
+      title: mensaje,
+      showConfirmButton: false,
+      width: "27%",
+      timer: 4500,
+      iconColor: realType.color,
+      customClass: {
+        popup: "swal2-popup",
+        container: "container"
+      },
+      backdrop: false,
+      padding: "0.4%",
+      background: "#DEF7F5",
+      color: realType.color,
+     
+    })
+    
+  };
+
+;
+
+
+
+  return null;
+};
 
 export default Notification;

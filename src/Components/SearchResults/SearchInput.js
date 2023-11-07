@@ -115,7 +115,10 @@ const SearchInput = () => {
         direction={direction}
         placeholder="Buscar tarea"
         onInput={(e) => {
-          UpdateSearch(e.target.value);
+          let value = e.target.value;
+          if(value.length <= 100){
+            UpdateSearch(e.target.value);
+          }
         }}
       />
 

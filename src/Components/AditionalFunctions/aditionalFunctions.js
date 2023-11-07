@@ -25,23 +25,23 @@ const AnimationWake = keyframes`
 
 const SectionFunctionsMain = styled.section`
     width: 96%;
-    height: 85vh;
+    height: 83vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 1rem;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-right: 1%;
+    margin-top: 1%;
     flex-basis: 70%;
     animation: ${AnimationWake} 0.2s ease-in-out;
 `;
 
 const FunctionsTitle = styled.h2`
 flex-basis: 7%;
-color: black;
-
-font-size: 1.6rem;
+font-size: 1.8rem;
+color: ${({ theme }) => theme.AditionalFuncText};
+font-weight: bold;
 `;
 
 const SectionFunctions = styled.section`
@@ -50,21 +50,22 @@ flex-direction: column;
 flex-basis: 87%;
 justify-content: space-between;
 width: 96%;
-background-color: lightgreen;
 
 `;
 
 const ButtonFunction = styled.button`
-color: purple;
+color: ${({ theme }) => theme.AditionalFunctBtnText};   
 border: none;
-background-color:  violet;
+background-color: ${({ theme }) => theme.AditionalFuncBgBtn};
 padding: 0.5rem;
 cursor: pointer;
 font-size: 1.1rem;
 border: 0.15rem solid transparent;
+border-radius: 0.4rem;
+font-weight: bold;
 
 &:hover{
-    opacity: 0.82;
+    opacity: 0.9;
 }
 
 &:active{

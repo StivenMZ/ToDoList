@@ -1,138 +1,83 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import TaskCard from "../TaskBar/taskCard";
-import { TareasGlobal } from '../../App';
-import {useNavigate} from "react-router-dom";
+import { TareasGlobal } from "../../App";
+import { useNavigate } from "react-router-dom";
+import ResultsOfSearch from "./ResultsOfSerach";
 
 const SearchResult = styled.section`
-margin-top: 3%;
-border: 1px solid;
-height: 80vh;
-width: 70%;
-display: flex;
-justify-content: flex-start;
-flex-direction: column;
-align-items: center;
-flex-wrap: wrap;
+  margin-top: 3%;
+  height: 80vh;
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 const DivTitle = styled.div`
-flex-basis: 10%;
-margin-top: 2%;
-
+  flex-basis: 10%;
+  margin: 2% 0;
+  max-width: 50%;
+  max-height: 40%;
+  width: 100%;
+  min-height: 30%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const PhTitle = styled.p`
-color: black;
-font-size: 1.3rem;
+  color: ${({ theme }) => theme.ResultsTextTitle};
+  font-size: 1.3rem;
+
+
+  
 `;
 
-
+const PBusquedaWord = styled.p`
+font-weight: bolder;
+display: inline-block;
+word-wrap: break-word;
+max-width: 70%;
+color: ${({ theme }) => theme.ResultsTextTitle};
+`;
 
 const BackToBackButton = styled.button`
-border: 1px solid;
-display: flex;
-justify-content: center;
-text-align: center;
-padding: 0.5rem 1rem;
-align-self: end;
-cursor: pointer;
-
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  align-self: end;
+  cursor: pointer;
 `;
 
-
 const SearchResults = () => {
+  const navigate = useNavigate();
 
-    const  navigate = useNavigate();
+  const { busqueda, setBusqueda } = useContext(TareasGlobal);
 
-
-    const { tareas, busqueda, resultadoBusqueda, setResultadoBusqueda, setBusqueda } = useContext(TareasGlobal);
-
-    console.log(resultadoBusqueda, 'test resultado busqueda')
-
-
-    const onSearch = (busqueda) => {
-        if (busqueda.length > 0) {
-
-
-            let orderRes = [];
-
-            try {
-                //Busqueda por títuo
-                tareas.filter((task) => {
-                    if (busqueda.toLowerCase() === task.titulo.toLowerCase()) {
-                        orderRes.push(task);
-                    }
-                    if (busqueda.toLowerCase() === task.descripcion.toLowerCase()) {
-                        orderRes.push(task);
-                    }
-
-                  
-
-                })
-                console.log(orderRes);
-
-                let arraynoreplic = new Set(orderRes);
-
-                let result = [...arraynoreplic]
-
-                setResultadoBusqueda(result)
-
-            } catch (error) {
-                console.log(error);
-            }
-
-        }
-    }
-
-
-
-
-    useEffect(() => {
-        onSearch(busqueda);
-    }, [busqueda, tareas])
-
-
-    
- 
-
-    return (
-        <>
-            <SearchResult>
-                <BackToBackButton
-                onClick={()=> {
-                    console.log(`$desde resultados de búsuqeda`)
-                    setBusqueda('')
-                    navigate(-1)
-                }
-            }
-                >Volver atrás 
-                </BackToBackButton>
-                <DivTitle>
-                    <PhTitle>Resultados de búsqueda para {busqueda}</PhTitle>
-             
-                </DivTitle>
-                {(resultadoBusqueda) ? (resultadoBusqueda.length > 0 ? (
-                    resultadoBusqueda.map((tarea) => (
-                        <TaskCard
-                            key={`${tarea.titulo}${tarea.id}`}
-                            titulo={tarea.titulo}
-                            descripcion={tarea.descripcion}
-                            prioridad={tarea.prioridad}
-                            fechaIn={tarea.fechaIn}
-                            id={tarea.id}
-                            completada={tarea.completada}
-                            fechaFin={tarea.fechaFin}
-                        />
-                    ))
-                ) : (
-                    <p>No se encontraron resultados</p>
-                )) : <p>Sintax</p>}
-            </SearchResult>
-        </>
-    )
-
-
-}
+  return (
+    <>
+      <SearchResult>
+        <BackToBackButton
+          onClick={() => {
+            console.log(`$desde resultados de búsuqeda`);
+            setBusqueda("");
+            navigate(-1);
+          }}
+        >
+          Volver atrás
+        </BackToBackButton>
+        <DivTitle>
+          <PhTitle>Resultados de búsqueda para:</PhTitle>
+          <PBusquedaWord>{busqueda}</PBusquedaWord>
+        </DivTitle>
+        <ResultsOfSearch />
+      </SearchResult>
+    </>
+  );
+};
 
 export default SearchResults;
