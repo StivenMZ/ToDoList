@@ -69,7 +69,7 @@ font-weight: bold;
 }
 
 &:active{
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid ${({ theme }) => theme.ActivateButton}; 
 }
 
 `;

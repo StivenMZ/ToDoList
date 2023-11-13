@@ -42,16 +42,13 @@ color: ${({ textlower, theme }) =>  textlower === 'descripcion' ? theme.FormInpu
 
 }
 `;
-/* 
-FormInputTextColorTitle
-FormInputTextColorTitleDesc */
+
 
 
 const FieldForm = ({text, textlower, value, error, placeholder}) =>{
 
-    const [errorm, setErrorm] = useState({isError: false, message: ''})
 
-    const {title, setTitle, descripcion, setDescription} = useContext(TaskFormContext)
+    const {setTitle, setDescription} = useContext(TaskFormContext)
 
 
     const ActualizarCampo = (valor, validation ) =>{

@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import styled from "styled-components";
-import { useState } from "react";
 import { TareasGlobal } from '../../App';
 import { Link } from "react-router-dom";
-import logo from "../../img/logo.jpg"
+import logoa from "../../img/logoa.svg"
+import logoab from "../../img/paste-clipboard .svg"
+
 import Search from "../SearchResults/SearchInput";
 
 
@@ -22,11 +23,11 @@ width: 10%;
 justify-content: center;
 align-items: center;
 position: relative;
+align-items: center;
 `;
 
 
 const Icon = styled.div`
-background-color: black;
 width: 30%;
 max-height: 10vh;
 
@@ -41,11 +42,24 @@ width: 50%;
 
 const IconLink = styled(Link)`
 display: flex;
+text-decoration: none;
+color: ${({theme}) => theme.titleMain};
+
+&:active{
+}
+
+`;
+
+const ImgIcon = styled.img`
+width: "30px";
+height: "30px"
 `;
 
 const Header = () => {
 
-    const Orn = logo;
+    const {esTemaOscuro} = useContext(TareasGlobal);
+
+    const logo = logoa;
 
     return (<>
         <Head>
@@ -53,7 +67,7 @@ const Header = () => {
             <DivIcon>
                 <IconLink to={'/'} draggable='false'>
                     <Icon>
-                        <img src={Orn} width={'30px'} height={'30px'} alt="icon"></img>
+                        <ImgIcon src={esTemaOscuro ? logoab : logoa}  alt="icon" draggable="false"></ImgIcon>
                     </Icon>
                     <TitleH2>Task Manager</TitleH2>
                 </IconLink>
@@ -62,5 +76,6 @@ const Header = () => {
         </Head>
     </>)
 }
+
 
 export default Header;

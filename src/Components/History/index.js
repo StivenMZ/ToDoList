@@ -39,7 +39,7 @@ overflow-x: hidden;
 
 const H2Title = styled.h2`
 font-size: 1.8rem;
-    color: #103691;
+    color: ${({theme}) => theme.SectionTitle};
     align-self: center;
     margin: 3% 0;
     font-weight: bold;

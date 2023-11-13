@@ -14,7 +14,7 @@ const ArticleResource = styled.article`
   padding: 0.4%;
   overflow-wrap: break-word;
   width: 100%;
-  background-color: #C8F0F9;
+  background-color: ${({theme}) => theme.SectionBGcolor};
   border-radius: 1rem;
   height: 100%;
   overflow-y: auto;

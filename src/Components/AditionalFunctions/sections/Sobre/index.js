@@ -13,7 +13,7 @@ const ArticleAbout = styled.article`
   padding: 1% 1.3%;
   overflow-wrap: break-word;
   width: 100%;
-  background-color: #c8f0f9;
+  background-color: ${({theme}) => theme.SectionBGcolor};
   border-radius: 1rem;
   height: 100%;
   box-sizing: border-box;
@@ -78,7 +78,7 @@ const Sobre = () => {
             <LiAbout>
                 
                   <LiTitle>-Styled Components</LiTitle>  
-                  <LiPh>Si bien no es una tecnología como tal que haga cosas únicas, es importante mencionar que esta web lo usa, la finalidad es tener un código mas legible y reutilizable. Styled componentes consiste en crear las etiquetas HTML en conjunto de sus estilos CSS, para posteriormente usarlos como componentes</LiPh>
+                  <LiPh>Styled components es una libreria de Javascript, la finalidad de su uso es tener un código más legible y reutilizable. Styled componentes consiste en crear las etiquetas HTML en conjunto de sus estilos CSS, para posteriormente usarlos como componentes</LiPh>
             </LiAbout>
             <LiAbout>
                 <LiTitle>-Local Storage</LiTitle>  

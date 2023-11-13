@@ -77,6 +77,8 @@ border-radius: 0.4rem;
 
 const SpanError = styled.span`
   color: ${({ invalid }) => (invalid ? 'red' : '#01ff01')};
+  align-self: flex-start;
+  margin: 1% 0 0 1%;
 `;
 
 
@@ -239,7 +241,7 @@ const Sugerencias = () => {
                         textlower={'sugerencia'}
                         value={sugerencia.valor}
                         error={errorSugerencia}
-                        placeholder={'Deberían cambiar....'}
+                        placeholder={'Escribe tu sugerencia'}
                         textarea={true}
                     >
 

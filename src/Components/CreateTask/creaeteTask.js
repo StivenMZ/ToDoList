@@ -236,7 +236,7 @@ const CreateTask = () => {
                 };
 
                 console.log(newTarea);
-                setTareas([...tareas, newTarea])
+                setTareas([newTarea ,...tareas ])
                 cancelarFunct();
                 setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`, type: "info"}])
                 setHistory([{date: `${time}    ${fecha.getHours()}:${fecha.getMinutes().length === 1 ? (`0+1`) : (fecha.getMinutes())}` , title: title.valor , type:'create'},...history])

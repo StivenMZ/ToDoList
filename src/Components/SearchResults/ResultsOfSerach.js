@@ -41,9 +41,53 @@ const ResultsOfSearch = () => {
 
   const [time, setTime] = useState("");
 
+  function ordenarArray (array, busqueda) {
+
+    let lowerText = busqueda.toLowerCase();
+    const regExp = new RegExp(lowerText);
+
+    let newArray = [];
+/* Organizar por título */
+    array.forEach((task) => {
+      if(task.titulo.toLowerCase() === lowerText){
+        newArray.push(task)
+      }
+
+    })
+
+    array.forEach((task) => {
+      if(regExp.test(task.titulo.toLowerCase())){
+        newArray.push(task)
+      }
+
+    })
+
+/* Organizar por descripción */
+array.forEach((task) => {
+  if(task.descripcion.toLowerCase() === lowerText){
+    newArray.push(task)
+  }
+
+})
+
+array.forEach((task) => {
+  if(regExp.test(task.descripcion.toLowerCase())){
+    newArray.push(task)
+  }
+
+})
+
+    let arraynoreplic = new Set(newArray);
+    let result = [...arraynoreplic];
+    return  result;
+
+  }
+
   const onSearch = async (busqueda) => {
     clearTimeout(time);
     setStartRender(false);
+    let lowerText = busqueda.toLowerCase();
+    const regExp = new RegExp(lowerText);
     if (busqueda.length > 0) {
       let orderRes = [];
 
@@ -52,19 +96,24 @@ const ResultsOfSearch = () => {
           setTime(
             setTimeout(() => {
               tareas.forEach((task) => {
-                if (
-                  busqueda.toLowerCase() === task.titulo.toLowerCase() ||
-                  busqueda.toLowerCase() === task.descripcion.toLowerCase()
-                ) {
+                let tituloLower = task.titulo.toLowerCase();
+                let descripcionLower = task.descripcion.toLowerCase();
+
+                if (tituloLower === lowerText || regExp.test(tituloLower)) {
                   orderRes.push(task);
-                 
                 }
+                
+                if (descripcionLower === lowerText || regExp.test(descripcionLower)) {
+                  orderRes.push(task);
+                }
+                
               });
 
-              let arraynoreplic = new Set(orderRes);
-              let result = [...arraynoreplic];
 
-              setResultadoBusqueda(orderRes);
+              let orderArray = ordenarArray(orderRes, busqueda); 
+
+
+              setResultadoBusqueda(orderArray);
               setStartRender(true);
               resolve();
             }, 400)
@@ -78,6 +127,8 @@ const ResultsOfSearch = () => {
       setStartRender(true);
     }
   };
+
+  
 
   useEffect(() => {
     onSearch(busqueda);

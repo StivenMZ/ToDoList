@@ -1,6 +1,11 @@
 
+/* POPUP */
+
+
 
 const lightTheme = { 
+
+  
 
     /* Title de HOME */
 
@@ -87,7 +92,7 @@ const lightTheme = {
     NavBarText: '#224893',
     NavLiBg: '#90CAFF',
     NavLiHover: '#A6D9FF;',
-
+    ButtonColorBg: "#c3d0d8",
 
     /* Crear tarea */
 
@@ -139,18 +144,9 @@ const lightTheme = {
 
     TitleResourceColor: '#3366ff',
     PhResource: "#011551",
+    SectionBGcolor: "#c8f0f9",
 
-
-
-
-    primary: '#6900B0', // Color principal
-    secondary: '#AA2BFF', // Color principal
-    background: '#BE5EFF', // Color de fondo  
-    textOB: '#ffffff', // Color de texto principal
-    textOW: 'black',
-    button: '#efecec',  // Color de fondo de botón
-    buttonText: '#000000',  // Color de texto de botón
-    // ...otros colores para el modo claro
+  
 
 
     priorityText: "#800080",
@@ -159,14 +155,117 @@ const lightTheme = {
   };
   
   const darkTheme = {
-    primary: '#1e272e',
-    background: '#2d3436',
-    text: '#ffffff',
-    button: '#ffffff',
-    buttonText: '#1e272e',
-    textOB: '#ffffff', // Color de texto principal
-    // ...otros colores para el modo oscuro
+    /* Title de HOME */
+    titleMain: '#92F3E9',
+  
+    /* Cards de HOME */
+    cardBackground: '#011349',
+    titleCards: '#58DCD9',
+    descriptionCards: '#2EB2BA',
+  
+    /* input de búsqueda */
+    backGroundInput: '#8FADEC',
+  
+    /* Card de tarea */
+    TaskCarddBackground: '#254391',
+    TaskCardTitleCards: '#2EB2BA',
+    TaskCardDescriptionCards: '#00798C',
+
+   
+   TaskCardPendiente: '#234361',
+    TaskCardPendienteText: '#9FA8DA', 
+   
+  
+    TaskCardCompletada: '#000A34',
+    TaskCardCompletadaText: '#5175C8',
+  
+    TaskCardPriotyBgLow: '#159128',
+    TaskCardPriorityTextLow: '#6FDE6C',
+  
+
+    TaskCardPriotyBgMedium: '#9F8202',
+    TaskCardPriorityTextMedium: '#EAD75F',
+  
+    TaskCardPriotyBgHigh: '#623B00',
+    TaskCardPriorityTextHigh: '#EFD48F',
+  
+    secondaryInfo: '#FFFFFF',
+  
+    buttonPositiveBackground: '#3693D9',
+    buttonPositiveText: '#FFFFFF',
+    
+    buttonNegativeBackground: '#00286F',
+    buttonNegativeText: '#B8C9E8',
+  
+    TaskCardFechaText: '#C3DAFE',
+  
+    /* Lista de tareas */
+    SectionTitle: "#2EB2BA",
+    TaskListShowComplete: '#92F3E9',
+  
+    TaskListShowComTitle: '#92F3E9',
+  
+    TaskListFilterTitle: '#C7F9F0',
+    TaskListCardBackground: '#000523',
+    TaskFilterCardtext: '#5175C8',
+    TaskFolterActive: '#8FADEC',
+  
+    TaskListBackground: '#1E2A47',
+  
+    /* Barra de navegación */
+    NavBarBg: '#5175C8',
+    NavBarText: '#58DCD9',
+    NavLiBg: '#00798C',
+    NavLiHover: '#2EB2BA',
+    ButtonColorBg: "#7793d2",
+    
+    /* Crear tarea */
+    /* FORM */
+    FormText: '#92F3E9',
+    FormInputBg: '#c1cee9',
+    FormInputPlText: '#00798C',
+
+    /* 2EB2BA
+00798C */
+    FormInputBorderActivate: '#B8C9E8',
+    FormInputTextColorTitle: '#2EB2BA',
+    FormInputTextColorTitleDesc: '#00798C',
+  
+    FormInputValid: '#6FDE6C',
+    FormInputError: '#BD5A48',
+  
+    /* BACKGROUND BODY */
+
+    backgroundBody: '#000523',
+  
+    /* COMPLETE, INFO, DELETE */
+    infoColor: '#58DCD9',
+    successColor: '#6FDE6C',
+    errorColor: '#C55C51',
+  
+    /* HISTORY */
+    articleTextCompleted: '#167513',
+    articleTextDeleted: '#680D16',
+    articleTextInfo: '#006474',
+    noHistoryText: '#1E2A47',
+  
+    /* RESULTS OF SEARCH */
+    ResultsTextTitle: '#2DB7B2',
+  
+    /* ADITIONAL FUNCTIONS */
+    AditionalFuncText: '#2EB2BA',
+    AditionalFuncBgBtn: '#005E78',
+    AditionalFunctBtnText: '#58DCD9',
+  
+    /* Ad func resources */
+    TitleResourceColor: '#62E3F6',
+    PhResource: '#2EB2BA',
+    SectionBGcolor: "#011349",
+  
+    priorityText: '#B8C9E8',
+    backgroundPriority: '#011551',
   };
+    
   
   export { lightTheme, darkTheme };
   

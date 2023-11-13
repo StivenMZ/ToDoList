@@ -117,7 +117,7 @@ const ButtonCardP = styled.button`
   }
 
   &:active {
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid ${({ theme }) => theme.ActivateButton}; 
   }
 `;
 
@@ -137,7 +137,7 @@ const ButtonCardN = styled.button`
   }
 
   &:active {
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid ${({ theme }) => theme.ActivateButton};
   }
 `;
 
@@ -148,7 +148,7 @@ const DivPop = styled.div`
   width: 93%;
   height: 90%;
   background-color: aliceblue;
-  opacity: 0.96; 
+  opacity: 0.97; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,7 +192,7 @@ border-radius: 0.4rem;
 }
 
 &:active{
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid ${({ theme }) => theme.ActivateButton};
 }
 
 `;
@@ -213,7 +213,7 @@ border-radius: 0.4rem;
 }
 
 &:active{
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid ${({ theme }) => theme.ActivateButton};
 }
 
 `;

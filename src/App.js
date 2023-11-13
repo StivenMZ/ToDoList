@@ -7,8 +7,7 @@ import TaskList from './Components/TaskBar/taskBar';
 import CreateTask from './Components/CreateTask/creaeteTask';
 import AditionalFunctions from './Components/AditionalFunctions/aditionalFunctions';
 import Notification from './Components/Notification';
-import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './Components/Main/main';
 import DefaultPage from './Components/DefaultPage';
 import Home from './Components/Home';
@@ -19,25 +18,29 @@ import NotFound from './Components/NotFound';
 
 //
 
-
-const DivNotificacion = styled.div`
-  position: fixed;
-  right: 0.7%;
-  width: 23%;
-  height: auto;
-  z-index: 9;
-`;
-
 const TareasGlobal = createContext();
 
 function App() {
 
+const [primerRender , setPrimerRender] = useState(true);
 
-  const [esTemaOscuro, setEsTemaOscuro] = useState(false);
+  
+
+ 
+
+  const [esTemaOscuro, setEsTemaOscuro] = useState(true);
   const [busqueda, setBusqueda] = useState('');
   const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
   const [notificaciones, setNotificaciones] = useState([]);
-  const [tareas, setTareas] = useState([{ titulo: 'Botones de esta web', descripcion: 'Organizar los borders de los botones al hacer activate', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
+  const [tareas, setTareas] = useState([]);
+  const [history, setHistory] = useState([]);
+
+  const [showCompleted, setShowCompleted] = useState(false);
+  const [priority, setPriority] = useState('sin prioridad');
+
+
+
+    /* { titulo: 'Botones de esta web', descripcion: 'Organizar los borders de los botones al hacer activate', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
     { titulo: 'Gimnasio', descripcion: '12345678901234567890123456789012345678901234567890123456789012345678901234567890', prioridad: 'Alta', fechaIn: '27/08/2023', id: 0, completada: false, fechaFin: '' },
     { titulo: 'Dieta', descripcion: 'Hacer dieta', prioridad: 'Media', fechaIn: '27/08/2023', id: 1, completada: true, fechaFin: '19/10/2023' },
     { titulo: 'Dulce', descripcion: 'Comer dulce', prioridad: 'Baja', fechaIn: '27/08/2023', id: 2, completada: true, fechaFin: '19/10/2023' },
@@ -48,42 +51,57 @@ function App() {
     { titulo: 'Lavar', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
     { titulo: 'gimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasio', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
     
-  ]);
-
-
-
-
-  const [showCompleted, setShowCompleted] = useState(false);
-
-  const [priority, setPriority] = useState('sin prioridad');
-
-  const [history, setHistory] = useState([{date: '2023-01-01 2:34', type: 'create', title :"ejemplo"},
-  {date: '2023-01-01 2:34', type: 'delete', title :"ejemplo"},
-  {date: '2023-01-01 2:34', type: 'completed', title :"ejemplo1"},
-  {date: '2023-01-01 2:34', type: 'completed', title :"ejemplo2"},
-  {date: '2023-01-01 2:34', type: 'create', title :"ejemplo"},
-  {date: '2023-01-01 2:34', type: 'delete', title :"ejemplo"},
-  {date: '2023-01-01 2:34', type: 'completed', title :"ejemplo3"},
-  {date: '2023-01-01 2:34', type: 'create', title :"ejemplo3"},
-  {date: '2023-01-01 2:34', type: 'delete', title :"ejemplo3"}]);
-
-
+  */
 
   useEffect(() => {
-    console.log(notificaciones, ' notificaciones desde APP')
-  }, [notificaciones])
+    if(!primerRender){
 
-
+      localStorage.setItem("tareas", JSON.stringify(tareas));
+      console.log(tareas, " tareas")
+    }
+  }, [tareas]);
+  
   useEffect(() => {
-    console.log(tareas, ' tareas desde APP')
-  }, [tareas])
+    if(!primerRender){
+    localStorage.setItem("history", JSON.stringify(history));
+    console.log(history , " historial")
+      }
+  }, [history]);
+  
+  
+  useEffect(() => {
+
+    if(localStorage.getItem("tareas") === null){
+      console.log("tareas nulo")
+      setTareas([]);
+    }else{
+      console.log("tareas no nulo")
+      setTareas(JSON.parse(localStorage.getItem("tareas")))
+    }
+    
+    if(localStorage.getItem("history") === null){
+      console.log("History nulo")
+      setHistory([]);
+    }else{
+      console.log("History no nulo")
+    
+      setHistory(JSON.parse(localStorage.getItem("history")))
+    }
+    
+    setPrimerRender(false);
+    
+    
+      }, [])
+
+
+
   return (
     <Router>
       <>
         <ThemeProvider theme={esTemaOscuro ? darkTheme : lightTheme}>
           <TareasGlobal.Provider value={{
             tareas, setTareas, busqueda, setBusqueda, resultadoBusqueda, setResultadoBusqueda, notificaciones, setNotificaciones, showCompleted, setShowCompleted, priority,
-            setPriority, history, setHistory
+            setPriority, history, setHistory, esTemaOscuro, setEsTemaOscuro
           }}>
             <ResetStyles />
             <Global />

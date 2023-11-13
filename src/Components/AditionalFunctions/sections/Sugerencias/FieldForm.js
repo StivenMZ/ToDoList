@@ -118,8 +118,8 @@ const FieldForm = ({ text, textlower, value, error, placeholder, textarea }) => 
                             let value = e.target.value;
                             let verify = error(e.target.value);
                             ActualizarCampo(value, verify);
-                            placeholder = { placeholder }
                         }}
+                        placeholder = { placeholder }
                     >
 
                     </TextAreaField>)

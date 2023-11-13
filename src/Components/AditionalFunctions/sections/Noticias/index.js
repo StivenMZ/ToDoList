@@ -13,7 +13,7 @@ const ArticleNews = styled.article`
   padding: 0.4%;
   overflow-wrap: break-word;
   width: 100%;
-  background-color: #c8f0f9;
+  background-color: ${({theme}) => theme.SectionBGcolor};
   border-radius: 1rem;
   height: 100%;
   overflow-y: auto;

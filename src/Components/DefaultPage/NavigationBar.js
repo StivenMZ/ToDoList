@@ -10,7 +10,8 @@ import history from '../../img/history.svg';
 import aditional from '../../img/aditional.svg';
 import sun from '../../img/sun.svg';
 import moon from '../../img/moon.svg';
-
+import mooncolor from '../../img/half-moon.svg'
+import suncolor from '../../img/sun-light.svg';
 
 const NavigationAnimationIn = keyframes`
 0%{
@@ -99,6 +100,8 @@ display: flex;
 flex-direction: column;
 gap: 0.4rem;
 width: 100%;
+position: relative;
+right: 3.3%;
 `;
 
 //Elementos para cada LI del mení de exploración
@@ -136,18 +139,28 @@ height: 55%;
 
 
 
-const DivColor = styled.div``;
+const DivColor = styled.div`
+background-color: ${({theme}) => theme.ButtonColorBg};
+`;
 
-const ImgColor = styled.img``;
+const ImgColor = styled.img`
+width: 2rem;
+height: 2rem;
+`;
 
 
 
-const ButtonChangeColor = styled.button``;
+const ButtonChangeColor = styled.button`
+background-color: ${({theme}) => theme.ButtonColorBg};
+border: none;
+border: 0.15rem solid ${({theme}) => theme.backgroundBody};
+cursor: pointer;
+`;
 
 const NavigationBar = () => {
     const Url = useLocation();
 
-    const { setBusqueda } = useContext(TareasGlobal);
+    const { setBusqueda, setEsTemaOscuro, esTemaOscuro } = useContext(TareasGlobal);
 
     const rutas = ['/']
 
@@ -181,7 +194,7 @@ const NavigationBar = () => {
                         <DivProfile />
                         <DivOpciones>
                             <NavList>
-                                <Link to='/'>
+                                <Link to='/' draggable="false">
                                     <NavLi>
                                         <DivElementoTexto>
                                             Inicio
@@ -190,12 +203,13 @@ const NavigationBar = () => {
                                             <Imgicon
                                                 src={home}
                                                 alt="inicio-icono"
+                                                draggable="false"
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
                                
-                                <Link to='/crear-tarea'>
+                                <Link to='/crear-tarea' draggable="false">
                                     <NavLi activate={Url.pathname === '/crear-tarea'}
                                     >
                                         <DivElementoTexto>
@@ -205,11 +219,14 @@ const NavigationBar = () => {
                                             <Imgicon
                                                 src={add}
                                                 alt="crear-icono"
+                                                draggable="false"
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
-                                <Link to='/lista-de-tareas'>
+                                <Link to='/lista-de-tareas'
+                                draggable="false"
+                                >
                                     <NavLi activate={Url.pathname === '/lista-de-tareas'}
                                     >
                                         <DivElementoTexto>
@@ -219,11 +236,12 @@ const NavigationBar = () => {
                                             <Imgicon
                                                 src={list}
                                                 alt="lista-icono"
+                                                draggable="false"
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
-                                <Link to='/historial'>
+                                <Link to='/historial' draggable="false">
                                     <NavLi activate={Url.pathname === '/historial'}>
                                         <DivElementoTexto>
                                             Historial
@@ -232,12 +250,13 @@ const NavigationBar = () => {
                                             <Imgicon
                                                 src={history}
                                                 alt="historial-icono"
+                                                draggable="false"
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
                                 </Link>
 
-                                <Link to='/funciones-adicionales'>
+                                <Link to='/funciones-adicionales' draggable="false">
                                     <NavLi activate={Url.pathname === '/funciones-adicionales'}
                                     >
                                         <DivElementoTexto>
@@ -247,6 +266,7 @@ const NavigationBar = () => {
                                             <Imgicon
                                                 src={aditional}
                                                 alt="funciones-icono"
+                                                draggable="false"
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
@@ -255,15 +275,24 @@ const NavigationBar = () => {
                             </NavList>
                         </DivOpciones>
                         <DivColor>
-                            <ButtonChangeColor>
+                            <ButtonChangeColor
+                            onClick={()=>{
+                                setEsTemaOscuro(false)
+                            }}
+                            >
                                 <ImgColor
-                                    src={sun}
+                                    src={esTemaOscuro ? sun : suncolor }
                                     alt="sol-icono"
+                                    draggable="false"
                                 />
                             </ButtonChangeColor>
-                            <ButtonChangeColor>
-                                <ImgColor src={moon}
+                            <ButtonChangeColor
+                            onClick={()=>{
+                                setEsTemaOscuro(true)
+                            }}>
+                                <ImgColor src={esTemaOscuro ? mooncolor : moon }
                                     alt="luna-icono"
+                                    draggable="false"
                                 />
                             </ButtonChangeColor>
                         </DivColor>

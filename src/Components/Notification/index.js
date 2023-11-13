@@ -1,36 +1,53 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Swal from "sweetalert2";
+import { TareasGlobal } from "../../App";
+
 
 
 import "./icon.css"
 
 
+
+
 const Notification = ({ mensaje, type }) => {
 
-/* 
-error
-success
-info
-*/
+  const {esTemaOscuro} = useContext(TareasGlobal);
+
+const objDark = {
+
+  info: '#58DCD9',
+  success: '#6FDE6C',
+  error: '#C55C51',
+  background: "#062273"
+
+}
+
+const objLight = {
+  error: "#FF4B3A",
+  info: "#01ABD8",
+  success: "#A2DC4A",
+  background: "#DEF7F5"
+
+}
 
 
 let realType = {type: type, color: ""}
 
 const colorFunct = () => {
   if(type === "error"){
-    realType.color = "#FF4B3A"
+    realType.color = esTemaOscuro ? objDark.error : objLight.error;
   }
   if(type ==="info"){
     realType.type = "success"
-    realType.color ="#01ABD8"
+    realType.color =esTemaOscuro ? objDark.info : objLight.info;
   }
   if(type === "success"){
-    realType.color = "#A2DC4A"
+    realType.color = esTemaOscuro ? objDark.success : objLight.success;
   }
   if(type === "success error"){
     realType.type = "success"
-    realType.color = "#FF4B3A"
+    realType.color = esTemaOscuro ? objDark.error : objLight.error;
   }
 }
 
@@ -39,7 +56,7 @@ colorFunct();
 
   useEffect(() => {
     showAlerta();
-  }, []);
+  }, [ ]);
  
   const showAlerta = () => {
 
@@ -57,7 +74,7 @@ colorFunct();
       },
       backdrop: false,
       padding: "0.4%",
-      background: "#DEF7F5",
+      background:  esTemaOscuro ? objDark.background : objLight.background,
       color: realType.color,
      
     })
