@@ -13,12 +13,11 @@ const SearchResult = styled.section`
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+
 `;
 
 const DivTitle = styled.div`
   flex-basis: 10%;
-  margin: 2% 0;
   max-width: 50%;
   max-height: 40%;
   width: 100%;
@@ -30,28 +29,41 @@ const DivTitle = styled.div`
 const PhTitle = styled.p`
   color: ${({ theme }) => theme.ResultsTextTitle};
   font-size: 1.3rem;
-
-
-  
 `;
 
 const PBusquedaWord = styled.p`
-font-weight: bolder;
-display: inline-block;
-word-wrap: break-word;
-max-width: 70%;
-color: ${({ theme }) => theme.ResultsTextTitle};
+  font-weight: bolder;
+  display: inline-block;
+  word-wrap: break-word;
+  max-width: 62%;
+  color: ${({ theme }) => theme.ResultsTextTitle};
+  font-size: 1.2rem;
 `;
 
 const BackToBackButton = styled.button`
-  border: 1px solid;
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 0.5rem 1rem;
   align-self: end;
+  color: ${({ theme }) => theme.buttonPositiveText};
+  border: none;
+  background-color: ${({ theme }) => theme.buttonPositiveBackground};
+  padding: 0.7rem 1.5rem;
   cursor: pointer;
+  font-size: 1.3rem;
+  border: 0.15rem solid transparent;
+  box-sizing: border-box;
+  border-radius: 0.4rem;
+  &:hover {
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    border: 0.15rem solid lightblue;
+  }
 `;
+
+
 
 const SearchResults = () => {
   const navigate = useNavigate();

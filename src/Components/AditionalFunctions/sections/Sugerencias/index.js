@@ -13,6 +13,8 @@ justify-content: center;
 
 const Title = styled.h4`
 align-self: center;
+font-size: 1.4rem;
+color: ${({ theme }) => theme.SectionTitle};
 `;
 
 const DivFields = styled.div`
@@ -28,23 +30,46 @@ padding: 1% 3%;
 const DivButtons = styled.div`
 display: flex;
 justify-content: space-around;
+margin-top: 2%;
 `;
 
-const ButtonForm = styled.button`
-color: purple;
+const ButtonFormA = styled.button`
+color:  ${({ theme }) => theme.buttonPositiveText}; 
 border: none;
-background-color:  ${({ theme }) => theme.button}; ;
-padding: 0.5rem;
+background-color:  ${({ theme }) => theme.buttonPositiveBackground}; 
+padding: 0.7rem 1.5rem;
 cursor: pointer;
-font-size: 1.1rem;
+font-size: 1.3rem;
 border: 0.15rem solid transparent;
-
+box-sizing: border-box;
+border-radius: 0.4rem;
 &:hover{
-    opacity: 0.82;
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);
 }
 
 &:active{
-    border: 0.15rem solid lightpink;
+    border: 0.15rem solid lightblue;
+}
+
+`;
+
+const ButtonFormC = styled.button`
+color: ${({ theme }) => theme.titleCards}; 
+border: none;
+background-color:  ${({ theme }) => theme.TaskCarddBackground}; 
+padding: 0.7rem 1.5rem;
+cursor: pointer;
+font-size: 1.03rem;
+box-sizing: border-box;
+border: 0.1rem solid transparent;
+border-radius: 0.4rem;
+
+&:hover{
+    box-shadow: 0 0 0 0.11rem rgba(0, 0, 0, 0.3);;
+}
+
+&:active{
+    border: 0.1rem solid lightblue;
 }
 
 `;
@@ -91,17 +116,23 @@ const Sugerencias = () => {
 
     const errorSugerencia = (sugerencia) => {
         let error = { isError: false, message: '', valid: '' };
-        if (sugerencia.length > 100) {
+
+        if (sugerencia.length < 20) {
             error.isError = true;
-            error.message = 'Sugerencia inválida, el máximo permitido es de 100 carácteres';
+            error.message = 'La sugerencia debe tener como mínimo 20 carácteres'
         }
-        if (sugerencia.length <= 100) {
+
+        else if (sugerencia.length > 400) {
+            error.isError = true;
+            error.message = 'Sugerencia inválida, el máximo permitido es de 400 carácteres';
+        }
+        else if (sugerencia.length <= 400) {
             error.isError = false;
             error.message = ''
             error.valid = 'Sugerencia válida'
         }
 
-        if (sugerencia.length < 1) {
+         if (sugerencia.length < 1) {
             error.isError = false;
             error.message = ''
             error.valid = ''
@@ -185,7 +216,6 @@ const Sugerencias = () => {
             <DivFields>
                 <sugerenciasGlobal.Provider value={{ nombre, setNombre, sugerencia, setSugerencia }}>
 
-
                     <FieldForm
                         text={'Tu nombre'}
                         textlower={'nombre'}
@@ -225,19 +255,19 @@ const Sugerencias = () => {
                 </sugerenciasGlobal.Provider>
             </DivFields>
             <DivButtons>
-                <ButtonForm
+                <ButtonFormA
                     onClick={(e) => {
                         e.preventDefault();
                         sendForm();
                     }}/*  */
-                >Enviar sugerencia</ButtonForm>
-                <ButtonForm
+                >Enviar sugerencia</ButtonFormA>
+                <ButtonFormC
 
                     onClick={(e) => {
                         e.preventDefault();
                         cancelarFunct();
                     }}
-                >Borrar datos</ButtonForm>
+                >Borrar datos</ButtonFormC>
             </DivButtons>
         </Form>
     </>)

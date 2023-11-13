@@ -3,16 +3,18 @@ import styled from 'styled-components';
 import { sugerenciasGlobal } from './index';
 
 
-const DivField = styled.div`
+const  DivField = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
+gap: 0.4rem;
 
 `;
 
 const LabelField = styled.label`
 margin-top: 3%;
-color: black; 
+color: ${({ theme }) => theme.FormText};
+font-size: 1.1rem;
 
 `;
 
@@ -20,17 +22,59 @@ const InputField = styled.input`
 width: 93%;
 padding: 2%;
 outline: none;
-background-color: ${({ theme }) => theme.backgroundBody};  ;
+background-color: ${({ theme }) => theme.FormInputBg};
+font-size: 1.22rem;
+border: none;
+box-sizing: border-box;
+border-radius: 1rem;
+box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+border: 1px solid transparent;
+color: ${({ textlower, theme }) =>  textlower === 'descripcion' ? theme.FormInputTextColorTitleDesc  : theme.FormInputTextColorTitle};
+
+
+&::placeholder{
+    color: ${({ theme }) => theme.FormInputPlText};
+    opacity: 0.4;
+}
+
+&:focus{
+    border: 1px solid ${({ theme }) => theme.FormInputBorderActivate};
+
+}
 
 `;
 
 const TextAreaField = styled.textarea`
 width: 93%;
-padding: 2%;
+padding: 1% 2%;
 outline: none;
-background-color: ${({ theme }) => theme.backgroundBody};  ;
+background-color: ${({ theme }) => theme.FormInputBg};
+font-size: 1.22rem;
+border: none;
+box-sizing: border-box;
+border-radius: 1rem;
+box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+border: 1px solid transparent;
+color: ${({ textlower, theme }) =>  textlower === 'descripcion' ? theme.FormInputTextColorTitleDesc  : theme.FormInputTextColorTitle};
 
+min-width: 93%;
+max-width: 93%;
+min-height: 4rem;
+max-height: 8rem;
+
+
+&::placeholder{
+    color: ${({ theme }) => theme.FormInputPlText};
+    opacity: 0.4;
+}
+
+&:focus{
+    border: 1px solid ${({ theme }) => theme.FormInputBorderActivate};
+
+}
 `;
+
+
 
 const FieldForm = ({ text, textlower, value, error, placeholder, textarea }) => {
 
@@ -80,7 +124,7 @@ const FieldForm = ({ text, textlower, value, error, placeholder, textarea }) => 
 
                     </TextAreaField>)
                     :
-                    (<InputField
+                    (<InputField autoComplete='off'
                         name={textlower}
                         value={value}
                         onInput={(e) => {

@@ -46,8 +46,11 @@ function App() {
     { titulo: 'Estudiar', descripcion: 'Estudio para el examen', prioridad: 'Media', fechaIn: '27/08/2023', id: 5, completada: false, fechaFin: '' },
     { titulo: 'Cocinar', descripcion: 'Preparar la cena', prioridad: 'Baja', fechaIn: '27/08/2023', id: 6, completada: true, fechaFin: '19/10/2023' },
     { titulo: 'Lavar', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
+    { titulo: 'gimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasio', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
     
   ]);
+
+
 
 
   const [showCompleted, setShowCompleted] = useState(false);

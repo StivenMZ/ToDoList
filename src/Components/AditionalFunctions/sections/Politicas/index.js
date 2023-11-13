@@ -1,33 +1,64 @@
-import React, { useState, useContext, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState, useContext, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 
-const SectionPolic = styled.section`
-width: 100%;
-height: 100%;
+const SectionPolicity = styled.section`
+  width: 100%;
+  height: 100%;
+  min-height: 50vh;
 `;
 
-const ArticleResource = styled.article``
+const ArticlePolicity = styled.article`
+  display: flex;
+  flex-direction: column;
+  padding: 1% 1.3%;
+  overflow-wrap: break-word;
+  width: 100%;
+  background-color: #c8f0f9;
+  border-radius: 1rem;
+  height: 100%;
+`;
 
-const TitleResource = styled.h3``
+const TitlePolicity = styled.h4`
+  color: ${({ theme }) => theme.TitleResourceColor};
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1%;
+`;
 
-const PhResource = styled.p``;
 
-const Politicas = () => {
+const UlPolicity = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+`;
 
-    return (
-        <SectionPolic>
-            <ArticleResource>
-                <TitleResource>
-                    Reglas
-                </TitleResource>
-                <PhResource>
-                    -no hay reglas
-                </PhResource>
-            </ArticleResource>
+const LiPolicity = styled.li`
+  color: ${({ theme }) => theme.PhResource};
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+`;
 
-        </SectionPolic>
-    )
+const LiTitle = styled.h6`
+font-weight: bold;
+`;
 
-}
 
-export default Politicas;
+
+const Recursos = () => {
+  return (
+    <SectionPolicity>
+      <ArticlePolicity>
+        <TitlePolicity>Reglas de uso</TitlePolicity>
+        <UlPolicity>
+            <LiPolicity>
+                  <LiTitle>{`-El uso es totalmente libre, de hecho, puedes dirigirte a Funciones Adicionales-> Sobre este sitio web. E ir al repositorio de GitHub, para que conozcas todo el código, el cual está documentado.`}</LiTitle>  
+            </LiPolicity>    
+        </UlPolicity>
+      </ArticlePolicity>
+    </SectionPolicity>
+  );
+};
+
+export default Recursos;

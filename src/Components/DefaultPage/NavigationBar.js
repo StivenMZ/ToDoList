@@ -15,11 +15,12 @@ import moon from '../../img/moon.svg';
 const NavigationAnimationIn = keyframes`
 0%{
     left: -23%;
+     flex-basis: 20%;
 }
 
 100%{
     left: -5%;
-
+flex-basis: 20%;
 }
 
 `
@@ -27,10 +28,12 @@ const NavigationAnimationIn = keyframes`
 const NavigationAnimationOut = keyframes`
 0%{
     left: 0%;
+    flex-basis: 20%;
 }
 
 100%{
     left: -26%;
+    flex-basis: 20%;
 
 }
 
@@ -46,7 +49,7 @@ display: flex;
 justify-content: center;
 position: relative;
 bottom: 11%;
-animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.27s ease-out 1;
+animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.27s ease-in 1; 
 z-index: 7;
 `;
 

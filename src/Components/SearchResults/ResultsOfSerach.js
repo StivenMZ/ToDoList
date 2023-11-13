@@ -5,19 +5,41 @@ import Loading from "./Loading";
 import styled from "styled-components";
 
 const PError = styled.p`
-margin-top: 7%;
-color:  ${({ theme }) => theme.TaskCardTitleCards};
-font-size: 1.3rem;
+  color: ${({ theme }) => theme.TaskCardTitleCards};
+  font-size: 1.3rem;
+`;
+
+const DivMainResults = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    max-height: 60%;
+    align-items: center;
+
+`;
+
+const SectionResults = styled.section`
+  align-self: center;
+  display: flex;
+  max-height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+    
 `;
 
 const ResultsOfSearch = () => {
-  const { tareas, busqueda, resultadoBusqueda, setResultadoBusqueda } = useContext(
-    TareasGlobal
-  );
+  const { tareas, busqueda, resultadoBusqueda, setResultadoBusqueda } =
+    useContext(TareasGlobal);
 
-    const [startRender, setStartRender] = useState(false);
+  const [startRender, setStartRender] = useState(false);
 
-    const [time, setTime] = useState("");
+  const [time, setTime] = useState("");
 
   const onSearch = async (busqueda) => {
     clearTimeout(time);
@@ -26,61 +48,72 @@ const ResultsOfSearch = () => {
       let orderRes = [];
 
       try {
-        await new Promise(resolve => {
-            setTime(setTimeout(() => {
-            tareas.forEach((task) => {
-              if (
-                busqueda.toLowerCase() === task.titulo.toLowerCase() ||
-                busqueda.toLowerCase() === task.descripcion.toLowerCase()
-              ) {
-                orderRes.push(task);
-              }
-            });
+        await new Promise((resolve) => {
+          setTime(
+            setTimeout(() => {
+              tareas.forEach((task) => {
+                if (
+                  busqueda.toLowerCase() === task.titulo.toLowerCase() ||
+                  busqueda.toLowerCase() === task.descripcion.toLowerCase()
+                ) {
+                  orderRes.push(task);
+                 
+                }
+              });
 
-            let arraynoreplic = new Set(orderRes);
-            let result = [...arraynoreplic];
+              let arraynoreplic = new Set(orderRes);
+              let result = [...arraynoreplic];
 
-            setResultadoBusqueda(result);
-            setStartRender(true);
-            resolve(); 
-          }, 400));
+              setResultadoBusqueda(orderRes);
+              setStartRender(true);
+              resolve();
+            }, 400)
+          );
         });
       } catch (error) {
         console.log(error);
       }
-    }else{
-        setResultadoBusqueda([]);
-        setStartRender(true);
+    } else {
+      setResultadoBusqueda([]);
+      setStartRender(true);
     }
   };
 
   useEffect(() => {
     onSearch(busqueda);
-  }, [busqueda]);
+  }, [busqueda, tareas]);
 
-   return startRender ? (
+  return startRender ? (
     resultadoBusqueda ? (
       resultadoBusqueda.length > 0 ? (
-        resultadoBusqueda.map((tarea) => (
-          <TaskCard
-            key={`${tarea.titulo}${tarea.id}`}
-            titulo={tarea.titulo}
-            descripcion={tarea.descripcion}
-            prioridad={tarea.prioridad}
-            fechaIn={tarea.fechaIn}
-            id={tarea.id}
-            completada={tarea.completada}
-            fechaFin={tarea.fechaFin}
-          />
-        ))
+        <DivMainResults>
+       { <SectionResults>
+          {resultadoBusqueda.map((tarea) => (
+            <TaskCard
+              key={`${tarea.titulo}${tarea.id}`}
+              titulo={tarea.titulo}
+              descripcion={tarea.descripcion}
+              prioridad={tarea.prioridad}
+              fechaIn={tarea.fechaIn}
+              id={tarea.id}
+              completada={tarea.completada}
+              fechaFin={tarea.fechaFin}
+            />
+          ))}
+        </SectionResults>}
+        </DivMainResults>
       ) : (
         <PError>No se encontraron tareas que coincidan con tu búsqueda</PError>
-         
       )
     ) : (
-      <PError>Lo sentimos, hubo un error al realizar la búsqueda, por favor inténtelo nuevamente</PError>
+      <PError>
+        Lo sentimos, hubo un error al realizar la búsqueda, por favor inténtelo
+        nuevamente
+      </PError>
     )
-   ) : <Loading />
+  ) : (
+    <Loading />
+  );
 };
 
 export default ResultsOfSearch;

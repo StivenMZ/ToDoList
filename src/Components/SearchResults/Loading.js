@@ -16,7 +16,7 @@ const loadingAnim = keyframes`
 
 
 const DivLoading = styled.div`
-margin-top: 3%;
+margin-top: 1%;
 width: 100%;
 height: 50%;
 display: flex;

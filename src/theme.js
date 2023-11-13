@@ -124,6 +124,9 @@ const lightTheme = {
     articleTextInfo: "#b0e9f9", 
     noHistoryText : "#338FD8",
 
+    
+        /* RESULTS OF SEARCH */
+        ResultsTextTitle: "#338FD8",
 
 
     /* ADITIONAL FUNCTIONS */
@@ -131,8 +134,12 @@ const lightTheme = {
     AditionalFuncBgBtn: "#79C9FE",
     AditionalFunctBtnText : "#2568D7",
 
-    /* RESULTS OF SEARCH */
-    ResultsTextTitle: "#338FD8",
+
+    /* Ad func resources */
+
+    TitleResourceColor: '#3366ff',
+    PhResource: "#011551",
+
 
 
 

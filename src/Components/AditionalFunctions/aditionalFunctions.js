@@ -77,9 +77,9 @@ font-weight: bold;
 const SectionContent = styled.section`
 width: 100%;
     align-self: center;
-    background-color: white;
+    /* background-color: white; */
     flex-basis: 83%;
-    border: 1px solid;
+    /* border: 1px solid; */
    
 `;
 

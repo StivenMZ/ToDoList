@@ -19,7 +19,7 @@ const AnimationWake = keyframes`
 const TaskLista = styled.section`
     height: auto;
     max-height: 90%;
-    width: 100%;
+    width: 70%;
     padding: 1rem 0;
     display: flex;
     flex-direction: column;

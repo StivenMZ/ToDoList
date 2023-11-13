@@ -39,17 +39,18 @@ const AnimationInputIn = keyframes`
 
 
 const InputSearch = styled.input`
-width: 100%;
+    width: 100%;
     outline: none;
     z-index: 100;
     height: 100%;
     padding: 0.4rem;
     box-sizing: border-box;
-    background-color: ${({ theme }) => theme.backGroundInput};;
+    background-color: ${({ theme }) => theme.backGroundInput};
     font-size: 1.2rem;
-    color: black;
+    color: ${({ theme }) => theme.FormInputTextColorTitleDesc};
     border-radius: 1rem;
     border: 2px solid #1D63AA;
+    
 
     &:focus{
       border: 2px solid #1D63AA;
