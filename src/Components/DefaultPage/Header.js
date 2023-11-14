@@ -15,6 +15,11 @@ justify-content: flex-end;
 width: 100%;
 align-items: center;
 gap: 2%;
+
+@media screen and (max-width: 800px) {
+    margin-top: 1.5%;
+ }
+
 `;
 
 const DivIcon = styled.div`
@@ -24,6 +29,10 @@ justify-content: center;
 align-items: center;
 position: relative;
 align-items: center;
+@media screen and (max-width: 800px) {
+   width: 20%
+ }
+
 `;
 
 
@@ -31,11 +40,22 @@ const Icon = styled.div`
 width: 30%;
 max-height: 10vh;
 
+@media screen and (max-width: 800px) {
+    max-height: 15vh;
+ }
+
 `;
 
 
 const TitleH2 = styled.h1`
 width: 50%;
+font-weight: bold;
+text-align: justify;
+
+@media screen and (max-width: 800px) {
+   font-size: 1.4rem;
+ }
+
 `;
 
 
@@ -45,21 +65,26 @@ display: flex;
 text-decoration: none;
 color: ${({theme}) => theme.titleMain};
 
-&:active{
-}
+
 
 `;
 
 const ImgIcon = styled.img`
-width: "30px";
-height: "30px"
+width: 2.3rem;
+height: 2.3rem;
+
+@media screen and (max-width: 800px) {
+    width: 3rem;
+height: 3rem;
+ }
+
+
 `;
 
 const Header = () => {
 
     const {esTemaOscuro} = useContext(TareasGlobal);
 
-    const logo = logoa;
 
     return (<>
         <Head>

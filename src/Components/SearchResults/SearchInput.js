@@ -10,6 +10,10 @@ flex-basis: 65%;
 display: flex;
 justify-content: center;
 position: relative;
+@media screen and (max-width: 800px) {
+  flex-basis: 75%;
+ }
+
 `;
 
 
@@ -60,8 +64,15 @@ const InputSearch = styled.input`
     &::placeholder{
     color: ${({ theme }) => theme.FormInputPlText};
     opacity: 0.4;
-}
 
+
+    
+  }
+  
+  @media screen and (max-width: 800px) {
+    padding: 0.6rem;
+    font-size: 1.6rem;
+}
 
 `;
 

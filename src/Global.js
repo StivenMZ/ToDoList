@@ -105,25 +105,33 @@ const Global = createGlobalStyle`
 
  @media screen and (max-width: 963px) {
   html{
-    font-size: 11px;
+    font-size: 13px;
   }
  }
 
  @media screen and (max-width: 894px) {
   html{
-    font-size: 10px;
+    font-size: 12px;
   }
  }
 
  @media screen and (max-width: 807px) {
   html{
-    font-size: 9px;
+    font-size: 11px;
   }
  }
 
+ 
+ @media screen and (max-width: 768px) {
+  html{
+    font-size: 10px;
+  }
+ }
+
+
  @media screen and (max-width: 730px) {
   html{
-    font-size: 8px;
+    font-size: 9px;
   }
  }
 

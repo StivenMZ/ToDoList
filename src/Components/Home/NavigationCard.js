@@ -9,6 +9,11 @@ margin-top: 8%;
 font-size: 1.5rem;
 color: ${props => props.theme.titleCards};
 
+@media screen and (max-width: 800px) {
+   font-size: 1.7rem;
+ }
+
+
 
 `;
 
@@ -28,10 +33,17 @@ font-size: 1.2rem;
 color: ${props => props.theme.descriptionCards};
 width: 85%;
 
+
+@media screen and (max-width: 800px) {
+    font-size: 1.5rem;
+ }
+
+
 `;
 
 const DivCard = styled.div`
 /* border: 1px solid; */
+text-align: center;
 background-color:${props => props.theme.cardBackground};
 flex-basis: 24%;
 height: 100%;
@@ -43,18 +55,28 @@ cursor: pointer;
 box-sizing: border-box;
 
 &:hover{
-    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.4); /* Define el efecto de sombra en hover */
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.4); 
 
 
     & ${TitleP}, & ${DescriptionCard} {
       font-weight: bold;
     }
 
+
+    
+
 }
 
-
+@media screen and (max-width: 800px) {
+    flex-basis: 45%;
+    height: 100%;
+    margin-top: 1%;
+ }
 
 `;
+
+
+
 
 const NavigationCard = ({ title, ruta, description }) => {
 

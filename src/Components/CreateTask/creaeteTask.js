@@ -120,17 +120,13 @@ const TaskFormContext = createContext();
 const CreateTask = () => {
     const { tareas, setTareas, notificaciones, setNotificaciones, history, setHistory} = useContext(TareasGlobal);
     
- 
+
 
     const [title, setTitle] = useState({ invalido: false, valor: '', error: '', valid: '' });
     const [descripcion, setDescription] = useState({ invalido: false, valor: '', error: '', valid: '' });
     const [prioridad, setPrioridad] = useState({ invalido: true, valor: '', error: '', });
 
 
-  /*   useEffect(() => {
-        console.log(title.invalido + ' ' + title.valor + ' ' + title.error + ' ' + title.valid + '<=Titulo')
-    }, [title]) */
-    //title, setTitle, descripcion, setDescripcion, prioridad, setPrioridad,
 
     const [renderizar, setRenderizar] = useState(true);
 
@@ -161,11 +157,11 @@ const CreateTask = () => {
 
     const errorDescripcion = (descripcion) => {
         let error = { isError: false, message: '', valid: '' };
-        if (descripcion.length > 80) {
+        if (descripcion.length > 100) {
             error.isError = true;
-            error.message = 'Descripción inválida, el máximo permitido es de 80 carácteres';
+            error.message = 'Descripción inválida, el máximo permitido es de 100 carácteres';
         }
-        if (descripcion.length <= 80) {
+        if (descripcion.length <= 100) {
             error.isError = false;
             error.message = ''
             error.valid = 'Descripción válida'
@@ -240,7 +236,7 @@ const CreateTask = () => {
                 cancelarFunct();
                 setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`, type: "info"}])
                 setHistory([{date: `${time}    ${fecha.getHours()}:${fecha.getMinutes().length === 1 ? (`0+1`) : (fecha.getMinutes())}` , title: title.valor , type:'create'},...history])
-
+                localStorage.removeItem("datos");
             } catch (error) {
                 console.log(error)
                 setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`, type: "error"}])
@@ -258,6 +254,7 @@ const CreateTask = () => {
             setTitle({ invalido: false, valor: '', error: '', valid: '' });
             setPrioridad({ invalido: true, valor: '', error: '', valid: '' });
             setDescription({ invalido: false, valor: '', error: '', valid: '' });
+            localStorage.removeItem("datos");
         }
 
 

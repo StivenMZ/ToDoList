@@ -162,13 +162,15 @@ justify-content: center;
 flex-direction: column;
 align-self: center;
 gap: 1rem;
+
 `;
 
 const TitlePop = styled.p`
 font-size: 1.4rem;
 align-self: center;
 color: ${({ theme }) => theme.TaskCardTitleCards};
-
+max-width: 90%;
+overflow-wrap: break-word;
 `;
 
 const DivButtonsContentPop = styled.div`
@@ -200,7 +202,7 @@ border-radius: 0.4rem;
 const ButtonFormC = styled.button`
 color: ${({ theme }) => theme.titleCards}; 
 border: none;
-background-color:  ${({ theme }) => theme.TaskCarddBackground}; 
+background-color:  ${({ theme }) => theme.buttonNegativeBackground}; 
 padding: 0.7rem 1.5rem;
 cursor: pointer;
 font-size: 1.03rem;

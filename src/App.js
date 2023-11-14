@@ -28,7 +28,7 @@ const [primerRender , setPrimerRender] = useState(true);
 
  
 
-  const [esTemaOscuro, setEsTemaOscuro] = useState(true);
+  const [esTemaOscuro, setEsTemaOscuro] = useState(null);
   const [busqueda, setBusqueda] = useState('');
   const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
   const [notificaciones, setNotificaciones] = useState([]);
@@ -38,20 +38,6 @@ const [primerRender , setPrimerRender] = useState(true);
   const [showCompleted, setShowCompleted] = useState(false);
   const [priority, setPriority] = useState('sin prioridad');
 
-
-
-    /* { titulo: 'Botones de esta web', descripcion: 'Organizar los borders de los botones al hacer activate', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
-    { titulo: 'Gimnasio', descripcion: '12345678901234567890123456789012345678901234567890123456789012345678901234567890', prioridad: 'Alta', fechaIn: '27/08/2023', id: 0, completada: false, fechaFin: '' },
-    { titulo: 'Dieta', descripcion: 'Hacer dieta', prioridad: 'Media', fechaIn: '27/08/2023', id: 1, completada: true, fechaFin: '19/10/2023' },
-    { titulo: 'Dulce', descripcion: 'Comer dulce', prioridad: 'Baja', fechaIn: '27/08/2023', id: 2, completada: true, fechaFin: '19/10/2023' },
-    { titulo: 'Correr', descripcion: 'Ir a correr', prioridad: 'Alta', fechaIn: '27/08/2023', id: 3, completada: false, fechaFin: '' },
-    { titulo: 'Leer', descripcion: 'Leer un libro', prioridad: 'Media', fechaIn: '27/08/2023', id: 4, completada: true, fechaFin: '19/10/2023' },
-    { titulo: 'Estudiar', descripcion: 'Estudio para el examen', prioridad: 'Media', fechaIn: '27/08/2023', id: 5, completada: false, fechaFin: '' },
-    { titulo: 'Cocinar', descripcion: 'Preparar la cena', prioridad: 'Baja', fechaIn: '27/08/2023', id: 6, completada: true, fechaFin: '19/10/2023' },
-    { titulo: 'Lavar', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
-    { titulo: 'gimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasiogimnasio', descripcion: 'Lavar los platos', prioridad: 'Baja', fechaIn: '27/08/2023', id: 7, completada: false, fechaFin: '' },
-    
-  */
 
   useEffect(() => {
     if(!primerRender){
@@ -67,6 +53,27 @@ const [primerRender , setPrimerRender] = useState(true);
     console.log(history , " historial")
       }
   }, [history]);
+
+
+  useEffect(() => {
+    const tema =  localStorage.getItem("theme");
+
+    if(primerRender){
+  if (tema !== null){
+    setEsTemaOscuro(JSON.parse(tema));
+  } else{
+    setEsTemaOscuro(false);
+  }
+  }
+  if(!primerRender){
+    localStorage.setItem("theme", JSON.stringify(esTemaOscuro));
+
+  }
+
+
+  console.log(esTemaOscuro, "esTemaOscuro");
+
+  }, [esTemaOscuro])
   
   
   useEffect(() => {

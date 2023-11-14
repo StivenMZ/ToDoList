@@ -32,6 +32,11 @@ const Pmain = styled.h1`
 margin-top: 10%;
 font-size: 2.2rem;
 color:  ${props => props.theme.titleMain};
+
+@media screen and (max-width: 800px) {
+      font-size: 2.7rem;
+ }
+
 `;
 
 const CardsSection = styled.section`
@@ -41,6 +46,13 @@ height: 70vh;
 display: flex;
 justify-content: center;
 align-items: center;
+
+@media screen and (max-width: 800px) {
+    min-height: 50vh;
+    height: auto;
+
+ }
+
 `;
 
 const DivCards = styled.div`
@@ -51,6 +63,15 @@ flex-wrap: wrap;
 gap: 1%;
 align-self: flex-end;
 margin-bottom: 2%;
+
+
+@media screen and (max-width: 800px) {
+    gap: 2%;
+    align-self: center;
+    justify-content: center
+ }
+
+
 `;
 
 const Home = () => {
