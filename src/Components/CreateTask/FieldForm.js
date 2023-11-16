@@ -16,6 +16,10 @@ margin-top: 3%;
 color: ${({ theme }) => theme.FormText};
 font-size: 1.1rem;
 
+@media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
+
 `;
 
 const InputField = styled.input`
@@ -41,6 +45,13 @@ color: ${({ textlower, theme }) =>  textlower === 'descripcion' ? theme.FormInpu
     border: 1px solid ${({ theme }) => theme.FormInputBorderActivate};
 
 }
+
+@media screen and (max-width: 1199px) {
+ font-size :1.5rem ;
+ padding: 3%;
+ 
+}
+
 `;
 
 

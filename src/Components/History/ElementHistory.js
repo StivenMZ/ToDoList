@@ -12,6 +12,11 @@ const ArticleElement = styled.article`
   opacity: 0.86;
   align-items: center;
   justify-content: flex-start;
+
+  @media screen and (max-width: 1199px) {
+ padding: 3%;
+}
+
 `;
 
 const DivDate = styled.div`
@@ -22,11 +27,22 @@ const DivDate = styled.div`
   border-radius: 2rem 0 0rem 2rem;
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 1199px) {
+ width: 29%;
+ max-width: 29%;
+}
+
 `;
 
 const SpanDate = styled.span`
   color: #3a4cb7;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
+
 `;
 
 const PText = styled.p`
@@ -41,6 +57,10 @@ const PText = styled.p`
       : ""};
   font-size: 1.4rem;
   word-wrap: break-word;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
 `;
 
 const DivText = styled.div`
@@ -56,6 +76,11 @@ const DivText = styled.div`
   max-width: 60%;
   border-radius: 1rem /* 2rem 2rem 0.5rem */;
   padding: 3%;
+
+  @media screen and (max-width: 1199px) {
+ width: 57%
+}
+
 `;
 
 /* 

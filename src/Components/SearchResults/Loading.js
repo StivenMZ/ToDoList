@@ -27,6 +27,12 @@ const ImgLoading = styled.img`
 width: 40%;
 height: 40%;
 animation: ${loadingAnim} 1s linear infinite;
+
+@media screen and (max-width: 1199px) {
+ font-size :2.3rem ;
+}
+
+
 `;
 
 

@@ -9,12 +9,23 @@ flex-direction: column;
 width: 100%;
 box-sizing: border-box;
 justify-content: center;
+
+@media screen and (max-width: 1199px) {
+    margin-left: 3%;
+
+}
+
 `;
 
 const Title = styled.h4`
 align-self: center;
 font-size: 1.4rem;
 color: ${({ theme }) => theme.SectionTitle};
+
+@media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
+
 `;
 
 const DivFields = styled.div`
@@ -31,6 +42,8 @@ const DivButtons = styled.div`
 display: flex;
 justify-content: space-around;
 margin-top: 2%;
+
+
 `;
 
 const ButtonFormA = styled.button`
@@ -51,6 +64,9 @@ border-radius: 0.4rem;
     border: 0.15rem solid lightblue;
 }
 
+
+
+
 `;
 
 const ButtonFormC = styled.button`
@@ -59,7 +75,7 @@ border: none;
 background-color:  ${({ theme }) => theme.TaskCarddBackground}; 
 padding: 0.7rem 1.5rem;
 cursor: pointer;
-font-size: 1.03rem;
+font-size: 1.3rem;
 box-sizing: border-box;
 border: 0.1rem solid transparent;
 border-radius: 0.4rem;
@@ -79,6 +95,14 @@ const SpanError = styled.span`
   color: ${({ invalid }) => (invalid ? 'red' : '#01ff01')};
   align-self: flex-start;
   margin: 1% 0 0 1%;
+
+  @media screen and (max-width: 1199px) {
+    margin-top: 0.5%;
+    font-size: 1.2rem;
+
+}
+
+
 `;
 
 

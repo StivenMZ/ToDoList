@@ -28,6 +28,11 @@ const ArticleCard = styled.article`
   margin-top: 0.3rem;
   background-color: ${({ theme }) => theme.TaskCarddBackground};
   animation: ${ShowTask} 0.3s ease-in-out 1;
+
+  @media screen and (max-width: 1199px) {
+ width: 60%;
+}
+
 `;
 
 const DivPrimary = styled.div`
@@ -48,6 +53,11 @@ const StatusCard = styled.strong`
     completada ? theme.TaskCardCompletadaText : theme.TaskCardPendienteText};
   border-radius: 0.4rem;
   font-size: 1.1rem;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.3rem ;
+}
+
 `;
 
 const ProirityCard = styled.p`
@@ -74,6 +84,11 @@ const ProirityCard = styled.p`
   border-radius: 0.4rem;
   font-size: 1.1rem;
   font-weight: bold;
+
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.3rem ;
+}
 `;
 
 const TitleCard = styled.h2`
@@ -82,17 +97,34 @@ const TitleCard = styled.h2`
   color: ${({ theme }) => theme.TaskCardTitleCards};
   overflow-wrap: break-word;
   margin-top: 2.6%;
+
+  
+  @media screen and (max-width: 1199px) {
+    font-size: 1.63rem;
+}
+
+
 `;
 
 const DescCard = styled.p`
   font-size: 1.23rem;
   color: ${({ theme }) => theme.TaskCardDescriptionCards};
   overflow-wrap: break-word;
+
+  @media screen and (max-width: 1199px) {
+    font-size: 1.43rem;
+}
+
 `;
 
 const FechaCard = styled.p`
   font-size: 1.06rem;
   color: ${({ theme }) => theme.TaskCardFechaText};
+
+  @media screen and (max-width: 1199px) {
+    font-size: 1.26rem;
+}
+
 `;
 
 const ButtonsDiv = styled.div`
@@ -108,7 +140,7 @@ const ButtonCardP = styled.button`
   background-color: ${({ theme }) => theme.buttonPositiveBackground};
   padding: 0.7rem 1.5rem;
   cursor: pointer;
-  font-size: 1.03rem;
+  font-size: 1.3rem;
   border: 0.15rem solid transparent;
   box-sizing: border-box;
   border-radius: 0.4rem;
@@ -119,6 +151,8 @@ const ButtonCardP = styled.button`
   &:active {
     border: 0.15rem solid ${({ theme }) => theme.ActivateButton}; 
   }
+
+
 `;
 
 const ButtonCardN = styled.button`
@@ -127,7 +161,7 @@ const ButtonCardN = styled.button`
   background-color: ${({ theme }) => theme.buttonNegativeBackground};
   padding: 0.7rem 1.5rem;
   cursor: pointer;
-  font-size: 1.03rem;
+  font-size: 1.3rem;
   box-sizing: border-box;
   border: 0.15rem solid transparent;
   border-radius: 0.4rem;
@@ -163,6 +197,9 @@ flex-direction: column;
 align-self: center;
 gap: 1rem;
 
+
+
+
 `;
 
 const TitlePop = styled.p`
@@ -171,6 +208,12 @@ align-self: center;
 color: ${({ theme }) => theme.TaskCardTitleCards};
 max-width: 90%;
 overflow-wrap: break-word;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.5rem ;
+}
+
+
 `;
 
 const DivButtonsContentPop = styled.div`
@@ -197,6 +240,10 @@ border-radius: 0.4rem;
     border: 0.15rem solid ${({ theme }) => theme.ActivateButton};
 }
 
+@media screen and (max-width: 1199px) {
+ font-size :1.3rem ;
+}
+
 `;
 
 const ButtonFormC = styled.button`
@@ -216,6 +263,11 @@ border-radius: 0.4rem;
 
 &:active{
     border: 0.15rem solid ${({ theme }) => theme.ActivateButton};
+}
+
+
+@media screen and (max-width: 1199px) {
+ font-size :1.3rem ;
 }
 
 `;

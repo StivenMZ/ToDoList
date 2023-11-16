@@ -30,6 +30,9 @@ const TaskLista = styled.section`
     flex-basis: 70%;
     animation: ${AnimationWake} 0.2s ease-in-out;
 
+    @media screen and (max-width: 1199px) {
+      gap: 0.5rem;
+}
   
 `
 const Title = styled.h1`
@@ -37,6 +40,12 @@ color: ${({ theme }) => theme.SectionTitle};
 font-weight: bolder;
 font-size: 1.8rem;
 flex-basis: 2%;
+
+@media screen and (max-width: 1199px) {
+ font-size :2.3rem ;
+}
+
+
 `
 
 
@@ -67,6 +76,12 @@ const NoTasks = styled.h4`
  font-size: 1.4rem;
  font-weight: bold;
  color:  ${({ theme }) => theme.TaskCardTitleCards};
+
+ @media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
+
+
  `;
 
 const TaskList = () => {

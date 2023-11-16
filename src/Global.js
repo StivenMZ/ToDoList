@@ -11,6 +11,8 @@ const Global = createGlobalStyle`
     width: 100%;
     font-family: 'Josefin Sans', sans-serif;
     background-color: ${({ theme }) => theme.backgroundBody};
+
+    
     
  }
 ::-webkit-scrollbar {
@@ -90,6 +92,8 @@ const Global = createGlobalStyle`
   }
  }
 
+ 
+
  @media screen and (max-width: 1182px) {
   html{
     font-size: 13px;
@@ -156,6 +160,12 @@ const Global = createGlobalStyle`
     font-size: 5px;
   }
  }
+
+ @media screen and (max-width: 1199px) {
+    body {
+      overflow-y: hidden;
+    }
+  }
 
 `;
 

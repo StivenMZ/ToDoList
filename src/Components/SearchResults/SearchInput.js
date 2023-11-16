@@ -10,8 +10,8 @@ flex-basis: 65%;
 display: flex;
 justify-content: center;
 position: relative;
-@media screen and (max-width: 800px) {
-  flex-basis: 75%;
+@media screen and (max-width: 1199px) {
+  flex-basis: 55%;
  }
 
 `;
@@ -69,8 +69,8 @@ const InputSearch = styled.input`
     
   }
   
-  @media screen and (max-width: 800px) {
-    padding: 0.6rem;
+  @media screen and (max-width: 1199px) {
+    padding: 0.5rem;
     font-size: 1.6rem;
 }
 

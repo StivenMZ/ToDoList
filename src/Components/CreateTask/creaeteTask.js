@@ -25,6 +25,9 @@ justify-content: center;
 flex-basis: 70%;
 animation: ${AnimationWake} 0.2s ease-in-out;
 max-height: 80vh;
+
+
+
 `;
 
 const TitleCreate = styled.h2`
@@ -33,6 +36,10 @@ color: ${({ theme }) => theme.SectionTitle};
 align-self: center;
 margin-top: 3%;
 font-weight: bold;
+@media screen and (max-width: 1199px) {
+ font-size :2.3rem ;
+}
+
 ;
 `;
 
@@ -86,7 +93,7 @@ border: none;
 background-color:  ${({ theme }) => theme.TaskCarddBackground}; 
 padding: 0.7rem 1.5rem;
 cursor: pointer;
-font-size: 1.03rem;
+font-size: 1.3rem;
 box-sizing: border-box;
 border: 0.1rem solid transparent;
 border-radius: 0.4rem;
@@ -111,6 +118,13 @@ const SpanError = styled.span`
   margin-top: 1%;
   color: ${({ invalid, theme }) => (invalid ? theme.FormInputError : theme.FormInputValid)};
   font-size: 1.1rem;
+
+  @media screen and (max-width: 1199px) {
+    margin-top: 0.5%;
+    font-size: 1.2rem;
+
+}
+
 `;
 
 

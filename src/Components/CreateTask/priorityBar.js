@@ -21,12 +21,18 @@ box-shadow: 0  0 1rem  rgba(0,0,0,0.1);
 outline: none;
 background-color:  ${({ theme }) => theme.FormInputBg};
 cursor: pointer;
-border: 1px solid transparent;
+border: 0.1rem solid transparent;
 color:${({ theme }) => theme.FormInputPlText};
 
 &:focus{
-    border: 1px solid  ${({ theme }) => theme.FormInputBorderActivate};
+    border: 0.1rem solid  ${({ theme }) => theme.FormInputBorderActivate};
 
+    
+    
+}
+@media screen and (max-width: 1199px) {
+    font-size: 1.5rem;
+padding: 3%;
 }
 `
 
@@ -38,6 +44,10 @@ const Option = styled.option`
 const LabelSelect = styled.label` 
 color: ${({ theme }) => theme.FormText};
 font-size: 1.1rem;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
 `
 
 const PriorityBar = () => {

@@ -23,6 +23,12 @@ const TitleHowTo = styled.h4`
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 1%;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
+
+
 `;
 
 const UlHowTo = styled.ul`
@@ -43,10 +49,19 @@ const LiHowTo = styled.li`
 
 const LiTitle = styled.h6`
   font-weight: bold;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const LiPh = styled.p`
   color: ${({ theme }) => theme.PhResource};
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
 `;
 
 const UlHowToFun = styled.ul`
@@ -64,10 +79,18 @@ const LiHowToFun = styled.li`
   flex-direction: column;
   gap: 0.2rem;
   margin-left: 2%;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const LiTitleFun = styled.h6`
   font-weight: bold;
+
+  
+
 `;
 
 const LiPhFun = styled.p`

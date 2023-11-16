@@ -29,6 +29,12 @@ const DivTitle = styled.div`
 const PhTitle = styled.p`
   color: ${({ theme }) => theme.ResultsTextTitle};
   font-size: 1.3rem;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
+
+
 `;
 
 const PBusquedaWord = styled.p`
@@ -61,6 +67,10 @@ const BackToBackButton = styled.button`
   &:active {
     border: 0.15rem solid lightblue;
   }
+
+
+
+
 `;
 
 

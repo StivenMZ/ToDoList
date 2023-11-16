@@ -6,6 +6,7 @@ const SectionsResources = styled.section`
   height: 100%;
   min-height: 50vh;
 
+
 `;
 
 const ArticleResource = styled.article`
@@ -26,11 +27,22 @@ const TitleResource = styled.h4`
   color:  ${({ theme }) => theme.TitleResourceColor};
   font-weight: bold;
   font-size: 1.2rem;
+
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
 `;
 
 const PhResource = styled.p`
   color: ${({ theme }) => theme.PhResource};
   margin: 1% 0;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
+
+
 `;
 
 const TitleResourceTwo = styled.h5`
@@ -38,6 +50,11 @@ const TitleResourceTwo = styled.h5`
   margin: 1% 0 2% 0;
   font-size: 1.1rem;
   font-weight: bold;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const UlHow = styled.ul`
@@ -49,6 +66,12 @@ const UlHow = styled.ul`
 
 const LiHow = styled.li`
 color: ${({ theme }) => theme.PhResource};
+
+@media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
+
+
 `;
 /* 
 TitleResourceColor
@@ -64,6 +87,12 @@ const AncoreA = styled.a`
   text-decoration: underline;
 
 }
+
+@media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
+
+
 
 `;
 

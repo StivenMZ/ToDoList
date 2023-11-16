@@ -23,6 +23,10 @@ const TitlePolicity = styled.h4`
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 1%;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
 `;
 
 
@@ -42,6 +46,10 @@ const LiPolicity = styled.li`
 
 const LiTitle = styled.h6`
 font-weight: bold;
+@media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 

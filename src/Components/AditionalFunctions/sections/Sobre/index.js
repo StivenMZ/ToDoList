@@ -5,6 +5,7 @@ const SectionAbout = styled.section`
   width: 100%;
   height: 100%;
   min-height: 50vh;
+  max-height: 60vh;
 `;
 
 const ArticleAbout = styled.article`
@@ -24,6 +25,11 @@ const TitleAbout = styled.h4`
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 1%;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
+
 `;
 
 
@@ -43,10 +49,18 @@ const LiAbout = styled.li`
 
 const LiTitle = styled.h6`
 font-weight: bold;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const LiPh = styled.p`
   color: ${({ theme }) => theme.PhResource};
+  @media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
 
 `;
 
@@ -58,6 +72,12 @@ const AncoreA = styled.a`
 
   &:hover{
   text-decoration: underline;
+
+}
+
+@media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+ margin-top: 0;
 
 }
 

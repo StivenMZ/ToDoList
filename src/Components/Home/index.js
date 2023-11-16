@@ -33,8 +33,9 @@ margin-top: 10%;
 font-size: 2.2rem;
 color:  ${props => props.theme.titleMain};
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1199px) {
       font-size: 2.7rem;
+      margin-top: 3%;
  }
 
 `;
@@ -47,8 +48,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 
-@media screen and (max-width: 800px) {
-    min-height: 50vh;
+@media screen and (max-width: 1199px) {
+    min-height: 40vh;
     height: auto;
 
  }
@@ -61,14 +62,21 @@ width: 90%;
 height: 60%;
 flex-wrap: wrap;
 gap: 1%;
+box-sizing: border-box;
 align-self: flex-end;
 margin-bottom: 2%;
 
 
-@media screen and (max-width: 800px) {
-    gap: 2%;
+
+@media screen and (max-width: 1199px) {
+    gap: 5%;
     align-self: center;
-    justify-content: center
+    justify-content: center;
+    height: auto;
+    margin-bottom: 0%;
+    align-self: flex-start;
+    
+
  }
 
 

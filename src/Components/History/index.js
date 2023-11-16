@@ -44,16 +44,28 @@ font-size: 1.8rem;
     margin: 3% 0;
     font-weight: bold;
 
+
+    @media screen and (max-width: 1199px) {
+ font-size :2.3rem ;
+}
+
+
+
 `;
 
 const H3NoHistory = styled.h3`
 font-size: 1.4rem;
 color: ${({ theme }) => theme.noHistoryText};
  
+@media screen and (max-width: 1199px) {
+ font-size :2rem ;
+}
+
+
 
 `;
 
-/* ${({ theme }) => theme.TaskCarddBackground}; */
+
 
 const History = () => {
 

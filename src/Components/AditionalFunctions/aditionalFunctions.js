@@ -42,6 +42,12 @@ flex-basis: 7%;
 font-size: 1.8rem;
 color: ${({ theme }) => theme.AditionalFuncText};
 font-weight: bold;
+
+@media screen and (max-width: 1199px) {
+ font-size :2.3rem ;
+}
+
+
 `;
 
 const SectionFunctions = styled.section`
@@ -71,6 +77,11 @@ font-weight: bold;
 &:active{
     border: 0.15rem solid ${({ theme }) => theme.ActivateButton}; 
 }
+
+@media screen and (max-width: 1199px) {
+ font-size :1.3rem ;
+}
+
 
 `;
 

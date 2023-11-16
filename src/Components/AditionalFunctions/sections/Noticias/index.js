@@ -5,6 +5,8 @@ const SectionNews = styled.section`
   width: 100%;
   height: 100%;
   min-height: 50vh;
+  max-height: 60vh;
+
 `;
 
 const ArticleNews = styled.article`
@@ -24,12 +26,22 @@ const TitleNews = styled.h4`
   color: ${({ theme }) => theme.TitleResourceColor};
   font-weight: bold;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
+
 `;
 
 const TitleNewsTwo = styled.h5`
   color: ${({ theme }) => theme.TitleResourceColor};
   margin: 1% 0 2% 0;
   font-size: 1.1rem;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const UlHow = styled.ul`
@@ -44,14 +56,28 @@ const LiHow = styled.li`
   display: flex;
   flex-direction: column;
   gap: 1%;
+
+
+
 `;
 
 const LiTitle = styled.h6`
 font-weight: bold;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const LiPh = styled.p`
   color: ${({ theme }) => theme.PhResource};
+
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
+
 `;
 
 const Recursos = () => {
@@ -84,6 +110,10 @@ const Recursos = () => {
           <LiHow>
             <LiTitle>-Ver tu historial de actividad</LiTitle>
             <LiPh>Evidencia el día y la hora en el que creaste, completaste o eliminaste cualquier tarea</LiPh>
+          </LiHow>
+          <LiHow>
+            <LiTitle>-Cambiar el tema de colores</LiTitle>
+            <LiPh>Modo claro, o modo oscuro, según tu comodidad</LiPh>
           </LiHow>
         </UlHow>
       </ArticleNews>

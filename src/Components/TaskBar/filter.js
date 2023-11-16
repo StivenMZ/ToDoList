@@ -7,6 +7,12 @@ const TitleFilter = styled.h3`
 color: ${({ theme }) => theme.TaskListFilterTitle};
 font-size: 1.4rem;
 margin-bottom: 0.1%;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.6rem ;
+}
+
+
 `;
 
 const SectionButtons = styled.section`
@@ -16,6 +22,9 @@ align-items: center;
 justify-content: center;
 gap: 1%;
 margin-bottom: 0.8%;
+
+
+
 `;
 
 const ButtonFilter = styled.button`
@@ -26,23 +35,14 @@ border: none;
 color: ${({ theme }) => theme.TaskFilterCardtext};
 box-sizing: border-box;
 padding: 1rem;
-font-size: 1.1rem
+font-size: 1.1rem;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
+
+
 `;
-
-/* 
-
-${({ activate, theme }) => (completada ? theme.TaskFolterActive : theme.TaskListCardBackground)};
-${({ theme }) => theme.TaskListTitle};
-    TaskListTitle: '#2568D7',
-    TaskListShowComplete : '#3387FB',
-
-
-    TaskListFilterTitle: '#74D0FD',
-    TaskListCardBackground: '#D6EEFE',
-    TaskFilterCardtext: '#092578',
-    TaskFolterActive : '#8FE0FE',
-*/
-
 
 const DivSeeComplete = styled.div`
 display: flex;
@@ -54,6 +54,10 @@ margin: 1% 0%;
 const SpanSeeComplete = styled.span`
 color: ${({ theme }) => theme.TaskListShowComTitle };
 font-size: 1.3rem;
+@media screen and (max-width: 1199px) {
+ font-size :1.5rem ;
+}
+
 `;
 
 const InputSeeComplete = styled.input`

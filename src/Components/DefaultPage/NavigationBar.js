@@ -17,11 +17,15 @@ const NavigationAnimationIn = keyframes`
 0%{
     left: -23%;
      flex-basis: 20%;
+
+  
 }
 
 100%{
     left: -5%;
 flex-basis: 20%;
+
+
 }
 
 `
@@ -30,11 +34,15 @@ const NavigationAnimationOut = keyframes`
 0%{
     left: 0%;
     flex-basis: 20%;
+
+ 
 }
 
 100%{
     left: -26%;
     flex-basis: 20%;
+
+ 
 
 }
 
@@ -52,6 +60,9 @@ position: relative;
 bottom: 11%;
 animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.27s ease-in 1; 
 z-index: 7;
+
+
+
 `;
 
 // NavigationAnimationOut  NavigationAnimationIn
@@ -83,12 +94,15 @@ cursor: pointer;
 padding: 2%;
 background-color: ${({ activate, theme }) => (activate ? theme.NavLiBg : '')};
 border-radius: 0 1rem 1rem 0;
+align-items: center;
 
 &:hover{
    background-color: ${({ activate, theme }) => (activate ? theme.NavLiBg : theme.NavLiHover)}; 
     border-radius: 0 1rem 1rem 0;
 
 }
+
+
 
 
 `;
@@ -112,6 +126,9 @@ font-size: 1.2rem;
 align-items: center;
 padding: 1%;
 
+@media screen and (max-width: 1199px) {
+    font-size: 1.5rem;
+ }
 
 
 
@@ -133,6 +150,11 @@ display: flex;
 const Imgicon = styled.img`
 width: 55%;
 height: 55%;
+@media screen and (max-width: 1199px) {
+    width: 75%;
+height: 75%;
+ }
+
 `;
 
 
@@ -146,6 +168,11 @@ background-color: ${({theme}) => theme.ButtonColorBg};
 const ImgColor = styled.img`
 width: 2rem;
 height: 2rem;
+@media screen and (max-width: 1199px) {
+    width: 2.3rem;
+height: 2.3rem;
+ }
+
 `;
 
 

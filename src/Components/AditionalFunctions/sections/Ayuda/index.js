@@ -5,6 +5,7 @@ const SectionHelp = styled.section`
   width: 100%;
   height: 100%;
   min-height: 50vh;
+  max-height: 60vh;
 `;
 
 const ArticleHelp = styled.article`
@@ -25,6 +26,11 @@ const TitleHelp = styled.h4`
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 1%;
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.4rem ;
+}
+
 `;
 
 
@@ -44,11 +50,22 @@ const LiHow = styled.li`
 
 const LiTitle = styled.h6`
 font-weight: bold;
+
+@media screen and (max-width: 1199px) {
+ font-size :1.2rem ;
+}
+
 `;
 
 const LiPh = styled.p`
   color: ${({ theme }) => theme.PhResource};
   overflow-wrap: break-word;
+
+
+  @media screen and (max-width: 1199px) {
+ font-size :1.17rem ;
+}
+
 `;
 
 const Recursos = () => {

@@ -16,7 +16,7 @@ width: 100%;
 align-items: center;
 gap: 2%;
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1199px) {
     margin-top: 1.5%;
  }
 
@@ -29,7 +29,7 @@ justify-content: center;
 align-items: center;
 position: relative;
 align-items: center;
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1199px) {
    width: 20%
  }
 
@@ -40,7 +40,7 @@ const Icon = styled.div`
 width: 30%;
 max-height: 10vh;
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1199px) {
     max-height: 15vh;
  }
 
@@ -52,7 +52,7 @@ width: 50%;
 font-weight: bold;
 text-align: justify;
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1199px) {
    font-size: 1.4rem;
  }
 
@@ -73,7 +73,7 @@ const ImgIcon = styled.img`
 width: 2.3rem;
 height: 2.3rem;
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1199px) {
     width: 3rem;
 height: 3rem;
  }
