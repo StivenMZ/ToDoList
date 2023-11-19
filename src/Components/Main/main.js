@@ -19,6 +19,16 @@ flex-wrap: wrap;
     }
 `;
 
+const NavigationBarTrasparent = styled.div`
+width: 20%;
+height: 30vh;
+position: relative;
+
+@media screen and (max-width: 768px) {
+    width: 0%
+    }
+
+`;
 
 const Main = ({ children }) => {
   const {showNavigationBar} = useContext(TareasGlobal)
@@ -26,6 +36,7 @@ const Main = ({ children }) => {
     return (
         <>
             <Mainma>
+                <NavigationBarTrasparent></NavigationBarTrasparent>
                     {children}
             </Mainma>
         </>

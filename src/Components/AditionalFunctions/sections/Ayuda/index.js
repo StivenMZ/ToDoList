@@ -97,7 +97,7 @@ const Recursos = () => {
           </LiHow>
           <LiHow>
             <LiTitle>-¿Que hago si veo un error en la web?</LiTitle>
-            <LiPh>{`Puedes ir a Funciones Adicionales -> ¿Tienes sugerencias?. Y describir el error, una vez que nos llegue tu mensaje, trabajaremos en ello`}</LiPh>
+            <LiPh>{`Puedes ir a Más funciones -> ¿Tienes sugerencias?. Y describir el error, una vez que nos llegue tu mensaje, trabajaremos en ello`}</LiPh>
           </LiHow>
           <LiHow>
             <LiTitle>-¿Como funciona el guardado de información?</LiTitle>

@@ -5,6 +5,7 @@ const SectionPolicity = styled.section`
   width: 100%;
   height: 100%;
   min-height: 50vh;
+  max-height: 60vh;
 `;
 
 const ArticlePolicity = styled.article`
@@ -70,7 +71,7 @@ const Recursos = () => {
         <TitlePolicity>Reglas de uso</TitlePolicity>
         <UlPolicity>
             <LiPolicity>
-                  <LiTitle>{`-El uso es totalmente libre, de hecho, puedes dirigirte a Funciones Adicionales-> Sobre este sitio web. E ir al repositorio de GitHub, para que conozcas todo el código, el cual está documentado.`}</LiTitle>  
+                  <LiTitle>{`-El uso es totalmente libre, de hecho, puedes dirigirte a Más funciones-> Sobre este sitio web. E ir al repositorio de GitHub, para que conozcas todo el código, el cual está documentado.`}</LiTitle>  
             </LiPolicity>    
         </UlPolicity>
       </ArticlePolicity>

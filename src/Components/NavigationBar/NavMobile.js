@@ -89,15 +89,14 @@ height: 100%;
 
 const NavLi = styled.li`
 display: flex;
-justify-content: center;
+justify-content: flex-end;
 cursor: pointer;
-padding: 2%;
 background-color: ${({ activate, theme }) => (activate ? theme.NavLiBg : '')};
 align-items: center;
 flex-direction: column-reverse;
 height: 100%;
 gap: 1rem   ;
-
+flex-wrap: wrap;
 
 &:hover{
    background-color: ${({ activate, theme }) => (activate ? theme.NavLiBg : theme.NavLiHover)}; 
@@ -117,9 +116,6 @@ display: flex;
 flex-direction: row;
 width: 100%;
 position: relative;
-
-
-justify-content: space-between;
 height: 100%;
 `;
 
@@ -131,18 +127,24 @@ font-size: 1.7rem;
 align-items: center;
 padding: 1%;
 text-align: center;
-
+flex-basis: 30%;
+overflow-wrap: break-word;
+width: 97%;
+max-height: 40%;
 
 
 `;
 
 
 
-const SpanElementoIcono = styled.span`
+const SpanElementoIcono = styled.div`
 display: flex;
 height: auto;
 width: 20%;
-justify-content: center;
+justify-content: flex-start;
+flex-basis: 30%;
+padding-top: 6%;
+
 `;
 
 const Imgicon = styled.img`
@@ -260,11 +262,11 @@ const NavMobile = () => {
                                     </NavLi>
                                 </LinkStyled>
 
-                                <LinkStyled to='/funciones-adicionales' draggable="false">
-                                    <NavLi activate={Url.pathname === '/funciones-adicionales'}
+                                <LinkStyled to='/mas-funciones' draggable="false">
+                                    <NavLi activate={Url.pathname === '/mas-funciones'}
                                     >
                                         <DivElementoTexto>
-                                            Funciones Adicionales
+                                            Más funciones
                                         </DivElementoTexto>
                                         <SpanElementoIcono>
                                             <Imgicon

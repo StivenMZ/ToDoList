@@ -67,11 +67,7 @@ z-index: 7;
 
 `;
 
-const NavigationBarTrasparent = styled.div`
-flex-basis: 20%;
-height: 30vh;
-position: relative;
-`;
+
 
 // NavigationAnimationOut  NavigationAnimationIn
 
@@ -124,7 +120,7 @@ flex-direction: column;
 gap: 0.4rem;
 width: 100%;
 position: relative;
-right: 3.3%;
+right: 4%;
 `;
 
 //Elementos para cada LI del mení de exploración
@@ -237,7 +233,6 @@ const NavigationBar = () => {
 
     }, [Url.pathname])
 
-    const consola = () => console.log("consola");
 
     useEffect(()=>{console.log(isMobile, " ¿es mobile?", " render" , render)},[isMobile])
 
@@ -246,9 +241,7 @@ const NavigationBar = () => {
         {isMobile ? (render && 
         (
         <>
-        <NavigationBarTrasparent />
         <NavMobile />
-        {consola()}
         </>
         )
         ) :
@@ -322,11 +315,11 @@ const NavigationBar = () => {
                                     </NavLi>
                                 </Link>
 
-                                <Link to='/funciones-adicionales' draggable="false">
-                                    <NavLi activate={Url.pathname === '/funciones-adicionales'}
+                                <Link to='/mas-funciones' draggable="false">
+                                    <NavLi activate={Url.pathname === '/mas-funciones'}
                                     >
                                         <DivElementoTexto>
-                                            Funciones Adicionales
+                                            Más funciones
                                         </DivElementoTexto>
                                         <SpanElementoIcono>
                                             <Imgicon
@@ -364,7 +357,7 @@ const NavigationBar = () => {
                         </DivColor>
                     </OptionsSection>
                 </NavigationBarAside>
-                <NavigationBarTrasparent />
+            
                 </>
             )
             }
@@ -376,6 +369,6 @@ const NavigationBar = () => {
 
 
 
-export default NavigationBar
+export default NavigationBar;
 
 

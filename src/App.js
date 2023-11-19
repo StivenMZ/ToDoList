@@ -12,7 +12,7 @@ import Main from './Components/Main/main';
 import DefaultPage from './Components/DefaultPage';
 import Home from './Components/Home';
 import SearchResults from './Components/SearchResults';
-import NavigationBar from './Components/DefaultPage/NavigationBar';
+import NavigationBarHandler from './Components/DefaultPage/NavigationBarHandler';
 import History from './Components/History';
 import NotFound from './Components/NotFound';
 import { MediaQueryContextProvider } from "react-responsive";
@@ -121,14 +121,14 @@ const [primerRender , setPrimerRender] = useState(true);
             <DefaultPage>
             
             
+                <NavigationBarHandler></NavigationBarHandler>
               <Main>
-                <NavigationBar></NavigationBar>
                 <Routes>
                   <Route path='/' element={<Home />} />
                   <Route path="/lista-de-tareas" element={<TaskList />} />
                   <Route path="/crear-tarea" element={<CreateTask />} />
                   <Route path="/historial" element={<History />} />
-                  <Route path="/funciones-adicionales" element={<AditionalFunctions />} />
+                  <Route path="/mas-funciones" element={<AditionalFunctions />} />
                   <Route path="/resultado-de-busqueda" element={<SearchResults />} />
                   <Route path ="*" element={<NotFound />} />
                 </Routes>

@@ -20,6 +20,7 @@ const Global = createGlobalStyle`
 ::-webkit-scrollbar {
   background-color: #A5FEF2;
   border-radius: 2rem;
+  width: 0.4rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -28,12 +29,12 @@ const Global = createGlobalStyle`
 }
 
 ::-webkit-scrollbar {
-  border-top:3px solid #17B7DA;
-  border-bottom: 3px solid #17B7DA;
+  border-top:0.2rem solid #17B7DA;
+  border-bottom: 0.2rem solid #17B7DA;
 }
 
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 0.3rem rgba(0, 0, 0, 0.3);
 }
 
 
@@ -141,22 +142,67 @@ const Global = createGlobalStyle`
 
  @media screen and (max-width: 500px) {
   html{
-    font-size: 9.8px;
+    font-size: 11px;
   }
  }
 
 
 
- @media screen and (max-width: 430px) {
+
+ 
+ @media screen and (max-width: 450px) {
   html{
-    font-size: 9px;
+    font-size: 10px;
   }
  }
 
 
- @media screen and (max-width: 320px) {
+
+ @media screen and (max-width: 330px) {
   html{
     font-size: 8px;
+  }
+ }
+
+
+
+ 
+
+
+ @media screen and (max-width: 300px) {
+  html{
+    font-size: 7px;
+  }
+ }
+
+ @media screen and (max-width: 270px) {
+  html{
+    font-size: 6px;
+  }
+ }
+
+ @media screen and (max-width: 229px) {
+  html{
+    font-size: 5px;
+  }
+ }
+
+ 
+ @media screen and (max-width: 190px) {
+  html{
+    font-size: 4px;
+  }
+ }
+
+ @media screen and (max-width: 142px) {
+  html{
+    font-size: 3px;
+  }
+ }
+
+ @media screen and (max-width: 110px) {
+  html{
+    font-size: 2px;
   }
  }
 

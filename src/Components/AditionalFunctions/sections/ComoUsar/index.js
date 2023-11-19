@@ -172,8 +172,9 @@ const HowTo = () => {
           </LiHowTo>
 
           <LiHowTo>
-            <LiTitle>Funciones adicionales</LiTitle>
-            <LiPh>Haz click en cada opción para ver la información. Luego haz click de nuevo en el título para ocultar el contenido y volver a las funciones adicionales.</LiPh>
+            <LiTitle>Más funciones</LiTitle>
+            <LiPh>Haz click en cada opción para ver la información. Luego haz click de nuevo en el título para ocultar el contenido y volver a más funciones.</LiPh>
+            <br></br>
             <LiPh>A continuación, una descripción breve de cada "función adicional":</LiPh>
             <UlHowToFun>
               <LiHowToFun>

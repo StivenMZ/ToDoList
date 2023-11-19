@@ -21,6 +21,9 @@ width: 100%;
 height: 50%;
 display: flex;
 justify-content: center;
+
+
+
 `
 
 const ImgLoading = styled.img`
@@ -29,8 +32,16 @@ height: 40%;
 animation: ${loadingAnim} 1s linear infinite;
 
 @media screen and (max-width: 1199px) {
- font-size :2.3rem ;
+ width: 30%;
+ height: 30%;
 }
+
+@media screen and (max-width: 768px) {
+ width: 25%;
+ height: 25%;
+}
+
+
 
 
 `;

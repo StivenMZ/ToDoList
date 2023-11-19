@@ -152,10 +152,6 @@ border-radius: 0.4rem;
 `;
 
 
-/* buttonPositiveBackground
-buttonPositiveText
-buttonNegativeBackground
-buttonNegativeText */
 
 const SpanError = styled.span`
   margin-top: 1%;

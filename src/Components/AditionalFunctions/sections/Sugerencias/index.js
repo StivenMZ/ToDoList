@@ -14,6 +14,9 @@ justify-content: center;
     margin-left: 4%;
     width: 97%;
 }
+@media screen and (max-width: 350px) {
+max-height: 70vh;
+}
 
 `;
 
@@ -73,6 +76,9 @@ border-radius: 0.4rem;
 font-size: 2rem;
 }
 
+
+
+
 `;
 
 const ButtonFormC = styled.button`
@@ -98,6 +104,8 @@ border-radius: 0.4rem;
 @media screen and (max-width: 768px) {
 font-size: 2rem;
 }
+
+
 
 
 `;

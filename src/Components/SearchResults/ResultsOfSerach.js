@@ -8,12 +8,19 @@ const PError = styled.p`
   color: ${({ theme }) => theme.TaskCardTitleCards};
   font-size: 1.3rem;
   width: 70%;
+  text-align: center;
 
   @media screen and (max-width: 1171px) {
     font-size: 1.5rem;
     
 
  }
+
+ @media screen and (max-width: 768px) {
+    font-size: 1.7rem;
+  }
+
+
 `;
 
 const DivMainResults = styled.div`
@@ -25,6 +32,11 @@ const DivMainResults = styled.div`
     max-height: 60%;
     align-items: center;
 
+    @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    max-height: 70%;
+  
+  }
 `;
 
 const SectionResults = styled.section`
@@ -37,6 +49,8 @@ const SectionResults = styled.section`
   align-items: center;
   gap: 0.3rem;
   width: 100%;
+
+
     
 `;
 

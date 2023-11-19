@@ -39,6 +39,10 @@ const DivIcon = styled.div`
     width: 20%;
   }
 
+  @media screen and (max-width: 388px) {
+    width: 22%;
+  }
+
 `;
 
 const Icon = styled.div`
@@ -59,6 +63,10 @@ const TitleH2 = styled.h2`
     font-size: 1.4rem;
   }
 
+  @media screen and (max-width: 388px) {
+    font-size: 1.3rem;
+  }
+
 
 
 `;
@@ -77,6 +85,12 @@ const ImgIcon = styled.img`
     width: 3rem;
     height: 3rem;
   }
+
+  @media screen and (max-width: 388px) {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
 `;
 
 

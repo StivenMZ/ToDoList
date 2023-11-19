@@ -113,10 +113,13 @@ const SectionContent = styled.section`
 width: 100%;
     align-self: center;
     /* background-color: white; */
-    flex-basis: 83%;
+    flex-basis: 90%;
     /* border: 1px solid; */
 
-  
+    @media screen and (max-width: 768px) {
+        flex-basis: 90%;
+}
+
    
 `;
 
@@ -169,7 +172,7 @@ const AditionalFunctions = () => {
     return (
         <>
             <SectionFunctionsMain>
-                <FunctionsTitle>Funciones adicionales</FunctionsTitle>
+                <FunctionsTitle>Más funciones</FunctionsTitle>
                 <SectionFunctions>
                     {view ? (
                         <>

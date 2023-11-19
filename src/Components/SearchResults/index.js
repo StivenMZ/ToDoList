@@ -14,6 +14,11 @@ const SearchResult = styled.section`
   flex-direction: column;
   align-items: center;
 
+  @media screen and (max-width: 768px) {
+   width: 97%;
+   height: 76vh;
+    }
+
 `;
 
 const DivTitle = styled.div`
@@ -24,6 +29,13 @@ const DivTitle = styled.div`
   min-height: 30%;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    height: 15%;
+    min-height: 15%;
+  }
+
+
 `;
 
 const PhTitle = styled.p`
@@ -33,6 +45,10 @@ const PhTitle = styled.p`
   @media screen and (max-width: 1199px) {
  font-size :1.6rem ;
 }
+
+@media screen and (max-width: 768px) {
+    font-size: 1.7rem;
+    }
 
 
 `;
@@ -68,7 +84,12 @@ const BackToBackButton = styled.button`
     border: 0.15rem solid lightblue;
   }
 
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    align-self: center;
+    margin-bottom: 3%;
 
+  }
 
 
 `;

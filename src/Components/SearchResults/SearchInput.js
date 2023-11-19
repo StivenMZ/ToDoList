@@ -14,6 +14,20 @@ position: relative;
   flex-basis: 55%;
  }
 
+ @media screen and (max-width: 444px) {
+    flex-basis: 45%;
+  }
+
+
+ @media screen and (max-width: 388px) {
+    flex-basis: 40%;
+  }
+
+  @media screen and (max-width: 332px) {
+    flex-basis: 34%;
+  }
+
+
 `;
 
 
