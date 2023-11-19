@@ -35,6 +35,15 @@ const SectionFunctionsMain = styled.section`
     margin-top: 1%;
     flex-basis: 70%;
     animation: ${AnimationWake} 0.2s ease-in-out;
+
+@media screen and (max-width: 768px) {
+width: 100%;
+flex-basis: 100%;
+height: 76vh;
+margin-top: 2%;
+
+}
+
 `;
 
 const FunctionsTitle = styled.h2`
@@ -47,6 +56,10 @@ font-weight: bold;
  font-size :2.3rem ;
 }
 
+@media screen and (max-width: 768px) {
+    font-size: 2.8rem;
+}
+
 
 `;
 
@@ -56,6 +69,9 @@ flex-direction: column;
 flex-basis: 87%;
 justify-content: space-between;
 width: 96%;
+@media screen and (max-width: 1199px) {
+width: 100%
+}
 
 `;
 
@@ -82,6 +98,14 @@ font-weight: bold;
  font-size :1.3rem ;
 }
 
+@media screen and (max-width: 1171px) {
+ font-size :1.5rem ;
+}
+
+@media screen and (max-width: 1199px) {
+font-size: 1.7rem;
+}
+
 
 `;
 
@@ -91,6 +115,8 @@ width: 100%;
     /* background-color: white; */
     flex-basis: 83%;
     /* border: 1px solid; */
+
+  
    
 `;
 

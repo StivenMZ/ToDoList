@@ -12,6 +12,11 @@ right: 0;
 height: 90vh;
 display: flex;
 flex-wrap: wrap;
+
+@media screen and (max-width: 768px) {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    }
 `;
 
 

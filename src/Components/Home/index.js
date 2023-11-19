@@ -1,20 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
 import NavigationCard from "./NavigationCard";
-import { TareasGlobal } from "../../App";
-import { NavigationBarGlobal } from "../Main/main";
 
-const AnimationHome = keyframes`
 
-0%{
-    display: none;
-}
-
-100%{
-    display: flex;
-}
-
-`;
 
 const SectionHome = styled.section`
 width: 100%;
@@ -32,11 +20,17 @@ const Pmain = styled.h1`
 margin-top: 10%;
 font-size: 2.2rem;
 color:  ${props => props.theme.titleMain};
+text-align: center;
+width: 100%;
 
 @media screen and (max-width: 1199px) {
       font-size: 2.7rem;
       margin-top: 3%;
  }
+
+ @media screen and (max-width: 768px) {
+    width: 90%;
+}
 
 `;
 
@@ -49,8 +43,8 @@ justify-content: center;
 align-items: center;
 
 @media screen and (max-width: 1199px) {
-    min-height: 40vh;
-    height: auto;
+    min-height: 40%;
+
 
  }
 
@@ -59,7 +53,7 @@ align-items: center;
 const DivCards = styled.div`
 display: flex;
 width: 90%;
-height: 60%;
+height: 40vh;
 flex-wrap: wrap;
 gap: 1%;
 box-sizing: border-box;
@@ -72,12 +66,25 @@ margin-bottom: 2%;
     gap: 5%;
     align-self: center;
     justify-content: center;
-    height: auto;
+   /*  height: auto; */
+   height: 100%;
     margin-bottom: 0%;
     align-self: flex-start;
+    margin-top: 3vh;
     
-
  }
+
+ @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    gap: 2%;
+    height: 110%;
+}
+
+
+
 
 
 `;

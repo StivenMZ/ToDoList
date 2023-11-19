@@ -24,6 +24,10 @@ flex-direction: column;
 align-items: center;
 animation: ${AnimationWake} 0.2s ease-in-out;
 
+@media screen and (max-width: 768px) {
+width: 100%
+}
+
 `;
 
 const ElementsHistorySection = styled.section`
@@ -33,6 +37,11 @@ width: 85%;
 gap: 0.4rem;
 overflow-y: auto;
 overflow-x: hidden;
+@media screen and (max-width: 768px) {
+    height: 69vh;
+    width: 95%;
+}
+
 `;
 
 
@@ -49,7 +58,9 @@ font-size: 1.8rem;
  font-size :2.3rem ;
 }
 
-
+@media screen and (max-width: 768px) {
+    font-size: 2.8rem;
+}
 
 `;
 

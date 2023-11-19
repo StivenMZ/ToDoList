@@ -43,6 +43,21 @@ const SpanDate = styled.span`
  font-size :1.4rem ;
 }
 
+@media screen and (max-width: 768px) {
+ font-size :1.5rem ;
+}
+
+@media screen and (max-width: 730px) {
+ font-size :1.7rem ;
+}
+
+@media screen and (max-width: 568px) {
+ font-size :1.6rem ;
+}
+
+
+
+
 `;
 
 const PText = styled.p`

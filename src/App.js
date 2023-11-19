@@ -15,6 +15,7 @@ import SearchResults from './Components/SearchResults';
 import NavigationBar from './Components/DefaultPage/NavigationBar';
 import History from './Components/History';
 import NotFound from './Components/NotFound';
+import { MediaQueryContextProvider } from "react-responsive";
 
 //
 
@@ -117,7 +118,6 @@ const [primerRender , setPrimerRender] = useState(true);
                 })}
 
              
-
             <DefaultPage>
             
             

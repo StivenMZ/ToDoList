@@ -27,6 +27,10 @@ const TitlePolicity = styled.h4`
   @media screen and (max-width: 1199px) {
  font-size :1.4rem ;
 }
+
+@media screen and (max-width: 768px) {
+font-size: 1.8rem;
+}
 `;
 
 
@@ -49,6 +53,11 @@ font-weight: bold;
 @media screen and (max-width: 1199px) {
  font-size :1.2rem ;
 }
+
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
 
 `;
 

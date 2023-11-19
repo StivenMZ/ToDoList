@@ -25,8 +25,15 @@ justify-content: center;
 flex-basis: 70%;
 animation: ${AnimationWake} 0.2s ease-in-out;
 max-height: 80vh;
+flex-direction: column;
+align-items: center;
 
 
+@media screen and (max-width: 768px) {
+    flex-basis: 100%;
+    padding: 0;
+    height: 80vh;
+}
 
 `;
 
@@ -40,6 +47,11 @@ font-weight: bold;
  font-size :2.3rem ;
 }
 
+@media screen and (max-width: 768px) {
+    margin-top: 5%;
+    font-size: 3rem;
+}
+
 ;
 `;
 
@@ -49,6 +61,19 @@ display: flex;
 flex-direction: column;
 padding: 0 4%;
 border-radius: 4%;
+justify-content: center;
+
+
+@media screen and (max-width: 1199px) {
+    min-height: 83%;
+  }
+
+  @media screen and (max-width: 1171px) {
+    min-height: 93%;
+    width: 85%;
+    padding: 0;
+    margin-left: 4%;
+  }
 
 `;
 
@@ -85,6 +110,15 @@ border-radius: 0.4rem;
     border: 0.15rem solid lightblue;
 }
 
+@media screen and (max-width: 1171px) {
+    font-size: 1.4rem;
+
+}
+
+@media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
+
 `;
 
 const ButtonFormC = styled.button`
@@ -106,6 +140,15 @@ border-radius: 0.4rem;
     border: 0.1rem solid lightblue;
 }
 
+@media screen and (max-width: 1171px) {
+    font-size: 1.4rem;
+
+}
+
+@media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
+
 `;
 
 
@@ -120,10 +163,20 @@ const SpanError = styled.span`
   font-size: 1.1rem;
 
   @media screen and (max-width: 1199px) {
-    margin-top: 0.5%;
+    margin-top: 0.2%;
     font-size: 1.2rem;
 
 }
+@media screen and (max-width: 1171px) {
+    margin-top: 0.5%;
+    font-size: 1.35rem;
+
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.45rem;
+}
+
 
 `;
 
@@ -284,8 +337,8 @@ const CreateTask = () => {
         <>
             <TaskFormContext.Provider value={{ title, setTitle, descripcion, setDescription, prioridad, setPrioridad }}>
                 <SectionCreateTask>
-                    <Form>
                         <TitleCreate>Crea una nueva tarea</TitleCreate>
+                    <Form>
                         {renderizar ? (<>
                             <DivFields>
                                 <FieldForm text={'Crea un título para tu tarea'}

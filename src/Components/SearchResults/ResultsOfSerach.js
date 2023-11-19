@@ -7,6 +7,13 @@ import styled from "styled-components";
 const PError = styled.p`
   color: ${({ theme }) => theme.TaskCardTitleCards};
   font-size: 1.3rem;
+  width: 70%;
+
+  @media screen and (max-width: 1171px) {
+    font-size: 1.5rem;
+    
+
+ }
 `;
 
 const DivMainResults = styled.div`

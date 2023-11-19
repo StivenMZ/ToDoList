@@ -58,6 +58,11 @@ const StatusCard = styled.strong`
  font-size :1.3rem ;
 }
 
+@media screen and (max-width: 1171px) {
+ font-size :1.4rem ;
+}
+
+
 `;
 
 const ProirityCard = styled.p`
@@ -89,6 +94,11 @@ const ProirityCard = styled.p`
   @media screen and (max-width: 1199px) {
  font-size :1.3rem ;
 }
+@media screen and (max-width: 1171px) {
+ font-size :1.4rem ;
+}
+
+
 `;
 
 const TitleCard = styled.h2`
@@ -103,6 +113,10 @@ const TitleCard = styled.h2`
     font-size: 1.63rem;
 }
 
+@media screen and (max-width: 1171px) {
+ font-size :1.73rem ;
+}
+
 
 `;
 
@@ -115,6 +129,11 @@ const DescCard = styled.p`
     font-size: 1.43rem;
 }
 
+@media screen and (max-width: 1171px) {
+ font-size :1.53rem ;
+}
+
+
 `;
 
 const FechaCard = styled.p`
@@ -123,6 +142,10 @@ const FechaCard = styled.p`
 
   @media screen and (max-width: 1199px) {
     font-size: 1.26rem;
+}
+
+@media screen and (max-width: 1171px) {
+ font-size :1.36rem ;
 }
 
 `;
@@ -151,7 +174,9 @@ const ButtonCardP = styled.button`
   &:active {
     border: 0.15rem solid ${({ theme }) => theme.ActivateButton}; 
   }
-
+@media screen and (max-width: 1171px) {
+ font-size :1.4rem ;
+}
 
 `;
 
@@ -173,6 +198,10 @@ const ButtonCardN = styled.button`
   &:active {
     border: 0.15rem solid ${({ theme }) => theme.ActivateButton};
   }
+
+  @media screen and (max-width: 1171px) {
+ font-size :1.4rem ;
+}
 `;
 
 /* POPUP */
@@ -214,6 +243,11 @@ overflow-wrap: break-word;
 }
 
 
+@media screen and (max-width: 1171px) {
+ font-size :1.6rem ;
+}
+
+
 `;
 
 const DivButtonsContentPop = styled.div`
@@ -244,6 +278,10 @@ border-radius: 0.4rem;
  font-size :1.3rem ;
 }
 
+@media screen and (max-width: 1171px) {
+ font-size :1.4rem ;
+}
+
 `;
 
 const ButtonFormC = styled.button`
@@ -268,6 +306,10 @@ border-radius: 0.4rem;
 
 @media screen and (max-width: 1199px) {
  font-size :1.3rem ;
+}
+
+@media screen and (max-width: 1171px) {
+ font-size :1.4rem ;
 }
 
 `;

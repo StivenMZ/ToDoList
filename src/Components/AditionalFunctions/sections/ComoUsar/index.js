@@ -5,6 +5,7 @@ const SectionHowTo = styled.section`
   width: 100%;
   height: 100%;
   min-height: 50vh;
+  max-height: 60vh;
 `;
 
 const ArticleHowTo = styled.article`
@@ -26,6 +27,10 @@ const TitleHowTo = styled.h4`
 
   @media screen and (max-width: 1199px) {
  font-size :1.4rem ;
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.8rem;
 }
 
 
@@ -53,6 +58,10 @@ const LiTitle = styled.h6`
   @media screen and (max-width: 1199px) {
  font-size :1.2rem ;
 }
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
 
 `;
 
@@ -62,6 +71,11 @@ const LiPh = styled.p`
   @media screen and (max-width: 1199px) {
  font-size :1.17rem ;
 }
+
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
+}
+
 `;
 
 const UlHowToFun = styled.ul`
@@ -88,13 +102,19 @@ const LiHowToFun = styled.li`
 
 const LiTitleFun = styled.h6`
   font-weight: bold;
-
+  @media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
   
 
 `;
 
 const LiPhFun = styled.p`
   color: ${({ theme }) => theme.PhResource};
+
+  @media screen and (max-width: 768px) {
+font-size: 1.6rem;
+}
 `;
 
 const HowTo = () => {

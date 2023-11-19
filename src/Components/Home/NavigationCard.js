@@ -15,6 +15,11 @@ color: ${props => props.theme.titleCards};
  }
 
 
+ @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    margin-top: 4%;
+}
+
 
 `;
 
@@ -42,6 +47,13 @@ width: 85%;
     margin: 10%;
  }
 
+ @media screen and (max-width: 768px) {
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 768px) {
+    margin-top: 5%;
+}
 
 
 `;
@@ -75,10 +87,15 @@ box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0);
 
 @media screen and (max-width: 1199px) {
     flex-basis: 40%;
-    height: 14.4rem;
-    margin-top: 2%;
+    height: 46%;
+    margin-top: 0%;
 
  }
+
+ @media screen and (max-width: 768px) {
+    flex-basis: 0;
+    height: 13rem;
+}
 
 `;
 

@@ -57,7 +57,7 @@ const InputSearch = styled.input`
     
 
     &:focus{
-      border: 2px solid #1D63AA;
+      border: 2px solid ${({ theme }) => theme.FormInputTextColorTitleDesc};;
       box-shadow: 0 0 2px #007bff, 0 0 2.5px #007bff;
 
     }
@@ -72,6 +72,10 @@ const InputSearch = styled.input`
   @media screen and (max-width: 1199px) {
     padding: 0.5rem;
     font-size: 1.6rem;
+}
+
+@media screen and (max-width: 768px) {
+    font-size: 1.7rem;
 }
 
 `;

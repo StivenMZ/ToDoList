@@ -18,6 +18,7 @@ const ArticleAbout = styled.article`
   border-radius: 1rem;
   height: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
 `;
 
 const TitleAbout = styled.h4`
@@ -28,6 +29,9 @@ const TitleAbout = styled.h4`
 
   @media screen and (max-width: 1199px) {
  font-size :1.4rem ;
+}
+@media screen and (max-width: 768px) {
+font-size: 1.8rem;
 }
 
 `;
@@ -54,12 +58,22 @@ font-weight: bold;
  font-size :1.2rem ;
 }
 
+
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
 `;
 
 const LiPh = styled.p`
   color: ${({ theme }) => theme.PhResource};
+
   @media screen and (max-width: 1199px) {
  font-size :1.17rem ;
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
 }
 
 `;
@@ -79,6 +93,9 @@ const AncoreA = styled.a`
  font-size :1.17rem ;
  margin-top: 0;
 
+}
+@media screen and (max-width: 768px) {
+font-size: 1.5rem;
 }
 
 `;

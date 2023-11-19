@@ -20,6 +20,11 @@ font-size: 1.1rem;
  font-size :1.6rem ;
 }
 
+@media screen and (max-width: 1199px) {
+font-size: 1.7rem;
+}
+
+
 `;
 
 const InputField = styled.input`
@@ -51,6 +56,11 @@ color: ${({ textlower, theme }) =>  textlower === 'descripcion' ? theme.FormInpu
  padding: 3%;
  
 }
+
+@media screen and (max-width: 1199px) {
+font-size: 1.6rem;
+}
+
 
 `;
 

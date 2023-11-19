@@ -21,6 +21,12 @@ font-size: 1.1rem;
  margin-top: 1%;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
+
+
 
 `;
 
@@ -52,6 +58,10 @@ color: ${({ textlower, theme }) =>  textlower === 'descripcion' ? theme.FormInpu
  font-size :1.5rem ;
  padding: 3%;
  
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
 }
 
 
@@ -90,6 +100,10 @@ max-height: 8rem;
  font-size :1.5rem ;
  padding: 2%;
  
+}
+
+@media screen and (max-width: 1199px) {
+font-size: 1.6rem;
 }
 
 

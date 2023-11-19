@@ -9,8 +9,10 @@ const Global = createGlobalStyle`
  body{
     max-width: 100%;
     width: 100%;
+    min-height: 100%;
     font-family: 'Josefin Sans', sans-serif;
     background-color: ${({ theme }) => theme.backgroundBody};
+    position: relative;
 
     
     
@@ -92,20 +94,26 @@ const Global = createGlobalStyle`
   }
  }
 
- 
 
- @media screen and (max-width: 1182px) {
+
+ @media screen and (max-width: 1199px) {
+  html{
+    font-size: 15px;
+  }
+ }
+
+
+
+
+
+
+ @media screen and (max-width: 1171px) {
   html{
     font-size: 13px;
   }
  }
 
 
- @media screen and (max-width: 1182px) {
-  html{
-    font-size: 12px;
-  }
- }
 
  @media screen and (max-width: 963px) {
   html{
@@ -113,51 +121,42 @@ const Global = createGlobalStyle`
   }
  }
 
- @media screen and (max-width: 894px) {
-  html{
-    font-size: 12px;
-  }
- }
 
- @media screen and (max-width: 807px) {
-  html{
-    font-size: 11px;
-  }
- }
+
 
  
- @media screen and (max-width: 768px) {
+ @media screen and (max-width: 767px) {
   html{
-    font-size: 10px;
+    font-size: 12px;
   }
  }
 
 
  @media screen and (max-width: 730px) {
   html{
+    font-size: 11px;
+  }
+ }
+
+
+ @media screen and (max-width: 500px) {
+  html{
+    font-size: 9.8px;
+  }
+ }
+
+
+
+ @media screen and (max-width: 430px) {
+  html{
     font-size: 9px;
-  }
- }
-
-
-
- @media screen and (max-width: 620px) {
-  html{
-    font-size: 7px;
-  }
- }
-
-
- @media screen and (max-width: 420px) {
-  html{
-    font-size: 6px;
   }
  }
 
 
  @media screen and (max-width: 320px) {
   html{
-    font-size: 5px;
+    font-size: 8px;
   }
  }
 

@@ -31,6 +31,10 @@ const TitleNews = styled.h4`
  font-size :1.4rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.8rem;
+}
+
 `;
 
 const TitleNewsTwo = styled.h5`
@@ -40,6 +44,10 @@ const TitleNewsTwo = styled.h5`
 
   @media screen and (max-width: 1199px) {
  font-size :1.2rem ;
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
 }
 
 `;
@@ -68,6 +76,10 @@ font-weight: bold;
  font-size :1.2rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
 `;
 
 const LiPh = styled.p`
@@ -76,6 +88,9 @@ const LiPh = styled.p`
 
   @media screen and (max-width: 1199px) {
  font-size :1.17rem ;
+}
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
 }
 
 `;

@@ -34,6 +34,12 @@ color:${({ theme }) => theme.FormInputPlText};
     font-size: 1.5rem;
 padding: 3%;
 }
+
+@media screen and (max-width: 1199px) {
+font-size: 1.6rem;
+}
+
+
 `
 
 const Option = styled.option`
@@ -48,6 +54,11 @@ font-size: 1.1rem;
 @media screen and (max-width: 1199px) {
  font-size :1.6rem ;
 }
+
+@media screen and (max-width: 1199px) {
+font-size: 1.7rem;
+}
+
 `
 
 const PriorityBar = () => {

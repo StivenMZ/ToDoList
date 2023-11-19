@@ -29,9 +29,15 @@ const TitleResource = styled.h4`
   font-size: 1.2rem;
 
 
+
   @media screen and (max-width: 1199px) {
  font-size :1.4rem ;
 }
+
+@media screen and (max-width: 768px) {
+font-size: 1.8rem;
+}
+
 `;
 
 const PhResource = styled.p`
@@ -42,6 +48,9 @@ const PhResource = styled.p`
  font-size :1.17rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
+}
 
 `;
 
@@ -54,6 +63,12 @@ const TitleResourceTwo = styled.h5`
   @media screen and (max-width: 1199px) {
  font-size :1.2rem ;
 }
+
+
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
 
 `;
 
@@ -71,6 +86,9 @@ color: ${({ theme }) => theme.PhResource};
  font-size :1.17rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
+}
 
 `;
 /* 
@@ -92,6 +110,9 @@ const AncoreA = styled.a`
  font-size :1.17rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.5rem;
+}
 
 
 `;

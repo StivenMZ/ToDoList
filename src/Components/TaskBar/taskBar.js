@@ -33,6 +33,17 @@ const TaskLista = styled.section`
     @media screen and (max-width: 1199px) {
       gap: 0.5rem;
 }
+
+@media screen and (max-width: 768px) {
+    flex-basis: 100%;
+    padding: 0;
+    gap: 0;
+    margin-top: 4%;
+    max-height: 85%;
+
+    }
+
+
   
 `
 const Title = styled.h1`
@@ -45,6 +56,9 @@ flex-basis: 2%;
  font-size :2.3rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 2.8rem;
+    }
 
 `
 
@@ -60,7 +74,10 @@ justify-content: flex-start;
 overflow: auto;
 overflow-x: hidden;
 gap: 1rem;
-
+@media screen and (max-width: 768px) {
+max-height: 60vh;
+width: 95%;
+    }
 
  `
 

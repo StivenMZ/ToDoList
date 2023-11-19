@@ -19,6 +19,11 @@ const ArticleHelp = styled.article`
   height: 100%;
   overflow-y: auto;
 
+  @media screen and (max-width: 768px) {
+width: 98.7%;
+}
+
+
 `;
 
 const TitleHelp = styled.h4`
@@ -29,6 +34,10 @@ const TitleHelp = styled.h4`
 
   @media screen and (max-width: 1199px) {
  font-size :1.4rem ;
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.8rem;
 }
 
 `;
@@ -55,6 +64,10 @@ font-weight: bold;
  font-size :1.2rem ;
 }
 
+@media screen and (max-width: 768px) {
+font-size: 1.7rem;
+}
+
 `;
 
 const LiPh = styled.p`
@@ -64,6 +77,10 @@ const LiPh = styled.p`
 
   @media screen and (max-width: 1199px) {
  font-size :1.17rem ;
+}
+
+@media screen and (max-width: 768px) {
+font-size: 1.6rem;
 }
 
 `;

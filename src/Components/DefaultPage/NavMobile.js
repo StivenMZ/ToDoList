@@ -8,23 +8,18 @@ import list from '../../img/list.svg';
 import add from '../../img/add.svg';
 import history from '../../img/history.svg';
 import aditional from '../../img/aditional.svg';
-import sun from '../../img/sun.svg';
-import moon from '../../img/moon.svg';
-import mooncolor from '../../img/half-moon.svg'
-import suncolor from '../../img/sun-light.svg';
 import { useMediaQuery } from "react-responsive";
-import NavMobile from "./NavMobile";
 
 const NavigationAnimationIn = keyframes`
 0%{
-    left: -23%;
+    bottom: -23%;
      flex-basis: 20%;
 
   
 }
 
 100%{
-    left: -5%;
+    bottom: 0%;
 flex-basis: 20%;
 
 
@@ -34,14 +29,14 @@ flex-basis: 20%;
 
 const NavigationAnimationOut = keyframes`
 0%{
-    left: 0%;
+    bottom: 0%;
     flex-basis: 20%;
 
  
 }
 
 100%{
-    left: -26%;
+    bottom: -23%;
     flex-basis: 20%;
 
  
@@ -52,14 +47,15 @@ const NavigationAnimationOut = keyframes`
 
 
 
-const NavigationBarAside = styled.aside`
+const NavigationBarAside = styled.footer`
 background-color: ${props => props.theme.NavBarBg};
-width: 20%;
-height: 100%;
+width: 100%;
+height: 13vh;
+max-height: 100vh;
 display: flex;
 justify-content: center;
-position: absolute;
-top: 0;
+position: fixed;
+bottom: 0;
 animation: ${({ direction }) => (direction ? NavigationAnimationIn : NavigationAnimationOut)} 0.27s ease-in 1; 
 z-index: 7;
 
@@ -67,23 +63,18 @@ z-index: 7;
 
 `;
 
-const NavigationBarTrasparent = styled.div`
-flex-basis: 20%;
-height: 30vh;
-position: relative;
-`;
-
 // NavigationAnimationOut  NavigationAnimationIn
 
 
 const OptionsSection = styled.section`
-width: 93%;
-height: 95%;
+width: 100%;
+height: 100%;
 align-self: center;
 display: flex;
-flex-direction: column;
+flex-direction: row;
 justify-content: space-between;
 align-items: center;
+
 `;
 
 
@@ -91,22 +82,25 @@ align-items: center;
 //Divs para secciones de la barra de navegación
 const DivOpciones = styled.div`
 width: 100%;
+height: 100%;
 `;
 
 
 
 const NavLi = styled.li`
 display: flex;
-justify-content: space-between;
+justify-content: center;
 cursor: pointer;
 padding: 2%;
 background-color: ${({ activate, theme }) => (activate ? theme.NavLiBg : '')};
-border-radius: 0 1rem 1rem 0;
 align-items: center;
+flex-direction: column-reverse;
+height: 100%;
+gap: 1rem   ;
+
 
 &:hover{
    background-color: ${({ activate, theme }) => (activate ? theme.NavLiBg : theme.NavLiHover)}; 
-    border-radius: 0 1rem 1rem 0;
 
 }
 
@@ -120,95 +114,53 @@ align-items: center;
 //Ul y Li de la barra de navegación para el menú de exploración
 const NavList = styled.ul`
 display: flex;
-flex-direction: column;
-gap: 0.4rem;
+flex-direction: row;
 width: 100%;
 position: relative;
-right: 3.3%;
+
+
+justify-content: space-between;
+height: 100%;
 `;
 
 //Elementos para cada LI del mení de exploración
 const DivElementoTexto = styled.div`
 text-decoration: none;
 color: ${props => props.theme.NavBarText};
-font-size: 1.2rem;
+font-size: 1.7rem;
 align-items: center;
 padding: 1%;
-
-@media screen and (max-width: 1199px) {
-    font-size: 1.7rem;
- }
-
-
+text-align: center;
 
 
 
 `;
 
-const DivProfile = styled.div`
-width: 30%;
-background-color: goldenrod;
-`;
 
 
 const SpanElementoIcono = styled.span`
 display: flex;
-    height: 100%;
-    width: 20%;
-    justify-content: center;
+height: auto;
+width: 20%;
+justify-content: center;
 `;
 
 const Imgicon = styled.img`
-width: 55%;
-height: 55%;
-@media screen and (max-width: 1199px) {
-    width: 75%;
-height: 75%;
- }
-
- @media screen and (max-width: 980px) {
-    width: 100%;
+width: 100%;
 height: 100%;
- }
+
 
 `;
 
-
-
-
-
-const DivColor = styled.div`
-background-color: ${({theme}) => theme.ButtonColorBg};
-`;
-
-const ImgColor = styled.img`
-width: 2rem;
-height: 2rem;
-@media screen and (max-width: 1199px) {
-    width: 2.3rem;
-height: 2.3rem;
- }
-
- @media screen and (max-width: 980px) {
-    width: 2.5rem;
-height: 2.5rem;
- }
-
+const LinkStyled = styled(Link)`
+width: 20%;
+height: 100%;
 `;
 
 
-
-const ButtonChangeColor = styled.button`
-background-color: ${({theme}) => theme.ButtonColorBg};
-border: none;
-border: 0.15rem solid ${({theme}) => theme.backgroundBody};
-cursor: pointer;
-`;
-
-const NavigationBar = () => {
+const NavMobile = () => {
     const Url = useLocation();
 
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)'});
 
 
     const { setBusqueda, setEsTemaOscuro, esTemaOscuro } = useContext(TareasGlobal);
@@ -237,30 +189,16 @@ const NavigationBar = () => {
 
     }, [Url.pathname])
 
-    const consola = () => console.log("consola");
-
-    useEffect(()=>{console.log(isMobile, " ¿es mobile?", " render" , render)},[isMobile])
-
     return (
         <>
-        {isMobile ? (render && 
-        (
-        <>
-        <NavigationBarTrasparent />
-        <NavMobile />
-        {consola()}
-        </>
-        )
-        ) :
+    
         
-            render && (
-                <>
+          
                 <NavigationBarAside direction={direction}>
                     <OptionsSection>
-                        <DivProfile />
                         <DivOpciones>
                             <NavList>
-                                <Link to='/' draggable="false">
+                                <LinkStyled to='/' draggable="false">
                                     <NavLi>
                                         <DivElementoTexto>
                                             Inicio
@@ -273,9 +211,9 @@ const NavigationBar = () => {
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
-                                </Link>
+                                </LinkStyled>
                                
-                                <Link to='/crear-tarea' draggable="false">
+                                <LinkStyled to='/crear-tarea' draggable="false">
                                     <NavLi activate={Url.pathname === '/crear-tarea'}
                                     >
                                         <DivElementoTexto>
@@ -289,8 +227,8 @@ const NavigationBar = () => {
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
-                                </Link>
-                                <Link to='/lista-de-tareas'
+                                </LinkStyled>
+                                <LinkStyled to='/lista-de-tareas'
                                 draggable="false"
                                 >
                                     <NavLi activate={Url.pathname === '/lista-de-tareas'}
@@ -306,8 +244,8 @@ const NavigationBar = () => {
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
-                                </Link>
-                                <Link to='/historial' draggable="false">
+                                </LinkStyled>
+                                <LinkStyled to='/historial' draggable="false">
                                     <NavLi activate={Url.pathname === '/historial'}>
                                         <DivElementoTexto>
                                             Historial
@@ -320,9 +258,9 @@ const NavigationBar = () => {
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
-                                </Link>
+                                </LinkStyled>
 
-                                <Link to='/funciones-adicionales' draggable="false">
+                                <LinkStyled to='/funciones-adicionales' draggable="false">
                                     <NavLi activate={Url.pathname === '/funciones-adicionales'}
                                     >
                                         <DivElementoTexto>
@@ -336,38 +274,15 @@ const NavigationBar = () => {
                                             />
                                         </SpanElementoIcono>
                                     </NavLi>
-                                </Link>
+                                </LinkStyled>
 
                             </NavList>
                         </DivOpciones>
-                        <DivColor>
-                            <ButtonChangeColor
-                            onClick={()=>{
-                                setEsTemaOscuro(false)
-                            }}
-                            >
-                                <ImgColor
-                                    src={esTemaOscuro ? sun : suncolor }
-                                    alt="sol-icono"
-                                    draggable="false"
-                                />
-                            </ButtonChangeColor>
-                            <ButtonChangeColor
-                            onClick={()=>{
-                                setEsTemaOscuro(true)
-                            }}>
-                                <ImgColor src={esTemaOscuro ? mooncolor : moon }
-                                    alt="luna-icono"
-                                    draggable="false"
-                                />
-                            </ButtonChangeColor>
-                        </DivColor>
+                     
                     </OptionsSection>
                 </NavigationBarAside>
-                <NavigationBarTrasparent />
-                </>
-            )
-            }
+            
+            
         </>
 
     )
@@ -376,6 +291,6 @@ const NavigationBar = () => {
 
 
 
-export default NavigationBar
+export default NavMobile;
 
 
