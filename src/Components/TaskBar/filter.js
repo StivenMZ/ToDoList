@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { TareasGlobal } from '../../App'
 
-
+/* Titulo de la sección */
 const TitleFilter = styled.h3`
 color: ${({ theme }) => theme.TaskListFilterTitle};
 font-size: 1.4rem;
@@ -14,7 +14,7 @@ margin-bottom: 0.1%;
 
 
 `;
-
+/* Section para los botones, display flex para alinear verticalmente */
 const SectionButtons = styled.section`
 display: flex;
 width: 80%;
@@ -26,10 +26,11 @@ margin-bottom: 0.8%;
 
 
 `;
-
+/* Botones para cada opción del filtrado de tareas (alta, media, baja , no filtrar) */
 const ButtonFilter = styled.button`
 font-style: italic;
 cursor: pointer;
+/* Si el bottón está selecciona aplicar el background de color TaskFolterActive , sino, el mismo del background */
 background-color: ${({ activate, theme }) => (activate ? theme.TaskFolterActive : theme.TaskListCardBackground)};
 border: none;
 color: ${({ theme }) => theme.TaskFilterCardtext};
@@ -44,6 +45,7 @@ font-size: 1.1rem;
 
 `;
 
+/* Div para ver tareas completadas */
 const DivSeeComplete = styled.div`
 display: flex;
 align-items: center;
@@ -51,6 +53,7 @@ margin: 1% 0%;
 
 `;
 
+/* Texto de ver tareas completadas */
 const SpanSeeComplete = styled.span`
 color: ${({ theme }) => theme.TaskListShowComTitle };
 font-size: 1.3rem;
@@ -60,6 +63,7 @@ font-size: 1.3rem;
 
 `;
 
+/* Input checkbox para ver tareas completadas */
 const InputSeeComplete = styled.input`
 appearance: none;
 width: 1.1rem;
@@ -86,20 +90,19 @@ transition: transform 0.12s;
 
 
 `;
-
+/* Importación de props destructurando */
 const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priority, setPriority,activeFilter }) => {
 
-  const { tareas, setTareas } = useContext(TareasGlobal);
+  const { tareas} = useContext(TareasGlobal);
 
 
-
-
+  /* Llamar la función de filtrado cada que tareas cambia para actualizar la vista de tareas */
   useEffect(() => {
     filterFunct(priority)
   }, [tareas])
 
 
-
+/* Llamar filterFunct y cambiar cheked cada que se actualice checked mediante el inpit checkbox */
   useEffect(()=>{
     setShowCompleted(checked)
     filterFunct(priority);
@@ -112,6 +115,7 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
       <InputSeeComplete type="checkbox"
         checked={checked}
         onClick={() => {
+          /* Cambiar cheked por el valor contrario al que tenga (booleano) */
           setCheked(!checked)
         }}
       ></InputSeeComplete>
@@ -121,8 +125,11 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
       <ButtonFilter
         onClick={() => {
           const value = "Alta";
+
+          /* Cambiar el valor de priority y llamar a la función filterFunct pasando "Alta" como parámetro */
           setPriority(value)
           filterFunct(value)
+     
 
 
         }}
@@ -131,6 +138,9 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
       <ButtonFilter
         onClick={() => {
           const value = "Media";
+
+          /* Cambiar el valor de priority y llamar a la función filterFunct pasando "Media" como parámetro */
+
           setPriority(value)
           filterFunct(value)
         }}
@@ -139,6 +149,7 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
       <ButtonFilter
         onClick={() => {
           const value = "Baja";
+          /* Cambiar el valor de priority y llamar a la función filterFunct pasando "Baja" como parámetro */
           setPriority(value)
           filterFunct(value)
         }}
@@ -147,12 +158,13 @@ const FilterTask = ({ filterFunct, checked, setCheked ,setShowCompleted, priorit
       <ButtonFilter
         onClick={() => {
           const value = "sin prioridad";
+          /* Cambiar el valor de priority y llamar a la función filterFunct pasando "sinPrioridad" como parámetro */
           setPriority(value)
           filterFunct(value)
         }}
         activate={activeFilter === "sin prioridad"}
       >No filtrar</ButtonFilter>
-
+{/* Todos los activate son para el backGround-color en base a si está seleccionado */}
     </SectionButtons>
   </>)
 

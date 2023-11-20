@@ -4,7 +4,7 @@ import TaskCard from "./taskCard";
 import FilterTask from "./filter";
 import { TareasGlobal } from '../../App'
 
-
+/* Animación general de cada sección, para dar efecto de aparición */
 const AnimationWake = keyframes`
   0% {
     opacity: 0.2;
@@ -16,7 +16,8 @@ const AnimationWake = keyframes`
 
 `;
 
-const TaskLista = styled.section`
+/* Seccion general para la lista de tareas */
+const TaskListaSection = styled.section`
     height: auto;
     max-height: 90%;
     width: 70%;
@@ -46,6 +47,8 @@ const TaskLista = styled.section`
 
   
 `
+
+/* Titulo lista de tareas */
 const Title = styled.h1`
 color: ${({ theme }) => theme.SectionTitle};
 font-weight: bolder;
@@ -63,8 +66,8 @@ font-size: 2.8rem;
 `
 
 
-
-const ListaTreas = styled.section`
+/* Sección de lista de tareas   */
+const ListaTareasSection = styled.section`
 flex-basis: 80%;
 width: 90%;
 display: flex;
@@ -81,6 +84,7 @@ width: 95%;
 
  `
 
+/* Div para cuando no hay tareas */
  const DivNoTask= styled.div`
   width: 100%;
   height: 100%;
@@ -88,7 +92,8 @@ width: 95%;
   justify-content: center;
  `;
 
-const NoTasks = styled.h4`
+/* Texto para cuando no hay tareas */
+const NoTasks = styled.p`
  margin: auto;
  font-size: 1.4rem;
  font-weight: bold;
@@ -101,55 +106,68 @@ const NoTasks = styled.h4`
 
  `;
 
+/* Componente de lista de tareas */
 const TaskList = () => {
 
+  /* Importación destructurada de las variables exportadas desde app con el contexto 
+  Tareas para mostrar la lista, showCompleteded para guardar el ver tareas completadas y mostrarlo cada que se renderica el componente, en este sentido, showCompleteded para mostrar  el valor guardado en la última navegación, 
+  lo mismo para priotiry y setPriority
+  */
   const { tareas, showCompleted, setShowCompleted, priority, setPriority } = useContext(TareasGlobal);
+  /* Estado con valor de array para mostrar la vista de tareas si se filtra por prioridad  */
   const [taskView, setTaskView] = useState([]);
+
+  /* Estado para renderizar el map de tareas o el texto no hay tareas, dependiendo de si hay o no tareas */
   const [hayTareas, setHayTareas] = useState(false);
-  const [checked, setCheked] = useState(showCompleted);
+  /* Estado para "verTareasCompletadas" */
+  const [checked, setChecked] = useState(showCompleted);
+  /* Estado para guardar el valor de la prioridad al filtrar */
   const [activeFilter, setActiveFilter] = useState(priority);
 
-
-  const filterFunct = (prioridad) => {
+/* Función para filtrar tareas */
+  const filterFunct = (prioridad /* recibe la prioridad alta, media, baja o sin prioridad */) => {
+    /* Actualizar estado de Activa filter con la prioridad poasada, para mostrar el background */
     setActiveFilter(prioridad);
 
+    /* Array para mostrar las tareas filtradas */
     let newArray = [];
 
+    /* Si no hay prioridad "sin prioridad" => */
     if (prioridad === 'sin prioridad') {
+      /* Si cheked vale true, mostrar todas las tareas */
       if (checked) {
         newArray = [...tareas];
       } else {
+        /* Si cheked vale false, mostrar todas las tareas, menos las que tengan su propiedad completada en true */
         newArray = tareas.filter((task) => !(task.completada));
 
       }
-
+      /* Si la prioridad es diferente a "sin prioridad" => */
     } else {
+      /* Mostrar tareas completadas si checked es true */
       if (checked) {
+        /* filtrar las tareas que su propiedad "prioridad" tenga el valor pasado mediamte el parámetro de función "prioridad" */
         newArray = tareas.filter((task) => (task.prioridad === prioridad));
       } else {
+        /* filtrar las tareas que su propiedad "prioridad" tenga el valor pasado mediamte el parámetro de función "prioridad", sin mostrar tareas completadas */
         newArray = tareas.filter((task) => task.prioridad === prioridad && !task.completada);
       }
 
     }
+    /*Guardar globalmente la prioridad seleccionada */
     setPriority(prioridad)
+    /*Actualizar la vista de tareas en base al resultado de la función */
     setTaskView(newArray)
-    console.log("activeFilter:", activeFilter);
-
   }
 
-
-  useEffect(() => {
-    console.log(taskView, 'TaskView dede TaskList')
-  }, [taskView]);
-
-
-
+/* Función para validar si hay tareas */
   const validarSiHayTareas = () => {
-
+    /* Si el array "tareas" tiene su tamaño mayor a 0 (1 o más) establecer haytareas a true, y llamar a la función filterFunct para filtrar las tareas */
     if (tareas.length > 0) {
       setHayTareas(true);
       filterFunct(priority)
     } else {
+      /* Establecer hayTareas a false */
       setHayTareas(false);
 
     }
@@ -157,37 +175,40 @@ const TaskList = () => {
   }
 
 
-
+  /* Validar si hay tareas cada que "tareas" obtenido desde el contexto global cambia, o, la primera vez que se renderiza el componente taskBar, llamandado a la función validarSiHayTareas */
   useEffect(() => {
     validarSiHayTareas();
-    console.log('Useeffect que llama validarSiHayTareas')
   }, [tareas]);
 
 
   return (
-    <>
+    <>  
 
-      <TaskLista>
-        <Title>{`Tu lista de tareas (${taskView.length} tareas en total)`}</Title>
+
+      <TaskListaSection>
+        
+        <Title>{`Tu lista de tareas (${taskView.length /* Mostrar cantidad de tareas */} tareas en total)`}</Title>
+        {/* Componente filterTask, para filtrar tareas, se pasa taskView y el setter, para filtar las tareas y cambiar el valor de las tareas filtradas, showCompleted igual, priorioridad igual, y cheked igual, y se pasa la función para filtrar tareas filterFunct. Desde este componente se maneja toda la lógica del filtrado */}
         <FilterTask taskView={taskView} setTaskView={setTaskView} showCompleted={showCompleted} setShowCompleted={setShowCompleted} priority={priority}
-          setPriority={setPriority} filterFunct={filterFunct} checked={checked} setCheked={setCheked} activeFilter={activeFilter}></FilterTask>
-        <ListaTreas>
+          setPriority={setPriority} filterFunct={filterFunct} checked={checked} setCheked={setChecked} activeFilter={activeFilter}></FilterTask>
+
+        {/* Sección de lista de tareas */}
+        <ListaTareasSection>
+          {/* Validar si hay tareas, en caso de que si hacer MAP al array de tareas para mostrarlas usando TaskCard */}
           {
             hayTareas && taskView.length > 0 ?
               taskView.map((tarea) => {
-                /*    console.log('tarea', tarea); */
                 return <TaskCard key={`${tarea.titulo}${tarea.id}`} titulo={tarea.titulo} descripcion={tarea.descripcion} prioridad={tarea.prioridad} fechaIn={tarea.fechaIn} id={tarea.id} completada={tarea.completada} fechaFin={tarea.fechaFin}></TaskCard>
-
               }) :
-              
+              /* En caso de no no haber tareas, validar si no hay para esa prioridad, o, si en total no hay */
               <DivNoTask>
                 <NoTasks>{hayTareas ? `No hay tareas con la prioridad seleccionada (${priority})` : 'No hay tareas, crea alguna'}</NoTasks>
               </DivNoTask>
               
 
           }
-        </ListaTreas>
-      </TaskLista>
+        </ListaTareasSection>
+      </TaskListaSection>
     </>
   )
 }

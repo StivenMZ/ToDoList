@@ -2,8 +2,11 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { useState, useContext } from "react";
 import { TareasGlobal } from "../../App";
-import { type } from "@testing-library/user-event/dist/type";
 
+/* Importar funciones de finalizar y eliminar tarea */
+import taskCardFunctions from "./taskCardFunctions"
+
+/* Efecto de aparición para las tareas */
 const ShowTask = keyframes`
 
 0%{
@@ -17,6 +20,8 @@ const ShowTask = keyframes`
 
 `;
 
+
+/* Article para cada tarea */
 const ArticleCard = styled.article`
   padding: 1rem;
   display: flex;
@@ -35,6 +40,7 @@ const ArticleCard = styled.article`
 
 `;
 
+/* Div para información de cada tarea */
 const DivPrimary = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,6 +48,8 @@ const DivPrimary = styled.div`
   margin-top: 4%;
 `;
 
+
+/* Strong para mostrar el estado de la tarea */
 const StatusCard = styled.strong`
   position: absolute;
   top: 3%;
@@ -65,10 +73,13 @@ const StatusCard = styled.strong`
 
 `;
 
+
+/* Texto para prioridad de cada tarea */
 const ProirityCard = styled.p`
   position: absolute;
   top: 3%;
   right: 1.5%;
+  /* Elegir el background-color dependiendo del valor de la prioridad */
   background-color: ${({ prioridad, theme }) =>
     prioridad === "Alta"
       ? theme.TaskCardPriotyBgHigh
@@ -78,6 +89,7 @@ const ProirityCard = styled.p`
       ? theme.TaskCardPriotyBgLow
       : ""};
   padding: 0.5rem;
+    /* Elegir el color dependiendo del valor de la prioridad */
   color: ${({ prioridad, theme }) =>
     prioridad === "Alta"
       ? theme.TaskCardPriorityTextHigh
@@ -101,6 +113,7 @@ const ProirityCard = styled.p`
 
 `;
 
+/* Titulo de la tarea */
 const TitleCard = styled.h2`
   font-size: 1.43rem;
   font-weight: bold;
@@ -120,6 +133,8 @@ const TitleCard = styled.h2`
 
 `;
 
+
+/* Descripción de la tarea */
 const DescCard = styled.p`
   font-size: 1.23rem;
   color: ${({ theme }) => theme.TaskCardDescriptionCards};
@@ -136,6 +151,8 @@ const DescCard = styled.p`
 
 `;
 
+
+/* Fecha de creación o finalización de la tarea */
 const FechaCard = styled.p`
   font-size: 1.06rem;
   color: ${({ theme }) => theme.TaskCardFechaText};
@@ -150,6 +167,7 @@ const FechaCard = styled.p`
 
 `;
 
+/* Div para botones de completar y eliminar de cada tarea */
 const ButtonsDiv = styled.div`
   display: flex;
   gap: 0.6rem;
@@ -157,6 +175,8 @@ const ButtonsDiv = styled.div`
   justify-content: space-around;
 `;
 
+
+/* Boton para completar tarea */
 const ButtonCardP = styled.button`
   color: ${({ theme }) => theme.buttonPositiveText};
   border: none;
@@ -180,6 +200,7 @@ const ButtonCardP = styled.button`
 
 `;
 
+/* Botón para eliminar tarea */
 const ButtonCardN = styled.button`
   color: ${({ theme }) => theme.buttonNegativeText};
   border: none;
@@ -205,7 +226,7 @@ const ButtonCardN = styled.button`
 `;
 
 /* POPUP */
-
+/* Div para la interacción click en los botones aceptar o eliminar */
 const DivPop = styled.div`
   position: absolute;
   width: 93%;
@@ -218,6 +239,7 @@ const DivPop = styled.div`
   background-color: ${({ theme }) => theme.TaskCarddBackground}; 
 `;
 
+/* Div para el titulo y los botones del div al interactuar con botones */
 const DivContentPop = styled.div`
 width: 100%;
 display: flex;
@@ -231,6 +253,8 @@ gap: 1rem;
 
 `;
 
+
+/* Texto de cada interacción */
 const TitlePop = styled.p`
 font-size: 1.4rem;
 align-self: center;
@@ -250,12 +274,15 @@ overflow-wrap: break-word;
 
 `;
 
+/* Div para botones "Si o No" */
 const DivButtonsContentPop = styled.div`
 display: flex;
 width: 100%;
 justify-content: space-evenly;
 `;
 
+
+/* Botón Si */
 const ButtonFormA = styled.button`
 color:  ${({ theme }) => theme.buttonPositiveText}; 
 border: none;
@@ -284,6 +311,7 @@ border-radius: 0.4rem;
 
 `;
 
+/* Botónn No */
 const ButtonFormC = styled.button`
 color: ${({ theme }) => theme.titleCards}; 
 border: none;
@@ -316,79 +344,38 @@ border-radius: 0.4rem;
 
 /*  */
 
+/* Importación de props aplicando destructuración de objetos */
 const TaskCard = ({titulo,descripcion,prioridad,fechaIn,id,completada,fechaFin,}) => {
 
+  /* Importaciones del contexto globall, tareas y settareas para agregar la tarea nueva, notificaciones y setnotificaciones para enviar una notificación en base a crear, completar o eliminar */
   const {tareas,setTareas,notificaciones,setNotificaciones,history,setHistory,} = useContext(TareasGlobal);
-
-  const finishTask = (id) => {
-    const fecha = new Date();
-    let time = "";
-    time += fecha.getDate() + "/";
-    time += fecha.getUTCMonth() + 1 + "/";
-    time += fecha.getFullYear();
-
-    const tareasActual = [...tareas];
-
-    const tareaActualizar = tareasActual.find((task) => task.id === id);
-
-    if (tareaActualizar) {
-      tareaActualizar.completada = true;
-      tareaActualizar.fechaFin = time;
-    }
-
-    setTareas(tareasActual);
-
-    setHistory([
-      {
-        date: `${time}    ${fecha.getHours()}:${
-          fecha.getMinutes().length === 1 ? `0+1` : fecha.getMinutes()
-        }`,
-        title: titulo,
-        type: "completed",
-      },
-      ...history,
-    ]);
-  };
-
-  const deleteTask = (id) => {
-    const fecha = new Date();
-    let time = "";
-    time += fecha.getDate() + "/";
-    time += fecha.getUTCMonth() + 1 + "/";
-    time += fecha.getFullYear();
-
-    const newArray = tareas.filter((task) => task.id !== id);
-
-    setTareas(newArray);
-
-    setHistory([
-      {
-        date: `${time}    ${fecha.getHours()}:${
-          fecha.getMinutes().length === 1 ? `0+1` : fecha.getMinutes()
-        }`,
-        title: titulo,
-        type: "delete",
-      },
-      ...history,
-    ]);
-  };
-
-  const [popContent, setPopcontent] = useState({
-    mensaje: "",
-    callback: "",
-    render: false,
+  /* Contenido para la ventana que se levanta al interactucar con los botones completar o eliminar */
+   const [popContent, setPopcontent] = useState({
+    
+    mensaje: "",  // Mensaje de eliminar o completar 
+    callback: "",  //  callBack para llamar a la función en uptadePop 
+    render: false,  // booleano para renderizar o no la ventana 
   });
 
-  const UpdatePop = (mensaje, callback, notificationMessage, type) => {
+  /* Estado para el mensaje y el tipo de notificación */
+  const [notification, setNotification] = useState({mensaje: "", type: ""});
+  
+
+/* Función que se llama al interactuar con los botones "Completar o Eliminar" */
+  const UpdatePop = (mensaje /* Para mostar el mensaje en la ventana */, callback /* Función que se llama al interactucar con el botón "Si" de la ventana */, notificationMessage /* Mensaje para la notificación */, type /* Tipo de notificación "Crear, completar o eliminar" */) => {
+    /* Actualizar contenido del popContent */
     setPopcontent({ mensaje: mensaje, callback: callback, render: true });
+
+    /* Actualizar el estado, con el mensaje y el tipo */
     setNotification({mensaje: notificationMessage, type: type});
   };
 
-  const [notification, setNotification] = useState({mensale: "", type: ""});
 
   return (
     <>
-      <ArticleCard key={id}>
+    {/* Key id para los MAP */}
+      <ArticleCard key={id} >
+        {/* Validaciópn para la ventana de completar o eliminar, renderizar si popContent.render es true */}
         {popContent.render && (
           <DivPop>
             <DivContentPop>
@@ -396,19 +383,24 @@ const TaskCard = ({titulo,descripcion,prioridad,fechaIn,id,completada,fechaFin,}
               <DivButtonsContentPop>
                 <ButtonFormA
                   onClick={() => {
-                    popContent.callback(id);
+                    /* llamar a popContent.calback al hacer click */
+                    popContent.callback(id,tareas, setTareas, history, setHistory, titulo);
+                    /* Actualizar setPopContent a su estado inicial  */
                     setPopcontent({ mensaje: "", callback: "", render: false });
+                    /*Actualizar notificaciones para mostrar en pantalla una nueva noticación */
                     setNotificaciones([
                       ...notificaciones,
                       { mensaje: notification.mensaje, type: notification.type },
                     ]);
-                    setNotification("");
+                    /* Establecer notificación al valor inicial */
+                    setNotification({mensaje: "", type: ""});
                   }}
                 >
                   Si
                 </ButtonFormA>
                 <ButtonFormC
                   onClick={() => {
+                    /* Establecer popContent a su valor inicial, cerrando la ventana */
                     setPopcontent({ mensaje: "", callback: "", render: false });
                   }}
                 >
@@ -418,15 +410,17 @@ const TaskCard = ({titulo,descripcion,prioridad,fechaIn,id,completada,fechaFin,}
             </DivContentPop>
           </DivPop>
         )}
+        {/* renderizar texto dependiendo del valor de la propiedad completada de la tarea */}
         <StatusCard completada={completada}>
           {completada ? "Completada" : "Pendiente"}
         </StatusCard>
-        <ProirityCard prioridad={prioridad}>Prioridad {prioridad}</ProirityCard>
+        <ProirityCard prioridad={prioridad}/* prop prioridad para el coolor del background */ >Prioridad {prioridad}</ProirityCard>
         <DivPrimary>
           <TitleCard>{titulo}</TitleCard>
           <DescCard>{descripcion}</DescCard>
           <FechaCard>Fecha de inicio: {fechaIn}</FechaCard>
           <FechaCard>
+            {/* Validar si hay texto en fecha fin, para renderizarlo o no */}
             {fechaFin.length > 0 ? `Fecha fin: ${fechaFin}` : " "}
           </FechaCard>
         </DivPrimary>
@@ -435,10 +429,10 @@ const TaskCard = ({titulo,descripcion,prioridad,fechaIn,id,completada,fechaFin,}
           {!completada && (
             <ButtonCardP
               onClick={() => {
-                /* finishTask(id) */
+                /* llamar a updatePop */
                 UpdatePop(
                   `¿Deseas completar la tarea ${titulo}`,
-                  finishTask,
+                  taskCardFunctions.finishTask,
                   `Completaste la tarea ${titulo}`,
                   "success"
                 
@@ -451,16 +445,13 @@ const TaskCard = ({titulo,descripcion,prioridad,fechaIn,id,completada,fechaFin,}
 
           <ButtonCardN
             onClick={() => {
-              /* deleteTask(id) */
-              UpdatePop(`¿Deseas eliminar la tarea ${titulo}`,deleteTask,`La tarea ${titulo} ha sido eliminada`, "success error");
+              /* llamar a updatePop */
+              UpdatePop(`¿Deseas eliminar la tarea ${titulo}`,taskCardFunctions.deleteTask,`La tarea ${titulo} ha sido eliminada`, "success error");
             }}
           >
             Eliminar
           </ButtonCardN>
 
-          {/*  <ButtonCard>
-                        Archivar
-                    </ButtonCard> */}
         </ButtonsDiv>
       </ArticleCard>
     </>
