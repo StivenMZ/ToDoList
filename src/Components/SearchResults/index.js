@@ -106,7 +106,6 @@ const SearchResults = () => {
       <SearchResult>
         <BackToBackButton
           onClick={() => {
-            console.log(`$desde resultados de búsuqeda`);
             setBusqueda("");
             navigate(-1);
           }}

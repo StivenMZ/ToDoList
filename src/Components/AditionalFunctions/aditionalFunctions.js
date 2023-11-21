@@ -164,7 +164,7 @@ const AditionalFunctions = () => {
     const vistaAd = (button, content) => {
         if (!view) {
             setView(true);
-            console.log('a true')
+
             setContentView({ button: button, content: content })
         }
     }

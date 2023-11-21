@@ -234,8 +234,6 @@ const NavigationBar = () => {
     }, [Url.pathname])
 
 
-    useEffect(()=>{console.log(isMobile, " ¿es mobile?", " render" , render)},[isMobile])
-
     return (
         <>
         {isMobile ? (render && 

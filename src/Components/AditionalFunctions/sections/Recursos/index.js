@@ -22,6 +22,9 @@ const ArticleResource = styled.article`
   height: 100%;
   overflow-y: auto;
 
+  @media screen and (max-width: 300px) {
+width: 99%
+}
 
 `;
 

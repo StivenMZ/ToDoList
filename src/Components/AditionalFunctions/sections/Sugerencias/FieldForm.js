@@ -120,7 +120,6 @@ const FieldForm = ({ text, textlower, value, error, placeholder, textarea }) => 
 
 
     const ActualizarCampo = (valor, validation) => {
-        console.log('Test de validation', validation)
         if (textlower === 'nombre') {
             if (validation.message.length < 1 && validation.valid.length > 0) {
                 setNombre({ invalido: validation.isError, valor: valor, error: '', valid: validation.valid })

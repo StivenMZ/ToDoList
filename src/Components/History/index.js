@@ -42,6 +42,11 @@ overflow-x: hidden;
     width: 95%;
 }
 
+@media screen and (max-width: 300px) {
+max-height: 62vh;
+width: 95%;
+    }
+
 `;
 
 

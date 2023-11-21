@@ -294,14 +294,13 @@ const CreateTask = () => {
                     fechaFin: ''
                 };
 
-                console.log(newTarea);
+        
                 setTareas([newTarea ,...tareas ])
                 cancelarFunct();
                 setNotificaciones([...notificaciones, {mensaje: `Se ha creado la tarea ${title.valor}`, type: "info"}])
                 setHistory([{date: `${time}    ${fecha.getHours()}:${fecha.getMinutes().length === 1 ? (`0+1`) : (fecha.getMinutes())}` , title: title.valor , type:'create'},...history])
                 localStorage.removeItem("datos");
             } catch (error) {
-                console.log(error)
                 setNotificaciones([...notificaciones, {mensaje: `Hubo un error al crear la tarea ${title.valor}, por favor intente de nuevo`, type: "error"}])
                 
             }

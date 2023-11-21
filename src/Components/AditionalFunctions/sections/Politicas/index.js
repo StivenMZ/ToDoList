@@ -6,6 +6,12 @@ const SectionPolicity = styled.section`
   height: 100%;
   min-height: 50vh;
   max-height: 60vh;
+
+  @media screen and (max-width: 300px) {
+width: 99%;
+max-height: 58.8vh;
+
+}
 `;
 
 const ArticlePolicity = styled.article`
@@ -17,6 +23,11 @@ const ArticlePolicity = styled.article`
   background-color: ${({theme}) => theme.SectionBGcolor};
   border-radius: 1rem;
   height: 100%;
+
+
+
+
+
 `;
 
 const TitlePolicity = styled.h4`
@@ -24,6 +35,7 @@ const TitlePolicity = styled.h4`
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 1%;
+  
 
   @media screen and (max-width: 1199px) {
  font-size :1.4rem ;
@@ -32,6 +44,13 @@ const TitlePolicity = styled.h4`
 @media screen and (max-width: 768px) {
 font-size: 1.8rem;
 }
+
+@media screen and (max-width: 300px) {
+width: 90%;
+
+
+}
+
 `;
 
 
@@ -57,6 +76,13 @@ font-weight: bold;
 
 @media screen and (max-width: 768px) {
 font-size: 1.7rem;
+}
+
+@media screen and (max-width: 300px) {
+
+width: 95%;
+
+
 }
 
 

@@ -6,6 +6,11 @@ const SectionHelp = styled.section`
   height: 100%;
   min-height: 50vh;
   max-height: 60vh;
+
+  @media screen and (max-width: 300px) {
+width: 99%;
+max-height: 59vh;
+}
 `;
 
 const ArticleHelp = styled.article`

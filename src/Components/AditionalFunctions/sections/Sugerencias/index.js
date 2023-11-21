@@ -115,6 +115,7 @@ const SpanError = styled.span`
   color: ${({ invalid }) => (invalid ? 'red' : '#01ff01')};
   align-self: flex-start;
   margin: 1% 0 0 1%;
+  font-size: 1.1rem;
 
   @media screen and (max-width: 1199px) {
     margin-top: 0.5%;
@@ -240,13 +241,10 @@ const Sugerencias = () => {
                     mensaje: sugerencia.valor,
                     fechaSugerencia: time
                 };
-
-                console.log(newComment, 'newComment desde sugerencias');
                 cancelarFunct();
                 setNotificaciones([...notificaciones, {mensaje: `Hemos recibido tu sugerencia, ¡muchas gracias!`, type: "info"}])
 
             } catch (error) {
-                console.log(error)
                 setNotificaciones([...notificaciones, {mensaje: `Lo sentimos, no pudimos recibir tu comentario, por favor intentálo de nuevo`, type: "error"}])
                 
             }
@@ -268,7 +266,7 @@ const Sugerencias = () => {
 
 
     useEffect(() => {
-        console.log(nombre, sugerencia, ' nombre -sugerencia')
+  
     }, [nombre, sugerencia])
 
     return (<>

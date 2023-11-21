@@ -14,7 +14,7 @@ padding: 0.23rem;
 
 const InputBusqueda = ({taskList}) => {
 
-    const {tareas, setTareas} = useContext(TareasGlobal);
+    const {tareas} = useContext(TareasGlobal);
     const [busqueda, setBusqueda] = useState('');
     const [resultado, setResultado] = useState([])
 
@@ -36,16 +36,12 @@ const InputBusqueda = ({taskList}) => {
 
 
         }else{
-            console.log('No buscar nada')
+            
         }
 
     }
 
-    
-    useEffect(()=>{
-   console.log(resultado)
 
-    },[resultado])
 
     return(
     <>

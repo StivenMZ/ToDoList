@@ -73,7 +73,6 @@ const FieldForm = ({text, textlower, value, error, placeholder}) =>{
 
 
     const ActualizarCampo = (valor, validation ) =>{
-        console.log('Test de validation', validation)
         if(textlower === 'titulo'){
             if(validation.message.length < 1 && validation.valid.length > 0){
                 setTitle({invalido: validation.isError, valor: valor, error: '', valid: validation.valid})

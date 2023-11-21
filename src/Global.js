@@ -171,34 +171,29 @@ const Global = createGlobalStyle`
 
  @media screen and (max-width: 300px) {
   html{
-    font-size: 7px;
+    font-size: 6px;
   }
  }
 
  @media screen and (max-width: 270px) {
   html{
-    font-size: 6px;
+    font-size: 5px;
   }
  }
 
  @media screen and (max-width: 229px) {
   html{
-    font-size: 5px;
+    font-size: 4px;
   }
  }
 
  
  @media screen and (max-width: 190px) {
   html{
-    font-size: 4px;
-  }
- }
-
- @media screen and (max-width: 142px) {
-  html{
     font-size: 3px;
   }
  }
+
 
  @media screen and (max-width: 110px) {
   html{

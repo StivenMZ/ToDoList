@@ -6,6 +6,10 @@ const SectionHowTo = styled.section`
   height: 100%;
   min-height: 50vh;
   max-height: 60vh;
+
+  @media screen and (max-width: 300px) {
+width: 98%;
+    }
 `;
 
 const ArticleHowTo = styled.article`
@@ -43,6 +47,9 @@ const UlHowTo = styled.ul`
   gap: 1rem;
   overflow-y: auto;
   max-height: 60vh;
+
+
+
 `;
 
 const LiHowTo = styled.li`
@@ -85,6 +92,11 @@ const UlHowToFun = styled.ul`
   gap: 1rem;
   justify-content: left;
   max-height: 60vh;
+
+  @media screen and (max-width: 400px) {
+margin-bottom: 1%
+    }
+
 `;
 
 const LiHowToFun = styled.li`

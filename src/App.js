@@ -50,7 +50,7 @@ const [priority, setPriority] = useState('sin prioridad');
     if(!primerRender){
 
       localStorage.setItem("tareas", JSON.stringify(tareas));
-      console.log(tareas, " tareas")
+
     }
   }, [tareas]);
   
@@ -61,7 +61,6 @@ const [priority, setPriority] = useState('sin prioridad');
      /* Si no es el primer render,guardar cada cambio en el historial en el localstorage */
     if(!primerRender){
     localStorage.setItem("history", JSON.stringify(history));
-    console.log(history , " historial")
       }
   }, [history]);
 

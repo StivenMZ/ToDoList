@@ -2,7 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import NavigationCard from "./NavigationCard";
 
-
+/* 324x478 */
 
 const SectionHome = styled.section`
 width: 100%;
@@ -32,6 +32,21 @@ width: 100%;
     width: 90%;
 }
 
+@media screen and (max-width: 400px) {
+    font-size: 2.3rem;
+
+
+ }
+
+ @media screen and (max-width: 300px) {
+    font-size: 2.1rem;
+
+
+ }
+
+
+
+
 `;
 
 const CardsSection = styled.section`
@@ -42,11 +57,26 @@ display: flex;
 justify-content: center;
 align-items: center;
 
+
 @media screen and (max-width: 1199px) {
     min-height: 40%;
 
 
  }
+
+ @media screen and (max-width: 400px) {
+    font-size: 2.3rem;
+
+
+ }
+
+ @media screen and (max-width: 300px) {
+    max-height: 67vh;
+
+
+ }
+
+
 
 `;
 
@@ -82,6 +112,13 @@ margin-bottom: 2%;
     gap: 2%;
     height: 110%;
 }
+
+
+@media screen and (max-width: 400px) {
+    height: 100%;
+
+
+ }
 
 
 

@@ -8,8 +8,6 @@ import { useState, useEffect, createContext } from "react";
 const DefaultPage = ({ children }) => {
 
 
-    console.log('default page renderizado')
-
     return (
         <>
                 <Header />

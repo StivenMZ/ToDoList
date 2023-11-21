@@ -61,6 +61,7 @@ flex-basis: 2%;
 
 @media screen and (max-width: 768px) {
 font-size: 2.8rem;
+text-align: center;
     }
 
 `
@@ -82,6 +83,12 @@ max-height: 60vh;
 width: 95%;
     }
 
+
+    @media screen and (max-width: 300px) {
+max-height: 52vh;
+width: 95%;
+    }
+
  `
 
 /* Div para cuando no hay tareas */
@@ -98,6 +105,7 @@ const NoTasks = styled.p`
  font-size: 1.4rem;
  font-weight: bold;
  color:  ${({ theme }) => theme.TaskCardTitleCards};
+ text-align: center;
 
  @media screen and (max-width: 1199px) {
  font-size :1.6rem ;
